@@ -62,7 +62,7 @@ class MyComponent extends mim.Component
 // Helper component to draw the image with the given CSS class and label
 class TransformedImage extends mim.Component
 {
-	url = "mimcss/examples/rose.png";
+	url = "examples/rose.png";
 	label: string;
 	cls?: css.IClassRule;
 
