@@ -1,6 +1,7 @@
 ---
 layout: mimcss
 title: Mimcss Reference
+rootpath: "."
 ---
 
 <div class="typedoc-reference">
@@ -9,6 +10,6 @@ title: Mimcss Reference
 
 <script>
     let hash = location.hash;
-    typedocRef.src = "/reference/" + (hash ? hash.substr(1) : "index.html");
+    typedocRef.src = "./reference/" + (hash ? hash.substr(1) : "index.html");
 </script>
 
