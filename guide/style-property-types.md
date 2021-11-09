@@ -3,6 +3,7 @@ layout: mimcss-guide
 unit: 7
 title: "Mimcss Guide: Style Property Types"
 description: "Describes the category of style properties and what TypeScript types are used to specify their values."
+rootpath: ".."
 ---
 
 # Mimcss Guide: Style Property Types

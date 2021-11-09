@@ -3,6 +3,7 @@ layout: mimcss-guide
 unit: 8
 title: "Mimcss Guide: Style Definition Inheritance"
 description: "Style definition classes can use inheritance to allow changing visual aspects of the application without changing its HTML code."
+rootpath: ".."
 ---
 
 # Mimcss Guide: Style Definition Inheritance

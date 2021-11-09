@@ -8,27 +8,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="google-site-verification" content="yy_qgazbi49O1tKrQiincY6VFN9ZBxEa-SbNumL4M7o" />
     <meta name="description" content="{{page.description}}">
-    <link href="../assets/common-styles.css" rel="stylesheet">
+    <link href="{{page.rootpath}}/assets/common-styles.css" rel="stylesheet">
 </head>
 
 <body>
     <div class="vbox" style="height: 100%">
         <div class="hbox mainHeader">
             <div class="hbox">
-                <img src="../assets/mim-logo.png" style="margin: auto 0.5em 0">
-                <img src="../assets/css.png">
+                <img src="{{page.rootpath}}/assets/mim-logo.png" style="margin: auto 0.5em 0">
+                <img src="{{page.rootpath}}/assets/css.png">
             </div>
             <div class="page-title">
                 {{page.title}}
             </div>
             <div class="menubar" style="justify-content:flex-start; align-items:center">
                 <a class="menuitem" href="/">Home</a>
-                <a class="menuitem" href="../guide/introduction.html">Documentation</a>
-                <a class="menuitem" href="../demo/playground.html">Playground</a>
-                <a class="menuitem" href="../reference.html">Reference</a>
+                <a class="menuitem" href="{{page.rootpath}}/guide/introduction.html">Documentation</a>
+                <a class="menuitem" href="{{page.rootpath}}/demo/playground.html">Playground</a>
+                <a class="menuitem" href="{{page.rootpath}}/reference.html">Reference</a>
             </div>
             <div class="menubar">
-                <a class="menuitem" href="../blog/blog.html">Blog</a>
+                <a class="menuitem" href="{{page.rootpath}}/blog/blog.html">Blog</a>
             </div>
         </div>
         <div class="main-container elastic vbox">

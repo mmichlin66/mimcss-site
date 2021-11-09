@@ -3,6 +3,7 @@ layout: mimcss-guide
 unit: 0
 title: "Mimcss Guide: Introduction"
 description: "Quick introduction to Mimcss style authoring library."
+rootpath: ".."
 ---
 
 # Mimcss Guide: Introduction

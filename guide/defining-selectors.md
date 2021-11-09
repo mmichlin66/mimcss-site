@@ -3,6 +3,7 @@ layout: mimcss-guide
 unit: 2
 title: "Mimcss Guide: Defining Selectors"
 description: "Mimcss uses the full power of the TypeScript typing system to define style property values in a type-safe and convenient ways."
+rootpath: ".."
 ---
 
 # Mimcss Guide: Defining Selectors

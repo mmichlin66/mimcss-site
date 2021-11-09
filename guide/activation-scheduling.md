@@ -3,6 +3,7 @@ layout: mimcss-guide
 unit: 10
 title: "Mimcss Guide: Activation Scheduling"
 description: "Scheduling of style activation and other DOM writing events to avoid layout thrashing."
+rootpath: ".."
 ---
 
 # Mimcss Guide: Activation Scheduling

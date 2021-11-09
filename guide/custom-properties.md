@@ -3,6 +3,7 @@ layout: mimcss-guide
 unit: 4
 title: "Mimcss Guide: Custom Properties"
 description: "Mimcss provides full support for custom CSS properties and allows assigning types to them to ensure type-safety."
+rootpath: ".."
 ---
 
 # Mimcss Guide: Custom Properties
