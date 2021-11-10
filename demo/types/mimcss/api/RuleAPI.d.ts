@@ -3,7 +3,7 @@ import { CombinedStyleset, IStyleRule, IClassRule, IIDRule, AnimationFrame, IAni
 import { MediaStatement, SupportsStatement } from "./MediaTypes";
 import { ExtendedFontFace } from "./FontTypes";
 import { ExtendedCounterStyleset } from "./CounterTypes";
-import { Styleset, VarTemplateName, ExtendedVarValue } from "./StyleTypes";
+import { Styleset, VarTemplateName, ExtendedVarValue } from "./Stylesets";
 /**
  * The `StyleDefinition` class is a base for all classes that contain defininitions of CSS rules.
  * Style definition classes are regular TypeScript classes and as such can have any fields and

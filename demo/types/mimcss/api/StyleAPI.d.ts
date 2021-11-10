@@ -1,6 +1,6 @@
-import { IStyleDefinitionClass, IStyleDefinition } from "./RuleTypes";
+import { IStyleDefinitionClass, IStyleDefinition, ICssSerializer } from "./RuleTypes";
 import { ExtendedMediaFeatureset, IMediaQueryProxy, ISupportsQueryProxy, MediaStatement, SupportsStatement } from "./MediaTypes";
-import { Styleset, ExtendedBaseStyleset, StringStyleset, IStyleset, ICssSerializer } from "./StyleTypes";
+import { Styleset, ExtendedBaseStyleset, StringStyleset, IStyleset } from "./Stylesets";
 /**
  * Registers the given function to be used for converting values of the given style property to
  * string. The `registerStyleProperty` function must be used after adding the property to the
