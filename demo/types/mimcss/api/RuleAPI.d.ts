@@ -1,9 +1,9 @@
 import { CssSelector, PagePseudoClass, OneOrMany, ElementTagName } from "./CoreTypes";
-import { CombinedStyleset, IStyleRule, IClassRule, IIDRule, AnimationFrame, IAnimationRule, IVarRule, ICounterRule, IGridLineRule, IGridAreaRule, IImportRule, IFontFaceRule, INamespaceRule, IPageRule, IStyleDefinitionClass, ISupportsRule, IMediaRule, IClassNameRule, IConstRule, ClassPropType, NameGenerationMethod, ICounterStyleRule, IStyleDefinition, CombinedClassStyleset } from "./RuleTypes";
+import { IStyleRule, IClassRule, IIDRule, AnimationFrame, IAnimationRule, IVarRule, ICounterRule, IGridLineRule, IGridAreaRule, IImportRule, IFontFaceRule, INamespaceRule, IPageRule, IStyleDefinitionClass, ISupportsRule, IMediaRule, IClassNameRule, IConstRule, ClassPropType, NameGenerationMethod, ICounterStyleRule, IStyleDefinition } from "./RuleTypes";
 import { MediaStatement, SupportsStatement } from "./MediaTypes";
 import { ExtendedFontFace } from "./FontTypes";
 import { ExtendedCounterStyleset } from "./CounterTypes";
-import { Styleset, VarTemplateName, ExtendedVarValue } from "./Stylesets";
+import { Styleset, VarTemplateName, ExtendedVarValue, CombinedStyleset, CombinedClassStyleset } from "./Stylesets";
 /**
  * The `StyleDefinition` class is a base for all classes that contain defininitions of CSS rules.
  * Style definition classes are regular TypeScript classes and as such can have any fields and
