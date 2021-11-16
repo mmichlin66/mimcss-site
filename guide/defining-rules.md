@@ -13,7 +13,7 @@ rootpath: ".."
 * [Referencing External Style Definitions](#referencing-external-style-definitions)
 * [Embedding Style Definitions](#embedding-style-definitions)
 * [Conditional Grouping Rules](#conditional-grouping-rules)
-* [Other Rules Types](#other-rules-types)
+* [Other Rule Types](#other-rule-types)
 * [Style Definition Class Properties](#style-definition-class-properties)
 
 ## Style Definitions

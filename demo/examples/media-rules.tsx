@@ -110,7 +110,7 @@ class MyStyles extends css.StyleDefinition
                 this.$style( [this.$parent.sidebar, " ul li a"], {
                     paddingLeft: 21,
                     background: {
-                        image: css.url("mimcss/examples/email.png"),
+                        image: css.url("examples/email.png"),
                         position: ["left", "center"],
                         repeat: "no-repeat"
                     }

@@ -15,152 +15,142 @@ export declare type AttrTypeKeyword = "string" | "color" | "url" | "integer" | "
 export declare type AttrUnitKeyword = PercentUnits | LengthUnits | TimeUnits | AngleUnits | ResolutionUnits | FrequencyUnits;
 /**
  * Type for [[alignContent]] style property.
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/align-content
- * @category Style Property
+
  */
 export declare type AlignContent_StyleType = "normal" | "stretch" | "center" | "start" | "end" | "flex-start" | "flex-end" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center" | "space-between" | "space-around" | "space-evenly";
 /**
  * Type for [[alignItems]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/align-items
- * @category Style Property
  */
 export declare type AlignItems_StyleType = "normal" | "stretch" | "center" | "start" | "end" | "flex-start" | "flex-end" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center";
 /**
  * Type for [[alignSelf]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/align-self
- * @category Style Property
  */
 export declare type AlignSelf_StyleType = "auto" | "normal" | "stretch" | "center" | "start" | "end" | "flex-start" | "flex-end" | "self-start" | "self-end" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center";
 /**
  * Type for [[alignmentBaseline]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/alignment-baseline
- * @category Style Property
  */
 export declare type AlignmentBaseline_StyleType = "auto" | "baseline" | "before-edge" | "text-before-edge" | "middle" | "central" | "after-edge" | "text-after-edge" | "ideographic" | "alphabetic" | "hanging" | "mathematical" | "top" | "center" | "bottom";
 /**
  * Type for single animation. Used by [[Animation_StyleType]].
- * @category Style Helper
  */
-export declare type Animation_Single = string | {
-    name?: Extended<AnimationName>;
+export declare type Animation_Single = {
+    name?: Extended<AnimationName_Single>;
     duration?: Extended<CssTime>;
     func?: Extended<TimingFunction>;
     delay?: Extended<CssTime>;
-    count?: Extended<AnimationIterationCount>;
-    direction?: Extended<AnimationDirection>;
-    mode?: Extended<AnimationFillMode>;
-    state?: Extended<AnimationPlayState>;
+    count?: Extended<AnimationIterationCount_Single>;
+    direction?: Extended<AnimationDirection_Single>;
+    mode?: Extended<AnimationFillMode_Single>;
+    state?: Extended<AnimationPlayState_Single>;
 };
 /**
  * Type for [[animation]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation
- * @category Style Property
  */
-export declare type Animation_StyleType = OneOrMany<Animation_Single>;
+export declare type Animation_StyleType = OneOrMany<string | Animation_Single>;
 /**
  * Type for [[animationDelay]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-delay
- * @category Style Property
+ *
  */
 export declare type AnimationDelay_StyleType = OneOrMany<CssTime>;
 /**
  * Type for single animation direction
- * @category Style Helper
+ *
  */
-export declare type AnimationDirection = "normal" | "reverse" | "alternate" | "alternate-reverse";
+export declare type AnimationDirection_Single = "normal" | "reverse" | "alternate" | "alternate-reverse";
 /**
  * Type for [[animationDirection]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction
- * @category Style Property
+ *
  */
-export declare type AnimationDirection_StyleType = OneOrMany<AnimationDirection>;
+export declare type AnimationDirection_StyleType = OneOrMany<AnimationDirection_Single>;
 /**
  * Type for [[animationDuration]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration
- * @category Style Property
+ *
  */
 export declare type AnimationDuration_StyleType = OneOrMany<CssTime>;
 /**
  * Type for single animation fill mode
- * @category Style Helper
+ *
  */
-export declare type AnimationFillMode = "none" | "forwards" | "backwards" | "both";
+export declare type AnimationFillMode_Single = "none" | "forwards" | "backwards" | "both";
 /**
  * Type for [[animationFillMode]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode
- * @category Style Property
+ *
  */
-export declare type AnimationFillMode_StyleType = OneOrMany<AnimationDirection>;
+export declare type AnimationFillMode_StyleType = OneOrMany<AnimationDirection_Single>;
 /**
  * Type for single animation iteration count
- * @category Style Helper
+ *
  */
-export declare type AnimationIterationCount = "infinite" | CssNumber;
+export declare type AnimationIterationCount_Single = "infinite" | CssNumber;
 /**
  * Type for [[animationIterationCount]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-iteration-count
- * @category Style Property
+ *
  */
-export declare type AnimationIterationCount_StyleType = OneOrMany<AnimationIterationCount>;
+export declare type AnimationIterationCount_StyleType = OneOrMany<AnimationIterationCount_Single>;
 /**
  * Type for single animation name
- * @category Style Helper
+ *
  */
-export declare type AnimationName = "none" | string | IAnimationRule;
+export declare type AnimationName_Single = "none" | string | IAnimationRule;
 /**
  * Type for [[animationName]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-name
- * @category Style Property
+ *
  */
-export declare type AnimationName_StyleType = OneOrMany<AnimationName>;
+export declare type AnimationName_StyleType = OneOrMany<AnimationName_Single>;
 /**
  * Type for single animation play state
- * @category Style Helper
+ *
  */
-export declare type AnimationPlayState = "paused" | "running";
+export declare type AnimationPlayState_Single = "paused" | "running";
 /**
  * Type for [[animationPlayState]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-play-state
- * @category Style Property
+ *
  */
-export declare type AnimationPlayState_StyleType = OneOrMany<AnimationPlayState>;
+export declare type AnimationPlayState_StyleType = OneOrMany<AnimationPlayState_Single>;
 /**
  * Type for [[appearance]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/appearance
- * @category Style Property
+ *
  */
 export declare type Appearance_StyleType = "none" | "auto" | "textfield" | "menulist-button" | "searchfield" | "textarea" | "push-button" | "slider-horizontal" | "checkbox" | "radio" | "square-button" | "menulist" | "listbox" | "meter" | "progress-bar" | "button";
 /**
  * Type for simple animation timing functions - those that don't have parameters
- * @category Style Helper
+ *
  */
 export declare type TimingFunctionKeyword = "linear" | "ease" | "ease-in" | "ease-out" | "ease-in-out" | "step-start" | "step-end";
 /**
  * Type for single animation timing function
- * @category Style Helper
+ *
  */
 export declare type TimingFunction = TimingFunctionKeyword | IStepsFunc | ICubicBezierFunc;
 /**
  * Type for [[animationTimingFunction]] and [[transitionTimingFunction]] style properties
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function
- * @category Style Property
+ *
  */
 export declare type TimingFunction_StyleType = OneOrMany<TimingFunction>;
 /**
  * Type for [[aspectRatio]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio
- * @category Style Property
+ *
  */
 export declare type AspectRatio_StyleType = CssAspectRatio | "auto";
 /**
  * Type for [[backfaceVisibility]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/backface-visibility
- * @category Style Property
+ *
  */
 export declare type BackfaceVisibilityMode_StyleType = "visible" | "hidden";
 /**
  * Type for single background value
- * @category Style Helper
+ *
  */
 export declare type Background_Single = string | CssColor | CssImage | {
     color?: Extended<CssColor>;
@@ -175,78 +165,78 @@ export declare type Background_Single = string | CssColor | CssImage | {
 /**
  * Type for [[background]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background
- * @category Style Property
+ *
  */
 export declare type Background_StyleType = OneOrMany<Background_Single>;
 /**
  * Type for single background attachment
- * @category Style Helper
+ *
  */
 export declare type BackgroundAttachment = "scroll" | "fixed" | "local";
 /**
  * Type for [[backgroundAttachment]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachment
- * @category Style Property
+ *
  */
 export declare type BackgroundAttachment_StyleType = OneOrMany<BackgroundAttachment>;
 /**
  * Type for single background blend mode
- * @category Style Helper
+ *
  */
 export declare type BlendMode = "normal" | "multiply" | "screen" | "overlay" | "darken" | "lighten" | "color-dodge" | "color-burn" | "hard-light" | "soft-light" | "difference" | "exclusion" | "hue" | "saturation" | "color" | "luminosity";
 /**
  * Type for [[backgroundBlendMode]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background-blend-mode
- * @category Style Property
+ *
  */
 export declare type BackgroundBlendMode_StyleType = OneOrMany<BlendMode>;
 /**
  * Type for single background clip
- * @category Style Helper
+ *
  */
 export declare type BackgroundClip = "border-box" | "padding-box" | "content-box" | "text";
 /**
  * Type for [[backgroundClip]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip
- * @category Style Property
+ *
  */
 export declare type BackgroundClip_StyleType = OneOrMany<BackgroundClip>;
 /**
  * Type for [[backgroundImage]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background-image
- * @category Style Property
+ *
  */
 export declare type BackgroundImage_StyleType = "none" | OneOrMany<CssImage>;
 /**
  * Type for single background origin
- * @category Style Helper
+ *
  */
 export declare type BackgroundOrigin = "border-box" | "padding-box" | "content-box" | "text";
 /**
  * Type for [[backgroundOrigin]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background-origin
- * @category Style Property
+ *
  */
 export declare type BackgroundOrigin_StyleType = OneOrMany<BackgroundOrigin>;
 /**
  * Keywords for single background repeat
- * @category Style Helper
+ *
  */
 export declare type BackgroundRepeatKeyword = "repeat" | "space" | "round" | "no-repeat";
 /**
  * Type for single background repeat
- * @category Style Helper
+ *
  */
 export declare type BackgroundRepeat = "repeat-x" | "repeat-y" | OneOrPair<BackgroundRepeatKeyword>;
 /**
  * Type for [[backgroundRepeat]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat
- * @category Style Property
+ *
  */
 export declare type BackgroundRepeat_StyleType = OneOrMany<BackgroundRepeat>;
 /**
  * Type for background size
- * @category Style Helper
+ *
  */
 export declare type BackgroundSize = "cover" | "contain" | OneOrPair<CssLengthOrAuto>;
 /**
@@ -262,30 +252,30 @@ export declare type BackgroundSize = "cover" | "contain" | OneOrPair<CssLengthOr
  * [[100,200]] wll be interpreted as "100px 200px".
  *
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background-size
- * @category Style Property
+ *
  */
 export declare type BackgroundSize_StyleType = OneOrMany<BackgroundSize>;
 /**
  * Type for [[baselineShift]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/baseline-shift
- * @category Style Property
+ *
  */
 export declare type BaselineShift_StyleType = "sub" | "super" | CssLength;
 /**
  * Type for [[borderCollapse]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/border-collapse
- * @category Style Property
+ *
  */
 export declare type BorderColapse_StyleType = "collapse" | "separate";
 /**
  * Type for [[borderColor]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/border-color
- * @category Style Property
+ *
  */
 export declare type BorderColor_StyleType = OneOrBox<CssColor>;
 /**
  * Type for border-image style property expressed as an object.
- * @category Style Helper
+ *
  */
 export declare type BorderImage_Object = {
     source: Extended<BorderImageSource_StyleType>;
@@ -297,25 +287,25 @@ export declare type BorderImage_Object = {
 /**
  * Type for [[borderImage]] style property.
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/border-image
- * @category Style Property
+ *
  */
 export declare type BorderImage_StyleType = CssImage | BorderImage_Object | string;
 /**
  * Type for [[borderImageOutset]] style property. It is CssNumber and not CssLength because
  * border-image-outset can be specified as a unitless number.
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-outset
- * @category Style Property
+ *
  */
 export declare type BorderImageOutset_StyleType = OneOrBox<CssNumber | ILengthProxy>;
 /**
  * Type for border-image-repeat keywords
- * @category Style Helper
+ *
  */
 export declare type BorderImageRepeatKeyword = "stretch" | "repeat" | "round" | "space";
 /**
  * Type for [[borderImageRepeat]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-repeat
- * @category Style Property
+ *
  */
 export declare type BorderImageRepeat_StyleType = OneOrPair<BorderImageRepeatKeyword>;
 /**
@@ -323,7 +313,7 @@ export declare type BorderImageRepeat_StyleType = OneOrPair<BorderImageRepeatKey
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-slice
  *
  * Note: numeric values are treated as is - without appending the percent sign to them.
- * @category Style Property
+ *
  */
 export declare type BorderImageSlice_StyleType = OneOrBox<CssPercent | "fill"> | [
     Extended<CssPercent>,
@@ -335,37 +325,37 @@ export declare type BorderImageSlice_StyleType = OneOrBox<CssPercent | "fill"> |
 /**
  * Type for [[borderImageSource]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-source
- * @category Style Property
+ *
  */
 export declare type BorderImageSource_StyleType = CssImage | "none";
 /**
  * Type for [[borderImageWidth]] style property. It is CssNumber and not CssLength because
  * border-image-width can be specified as a unitless number.
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/border-image-width
- * @category Style Property
+ *
  */
 export declare type BorderImageWidth_StyleType = OneOrBox<CssNumber | ILengthProxy | "auto">;
 /**
  * Type for [[borderSpacing]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/border-spacing
- * @category Style Property
+ *
  */
 export declare type BorderSpacing_StyleType = OneOrPair<CssLength>;
 /**
  * Type for single border side style property
- * @category Style Helper
+ *
  */
 export declare type BorderStyle = "none" | "hidden" | "dotted" | "dashed" | "solid" | "double" | "groove" | "ridge" | "inset" | "outset";
 /**
  * Type for [[borderStyle]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/border-style
- * @category Style Property
+ *
  */
 export declare type BorderStyle_StyleType = OneOrBox<BorderStyle>;
 /**
  * Type for [[border]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/border
- * @category Style Property
+ *
  */
 export declare type Border_StyleType = LineWidth | BorderStyle | CssNonNumericColor | [
     Extended<LineWidth>,
@@ -396,24 +386,24 @@ export declare type Border_StyleType = LineWidth | BorderStyle | CssNonNumericCo
  * Type used for several style properties that allow defining line width as a `<length>` CSS
  * type as well as keywords such as `thin` and `thick`. For example, see the [[borderWidth]]
  * property.
- * @category Style Helper
+ *
  */
 export declare type LineWidth = "thin" | "medium" | "thick" | CssLength;
 /**
  * Type for [[borderWidth]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/border-width
- * @category Style Property
+ *
  */
 export declare type BorderWidth_StyleType = OneOrBox<LineWidth>;
 /**
  * Type for [[boxDecorationBreak]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/box-decoration-break
- * @category Style Property
+ *
  */
 export declare type BoxDecorationBreak_StyleType = "slice" | "clone";
 /**
  * Type for single box shadow.
- * @category Style Helper
+ *
  */
 export declare type BoxShadow = "none" | {
     x: Extended<CssLength>;
@@ -426,67 +416,67 @@ export declare type BoxShadow = "none" | {
 /**
  * Type for [[boxShadow]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
- * @category Style Property
+ *
  */
 export declare type BoxShadow_StyleType = OneOrMany<BoxShadow>;
 /**
  * Type for [[boxSizing]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing
- * @category Style Property
+ *
  */
 export declare type BoxSizing_StyleType = "content-box" | "border-box";
 /**
  * Type for [[breakAfter]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/break-after
- * @category Style Property
+ *
  */
 export declare type BreakAfter_StyleType = "auto" | "avoid" | "always" | "all" | "avoid-page" | "page" | "left" | "right" | "recto" | "verso" | "avoid-column" | "column" | "avoid-region" | "region";
 /**
  * Type for [[breakBefore]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/break-before
- * @category Style Property
+ *
  */
 export declare type BreakBefore_StyleType = "auto" | "avoid" | "always" | "all" | "avoid-page" | "page" | "left" | "right" | "recto" | "verso" | "avoid-column" | "column" | "avoid-region" | "region";
 /**
  * Type for [[breakInside]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/break-inside
- * @category Style Property
+ *
  */
 export declare type BreakInside_StyleType = "auto" | "avoid" | "avoid-page" | "avoid-column" | "avoid-region";
 /**
  * Type for [[captionSide]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/caption-side
- * @category Style Property
+ *
  */
 export declare type CaptionSide_StyleType = "top" | "bottom" | "block-start" | "block-end" | "inline-start" | "inline-end";
 /**
  * Type for [[caretColor]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/caret-color
- * @category Style Property
+ *
  */
 export declare type CaretColor_StyleType = "auto" | CssColor;
 /**
  * Type for [[clear]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/clear
- * @category Style Property
+ *
  */
 export declare type Clear_StyleType = "none" | "left" | "right" | "both" | "inline-start" | "inline-end";
 /**
  * Type for [[IStyleset.clip|clip]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/clip
- * @category Style Property
+ *
  * @deprecated The CSS `clip` property and `rect()` function are deprecated.
  */
 export declare type Clip_StyleType = "auto" | IRectProxy;
 /**
  * Type representing the boundaries of a box
- * @category Style Helper
+ *
  */
 export declare type GeometryBoxKeyword = "margin-box" | "border-box" | "padding-box" | "content-box" | "fill-box" | "stroke-box" | "view-box";
 /**
  * Type for [[clipPath]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/clip-pat
- * @category Style Property
+ *
  */
 export declare type ClipPath_StyleType = "none" | IUrlFunc | BasicShape | GeometryBoxKeyword | [
     GeometryBoxKeyword,
@@ -495,49 +485,49 @@ export declare type ClipPath_StyleType = "none" | IUrlFunc | BasicShape | Geomet
 /**
  * Type for [[clipRule]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/clip-rule
- * @category Style Property
+ *
  */
 export declare type ClipRule_StyleType = "nonzero" | "evenodd";
 /**
  * Type for [[colorAdjust]] and color-adjust style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/color-adjust
- * @category Style Property
+ *
  */
 export declare type ColorAdjust_StyleType = "economy" | "exact";
 /**
  * Type for [[colorInterpolation]] and color-interpolation-filters style properties
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/color-interpolation
- * @category Style Property
+ *
  */
 export declare type ColorInterpolation_StyleType = "auto" | "sRGB" | "linearRGB";
 /**
  * Type for [[colorScheme]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/color-count
- * @category Style Property
+ *
  */
 export declare type ColorScheme_StyleType = "normal" | OneOrMany<"light" | "dark" | string>;
 /**
  * Type for [[columnCount]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/column-count
- * @category Style Property
+ *
  */
 export declare type ColumnCount_StyleType = "auto" | CssNumber;
 /**
  * Type for [[columnFill]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/column-fill
- * @category Style Property
+ *
  */
 export declare type ColumnFill_StyleType = "auto" | "balance" | "balance-all";
 /**
  * Type for [[columnGap]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/column-gap
- * @category Style Property
+ *
  */
 export declare type ColumnGap_StyleType = "normal" | CssLength;
 /**
  * Type for [[columnSpan]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/column-span
- * @category Style Property
+ *
  */
 export declare type ColumnSpan_StyleType = "none" | "all";
 /**
@@ -550,7 +540,7 @@ export declare type ColumnSpan_StyleType = "none" | "all";
  *   while another as the column width.
  *
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/columns
- * @category Style Property
+ *
  */
 export declare type Columns_StyleType = "auto" | CssNumber | Exclude<CssLength, number> | [
     "auto" | Extended<CssNumber>,
@@ -562,83 +552,83 @@ export declare type Columns_StyleType = "auto" | CssNumber | Exclude<CssLength, 
 /**
  * Keywords that can be combined in the [[IStyleset.contain|contain]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/contain
- * @category Style Property
+ *
  */
 export declare type ContainAtomKeyword = "size" | "layout" | "style" | "paint";
 /**
  * Keywords that can be only used as a sole value of the [[IStyleset.contain|contain]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/contain
- * @category Style Property
+ *
  */
 export declare type ContainSoleKeyword = "none" | "strict" | "content";
 /**
  * Type for [[IStyleset.contain|contain]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/contain
- * @category Style Property
+ *
  */
 export declare type Contain_StyleType = ContainSoleKeyword | OneOrMany<ContainAtomKeyword>[];
 /**
  * Type for [[content]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/content
- * @category Style Property
+ *
  */
 export declare type ContentItem = "open-quote" | "close-quote" | "no-open-quote" | "no-close-quote" | CssString | CssImage;
 /**
  * Type for [[content]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/content
- * @category Style Property
+ *
  */
 export declare type Content_StyleType = string | "none" | "normal" | OneOrMany<ContentItem>;
 /**
  * Type for [[contentVisibility]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/content-visibility
- * @category Style Property
+ *
  */
 export declare type ContentVisibility_StyleType = "auto" | "visible" | "hidden";
 /**
  * Type for [[counterIncrement]], [[counterReset]] and [[counterSet]] style properties
- * @category Style Helper
+ *
  */
 export declare type CssCounter = "none" | OneOrMany<ICounterRule | string | [ICounterRule | string, Extended<number>]>;
 /**
  * Type for cursor pre-defined names
- * @category Style Helper
+ *
  */
 export declare type CursorKeyword = "auto" | "default" | "none" | "context-menu" | "help" | "pointer" | "progress" | "wait" | "cell" | "crosshair" | "text" | "vertical-text" | "alias" | "copy" | "move" | "no-drop" | "not-allowed" | "e-resize" | "n-resize" | "ne-resize" | "nw-resize" | "s-resize" | "se-resize" | "sw-resize" | "w-resize" | "ew-resize" | "ns-resize" | "nesw-resize" | "nwse-resize" | "col-resize" | "row-resize" | "all-scroll" | "zoom-in" | "zoom-out" | "grab" | "grabbing";
 /**
  * Type for [[IStyleset.cursor|cursor]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
- * @category Style Property
+ *
  */
 export declare type Cursor_StyleType = OneOrMany<CursorKeyword | IUrlFunc | ICursorFunc>;
 /**
  * Type for [[display]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/display
- * @category Style Property
+ *
  */
 export declare type Display_StyleType = "block" | "inline" | "run-in" | "contents" | "none" | "inline-block" | "inline-list-item" | "inline-table" | "inline-flex" | "inline-grid" | "flow" | "flow-root" | "table" | "flex" | "grid" | "ruby" | "table-row-group" | "table-header-group" | "table-footer-group" | "table-row" | "table-cell" | "table-column-group" | "table-column" | "table-caption" | "ruby-base" | "ruby-text" | "ruby-base-container" | "ruby-text-container" | "list-item" | "list-item block" | "list-item inline" | "list-item flow" | "list-item flow-root" | "list-item block flow" | "list-item block flow-root" | "flow list-item block";
 /**
  * Type for [[dominantBaseline]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/dominant-baseline
- * @category Style Property
+ *
  */
 export declare type DominantBaseline_StyleType = "auto" | "text-bottom" | "alphabetic" | "ideographic" | "middle" | "central" | "mathematical" | "hanging" | "text-top";
 /**
  * Type for [[emptyCells]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/empty-cells
- * @category Style Property
+ *
  */
 export declare type EmptyCells_StyleType = "show" | "hide";
 /**
  * Type for [[filter]] and [[backdropFilter]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/filter
- * @category Style Property
+ *
  */
 export declare type Filter_StyleType = OneOrMany<IUrlFunc | FilterFuncs>;
 /**
  * Type for [[flex]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex
- * @category Style Property
+ *
  */
 export declare type Flex_StyleType = FlexBasis_StyleType | [
     Extended<CssNumber>,
@@ -648,19 +638,19 @@ export declare type Flex_StyleType = FlexBasis_StyleType | [
 /**
  * Type for [[flexBasis]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-basis
- * @category Style Property
+ *
  */
 export declare type FlexBasis_StyleType = CssLengthOrAuto | "content" | "fill" | "max-content" | "min-content" | "fit-content";
 /**
  * Type for [[flexDirection]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction
- * @category Style Property
+ *
  */
 export declare type FlexDirection_StyleType = "row" | "row-reverse" | "column" | "column-reverse";
 /**
  * Type for [[flexFlow]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-flow
- * @category Style Property
+ *
  */
 export declare type FlexFlow_StyleType = FlexDirection_StyleType | FlexWrap_StyleType | [
     Extended<FlexDirection_StyleType>,
@@ -669,19 +659,19 @@ export declare type FlexFlow_StyleType = FlexDirection_StyleType | FlexWrap_Styl
 /**
  * Type for [[flexWrap]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/flex-wrap
- * @category Style Property
+ *
  */
 export declare type FlexWrap_StyleType = "nowrap" | "wrap" | "wrap-reverse";
 /**
  * Type for [[float]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/float
- * @category Style Property
+ *
  */
 export declare type Float_StyleType = "left" | "right" | "none" | "inline-start" | "inline-end";
 /**
  * Type for [[font]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/font
- * @category Style Property
+ *
  */
 export declare type Font_StyleType = SystemFont | [string, CssLength] | [CssLength, string] | {
     family: Extended<string>;
@@ -695,43 +685,43 @@ export declare type Font_StyleType = SystemFont | [string, CssLength] | [CssLeng
 /**
  * Type for [[fontWeight]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight
- * @category Style Property
+ *
  */
 export declare type FontWeight_StyleType = FontWeight | "bolder" | "lighter";
 /**
  * Type for [[forcedColorAdjust]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/forced-color-adjust
- * @category Style Property
+ *
  */
 export declare type ForcedColorAdjust_StyleType = "auto" | "none";
 /**
  * Type for [[gap]] or [[gridGap]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/gap
- * @category Style Property
+ *
  */
 export declare type Gap_StyleType = RowGap_StyleType | [RowGap_StyleType, ColumnGap_StyleType];
 /**
  * Type for [[gridAutoColumns]] and [[gridAutoRows]] style properties
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-columns
- * @category Style Property
+ *
  */
 export declare type GridAutoAxis_StyleType = OneOrMany<GridTrackSize>;
 /**
  * Type for [[gridAutoFlow]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow
- * @category Style Property
+ *
  */
 export declare type GridAutoFlow_StyleType = "row" | "column" | "dense" | "row dense" | "column dense";
 /**
  * Type for specifying either number of grid lines or name of grid line or area. This type is used
  * when defining grid-column-start/end and grid-row-start/end style properties.
- * @category Style Helper
+ *
  */
 export declare type GridLineCountOrName = CssNumber | IGridAreaRule | IGridLineRule;
 /**
  * Type for [[gridColumnStart]], [[gridColumnEnd]], [[gridRowStart]] and [[gridRowEnd]] style properties
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column-start
- * @category Style Property
+ *
  */
 export declare type GridAxisSide_StyleType = "auto" | GridLineCountOrName | IGridSpanFunc | [
     Extended<CssNumber>,
@@ -740,19 +730,19 @@ export declare type GridAxisSide_StyleType = "auto" | GridLineCountOrName | IGri
 /**
  * Type for [[gridColumn]] and [[gridRow]] style properties
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column
- * @category Style Property
+ *
  */
 export declare type GridAxis_StyleType = OneOrPair<GridAxisSide_StyleType>;
 /**
  * Type for [[gridArea]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-area
- * @category Style Property
+ *
  */
 export declare type GridArea_StyleType = OneOrBox<GridAxisSide_StyleType>;
 /**
  * Type for defining a single grid area position. The numbers are 1-based indices of the lines in
  * the following sequence: block start, inline start, block end, inline end.
- * @category Style Helper
+ *
  */
 export declare type GridTemplateAreaDefinition = [
     IGridAreaRule | Extended<string>,
@@ -764,107 +754,107 @@ export declare type GridTemplateAreaDefinition = [
 /**
  * Type for [[gridTemplateAreas]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas
- * @category Style Property
+ *
  */
 export declare type GridTemplateAreas_StyleType = "none" | string[] | GridTemplateAreaDefinition[];
 /**
  * Type for [[gridTemplateColumns]] and [[gridTemplateRows]] style properties
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-columns
- * @category Style Property
+ *
  */
 export declare type GridTemplateAxis_StyleType = "none" | OneOrMany<GridTrack> | "subgrid";
 /**
  * Type for a single track element of grid template axis
- * @category Style Helper
+ *
  */
 export declare type GridTrack = GridTrackSize | GridTrackLine;
 /**
  * Type for a single template element defining name or names for a grid line in grid template.
  * This is always an array - even if a single name is given.
- * @category Style Helper
+ *
  */
 export declare type GridTrackLine = (IGridLineRule | Extended<string>)[];
 /**
  * Type for a single template element defining track size in grid template
- * @category Style Helper
+ *
  */
 export declare type GridTrackSize = CssLengthOrAuto | "min-content" | "max-content" | IFitContentProxy | IMinMaxFunc | IRepeatFunc;
 /**
  * Type for [[hyphens]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/hyphens
- * @category Style Property
+ *
  */
 export declare type Hyphens_StyleType = "none" | "manual" | "auto";
 /**
  * Type for [[imageOrientation]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/image-orientation
- * @category Style Property
+ *
  */
 export declare type ImageOrientation_StyleType = "none" | "from-image";
 /**
  * Type for [[imageRendering]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering
- * @category Style Property
+ *
  */
 export declare type ImageRendering_StyleType = "auto" | "crisp-edges" | "pixelated";
 /**
  * Type for [[initialLetter]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/initial-letter
- * @category Style Property
+ *
  */
 export declare type InitialLetter_StyleType = OneOrPair<CssNumber>;
 /**
  * Type for [[isolation]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/isolation
- * @category Style Property
+ *
  */
 export declare type Isolation_StyleType = "auto" | "isolate";
 /**
  * Type for [[justifyContent]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content
- * @category Style Property
+ *
  */
 export declare type JustifyContent_StyleType = "normal" | "space-between" | "space-around" | "space-evenly" | "stretch" | "center" | "start" | "end" | "flex-start" | "flex-end" | "left" | "right" | "safe center" | "safe start" | "safe end" | "safe flex-start" | "safe flex-end" | "safe left" | "safe right" | "unsafe center" | "unsafe start" | "unsafe end" | "unsafe flex-start" | "unsafe flex-end" | "unsafe left" | "unsafe right";
 /**
  * Type for [[justifyItems]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-items
- * @category Style Property
+ *
  */
 export declare type JustifyItems_StyleType = "normal" | "stretch" | "baseline" | "first baseline" | "last baseline" | "center" | "start" | "end" | "self-start" | "self-end" | "flex-start" | "flex-end" | "left" | "right" | "safe center" | "safe start" | "safe end" | "safe self-start" | "safe self-end" | "safe flex-start" | "safe flex-end" | "safe left" | "safe right" | "unsafe center" | "unsafe start" | "unsafe end" | "unsafe self-start" | "unsafe self-end" | "unsafe flex-start" | "unsafe flex-end" | "unsafe left" | "unsafe right" | "legacy" | "legacy left" | "legacy right" | "legacy center";
 /**
  * Type for [[justifySelf]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self
- * @category Style Property
+ *
  */
 export declare type JustifySelf_StyleType = "auto" | "normal" | "stretch" | "baseline" | "first baseline" | "last baseline" | "center" | "start" | "end" | "self-start" | "self-end" | "flex-start" | "flex-end" | "left" | "right" | "safe center" | "safe start" | "safe end" | "safe self-start" | "safe self-end" | "safe flex-start" | "safe flex-end" | "safe left" | "safe right" | "unsafe center" | "unsafe start" | "unsafe end" | "unsafe self-start" | "unsafe self-end" | "unsafe flex-start" | "unsafe flex-end" | "unsafe left" | "unsafe right";
 /**
  * Type for [[letterSpacing]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/letter-spacing
- * @category Style Property
+ *
  */
 export declare type LetterSpacing_StyleType = "normal" | CssLength;
 /**
  * Type for [[lineBreak]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/line-break
- * @category Style Property
+ *
  */
 export declare type LineBreak_StyleType = "auto" | "loose" | "normal" | "strict" | "anywhere";
 /**
  * Type for [[lineClamp]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/line-clamp
- * @category Style Property
+ *
  */
 export declare type LineClamp_StyleType = "none" | CssNumber | [Extended<CssNumber>, Extended<string>];
 /**
  * Type for [[IStyleset.lineHeight|lineHeight]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/line-height
- * @category Style Property
+ *
  */
 export declare type LineHeight_StyleType = CssNumber | ILengthProxy;
 /**
  * Type for [[listStyle]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/list-style
- * @category Style Property
+ *
  */
 export declare type ListStyle_StyleType = ListStyleType_StyleType | ListStylePosition_StyleType | ListStyleImage_StyleType | [
     Extended<ListStyleImage_StyleType>,
@@ -883,37 +873,37 @@ export declare type ListStyle_StyleType = ListStyleType_StyleType | ListStylePos
 /**
  * Type for [[listStyleImage]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-image
- * @category Style Property
+ *
  */
 export declare type ListStyleImage_StyleType = "none" | IUrlFunc;
 /**
  * Type for [[listStylePosition]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-position
- * @category Style Property
+ *
  */
 export declare type ListStylePosition_StyleType = "inside" | "outside";
 /**
  * Type for [[listStyleType]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type
- * @category Style Property
+ *
  */
 export declare type ListStyleType_StyleType = ICounterStyleRule | "none" | "disc" | "circle" | "square" | "decimal" | "decimal-leading-zero" | "cjk-decimal" | "cjk-earthly-branch" | "cjk-heavenly-stem" | "cjk-ideographic" | "lower-roman" | "upper-roman" | "lower-greek" | "lower-alpha" | "lower-latin" | "upper-alpha" | "upper-latin" | "arabic-indic" | "armenian" | "bengali" | "cambodian" | "devanagari" | "georgian" | "gujarati" | "gurmukhi" | "hebrew" | "hiragana" | "hiragana-iroha" | "japanese-formal" | "japanese-informal" | "kannada" | "katakana" | "katakana-iroha" | "khmer" | "korean-hangul-formal" | "korean-hanja-formal" | "korean-hanja-informal" | "lao" | "lower-armenian" | "malayalam" | "mongolian" | "myanmar" | "oriya" | "persian" | "simp-chinese-formal" | "simp-chinese-informal" | "tamil" | "telugu" | "thai" | "tibetan" | "trad-chinese-formal" | "trad-chinese-informal" | "upper-armenian" | "disclosure-open" | "disclosure-closed";
 /**
  * Type for the [[marginTrim]] style properties
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/margin-trim
- * @category Style Property
+ *
  */
 export declare type MarginTrim_StyleType = "none" | "in-flow" | "all";
 /**
  * Type for the [[markerStart]], [[markerMid]] and [[markerEnd]] style properties
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/marker-start
- * @category Style Property
+ *
  */
 export declare type Marker_StyleType = "none" | IIDRule;
 /**
  * Type for the [[maskBorder]] style properties
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/mask-border
- * @category Style Property
+ *
  */
 export declare type MaskBorder_Object = {
     source: Extended<BorderImageSource_StyleType>;
@@ -926,49 +916,49 @@ export declare type MaskBorder_Object = {
 /**
  * Type for [[maskBorder]] style property.
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/mask-border
- * @category Style Property
+ *
  */
 export declare type MaskBorder_StyleType = CssImage | MaskBorder_Object | string;
 /**
  * Type for [[maskBorderMode]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/mask-border-mode
- * @category Style Property
+ *
  */
 export declare type MaskBorderMode_StyleType = "luminance" | "alpha";
 /**
  * Type for the [[maskComposite]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/mask-composite
- * @category Style Property
+ *
  */
 export declare type MaskCompositeKeyword = "add" | "subtract" | "intersect" | "exclude";
 /**
  * Type for the [[maskMode]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/mask-mode
- * @category Style Property
+ *
  */
 export declare type MaskModeKeyword = "alpha" | "luminance" | "match-source";
 /**
  * Type for the [[maskType]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/mask-type
- * @category Style Property
+ *
  */
 export declare type MaskTypeKeyword = "alpha" | "luminance";
 /**
  * Type for the [[mathStyle]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/math-style
- * @category Style Property
+ *
  */
 export declare type MathStyle_StyleType = "normal" | "compact";
 /**
  * Type for the [[objectFit]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit
- * @category Style Property
+ *
  */
 export declare type ObjectFit_StyleType = "fill" | "contain" | "cover" | "none" | "scale-down";
 /**
  * Type for the [[offset]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/offset
- * @category Style Property
+ *
  */
 export declare type Offset_StyleType = OffsetPath_StyleType | {
     anchor?: OffsetAnchor_StyleType;
@@ -980,13 +970,13 @@ export declare type Offset_StyleType = OffsetPath_StyleType | {
 /**
  * Type for the [[offsetAnchor]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/offset-anchor
- * @category Style Property
+ *
  */
 export declare type OffsetAnchor_StyleType = "auto" | CssPosition;
 /**
  * Type for [[offsetPath]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/offset-path
- * @category Style Property
+ *
  */
 export declare type OffsetPath_StyleType = "none" | IRayFunc | IUrlFunc | BasicShape | GeometryBoxKeyword | [
     GeometryBoxKeyword,
@@ -1000,58 +990,58 @@ export declare type OffsetPosition_StyleType = "auto" | CssPosition;
 /**
  * Type for the [[offsetRotate]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/offset-rotate
- * @category Style Property
+ *
  */
 export declare type OffsetRotate_StyleType = "auto" | "reverse" | CssAngle | ["auto" | "reverse", CssAngle];
 /**
  * Type for the overflow-x/y style property
- * @category Style Helper
+ *
  */
 export declare type OverflowKeyword = "visible" | "hidden" | "clip" | "scroll" | "auto";
 /**
  * Type for the [[overflow]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/overflow
- * @category Style Property
+ *
  */
 export declare type Overflow_StyleType = OneOrPair<OverflowKeyword>;
 /**
  * Type for the [[overflowAnchor]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-anchor
- * @category Style Property
+ *
  */
 export declare type OverflowAnchor_StyleType = "auto" | "none";
 /**
  * Type for the [[overflowClipMargin]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-clip-margin
- * @category Style Property
+ *
  */
 export declare type OverflowClipMargin_StyleType = CssLength | "border-box" | "padding-box" | "content-box";
 /**
  * Type for the [[overflowWrap]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap
- * @category Style Property
+ *
  */
 export declare type OverflowWrap_StyleType = "normal" | "break-word" | "anywhere";
 /**
  * Type for the [[overscrollBehaviorX]] and [[overscrollBehaviorY]] style property
- * @category Style Helper
+ *
  */
 export declare type OverscrollBehavior = "contain" | "none" | "auto";
 /**
  * Type for the [[overscrollBehavior]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior
- * @category Style Property
+ *
  */
 export declare type OverscrollBehavior_StyleType = OneOrPair<OverscrollBehavior>;
 /**
  * Type for the paint-order style property
- * @category Style Helper
+ *
  */
 export declare type PaintOrderKeyword = "fill" | "stroke" | "markers";
 /**
  * Type for the [[paintOrder]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order
- * @category Style Property
+ *
  */
 export declare type PaintOrder_StyleType = "normal" | PaintOrderKeyword | [
     PaintOrderKeyword,
@@ -1061,13 +1051,13 @@ export declare type PaintOrder_StyleType = "normal" | PaintOrderKeyword | [
 /**
  * Type for the [[perspective]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/perspective
- * @category Style Property
+ *
  */
 export declare type Perspective_StyleType = "none" | CssLength;
 /**
  * Type for the [[perspectiveOrigin]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/perspective-origin
- * @category Style Property
+ *
  */
 export declare type PerspectiveOrigin_StyleType = HorizontalPositionKeyword | VerticalPositionKeyword | CssLength | [
     Extended<HorizontalPositionKeyword | CssLength>,
@@ -1076,49 +1066,49 @@ export declare type PerspectiveOrigin_StyleType = HorizontalPositionKeyword | Ve
 /**
  * Type for the [[placeContent]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/place-content
- * @category Style Property
+ *
  */
 export declare type PlaceContent_StyleType = AlignContent_StyleType | [Extended<AlignContent_StyleType>, Extended<JustifyContent_StyleType>];
 /**
  * Type for the [[placeItems]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/place-items
- * @category Style Property
+ *
  */
 export declare type PlaceItems_StyleType = AlignItems_StyleType | [Extended<AlignItems_StyleType>, Extended<JustifyItems_StyleType>];
 /**
  * Type for the [[placeSelf]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/place-self
- * @category Style Property
+ *
  */
 export declare type PlaceSelf_StyleType = AlignSelf_StyleType | [Extended<AlignSelf_StyleType>, Extended<JustifySelf_StyleType>];
 /**
  * Type for the [[pointerEvents]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events
- * @category Style Property
+ *
  */
 export declare type PointerEvents_StyleType = "auto" | "none" | "visiblePainted" | "visibleFill" | "visibleStroke" | "visible" | "painted" | "fill" | "stroke" | "all";
 /**
  * Type for the [[IStyleset.position|position]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/position
- * @category Style Property
+ *
  */
 export declare type Position_StyleType = "static" | "relative" | "absolute" | "sticky" | "fixed";
 /**
  * Type for the [[quotes]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/quotes
- * @category Style Property
+ *
  */
 export declare type Quotes_StyleType = "none" | "auto" | OneOrMany<[Extended<CssString>, Extended<CssString>]>;
 /**
  * Type for the [[resize]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/resize
- * @category Style Property
+ *
  */
 export declare type Resize_StyleType = "none" | "both" | "horizontal" | "vertical" | "block" | "inline";
 /**
  * Type for [[IStyleset.rotate|rotate]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/rotate
- * @category Style Property
+ *
  */
 export declare type Rotate_StyleType = "none" | CssAngle | ["x" | "y" | "z", Extended<CssAngle>] | [
     Extended<CssNumber>,
@@ -1129,13 +1119,13 @@ export declare type Rotate_StyleType = "none" | CssAngle | ["x" | "y" | "z", Ext
 /**
  * Type for [[rowGap]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/row-gap
- * @category Style Property
+ *
  */
 export declare type RowGap_StyleType = CssLength;
 /**
  * Type for the [[IStyleset.scale|scale]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/scale
- * @category Style Property
+ *
  */
 export declare type Scale_StyleType = "none" | CssNumber | [
     Extended<CssNumber>,
@@ -1145,7 +1135,7 @@ export declare type Scale_StyleType = "none" | CssNumber | [
 /**
  * Type for the [[scrollbarColor]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color
- * @category Style Property
+ *
  */
 export declare type ScrollbarColor_StyleType = "auto" | "dark" | "light" | [
     Extended<CssColor>,
@@ -1154,37 +1144,37 @@ export declare type ScrollbarColor_StyleType = "auto" | "dark" | "light" | [
 /**
  * Type for the [[scrollbarGutter]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-gutter
- * @category Style Property
+ *
  */
 export declare type ScrollbarGutter_StyleType = "auto" | "stable" | "stable both-edges";
 /**
  * Type for the [[scrollbarWidth]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-width
- * @category Style Property
+ *
  */
 export declare type ScrollbarWidth_StyleType = "auto" | "thin" | "none";
 /**
  * Type for the [[scrollBehavior]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior
- * @category Style Property
+ *
  */
 export declare type ScrollBehavior_StyleType = "auto" | "smooth";
 /**
  * Type for the [[scrollSnapAlign]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-align
- * @category Style Property
+ *
  */
 export declare type ScrollSnapAlign_StyleType = OneOrPair<"none" | "start" | "end" | "center">;
 /**
  * Type for the [[scrollSnapStop]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-stop
- * @category Style Property
+ *
  */
 export declare type ScrollSnapStop_StyleType = "normal" | "always";
 /**
  * Type for the [[scrollSnapType]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type
- * @category Style Property
+ *
  */
 export declare type ScrollSnapType_StyleType = "none" | [
     Extended<"x" | "y" | "block" | "inline" | "both">,
@@ -1193,56 +1183,56 @@ export declare type ScrollSnapType_StyleType = "none" | [
 /**
  * Type for [[shapeOutside]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/shape-outside
- * @category Style Property
+ *
  */
 export declare type ShapeOutside_StyleType = IUrlFunc | BasicShape | GeometryBoxKeyword | CssImage;
 /**
  * Type for the [[shapeRendering]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/shape-rendering
- * @category Style Property
+ *
  */
 export declare type ShapeRendering_StyleType = "auto" | "optimizeSpeed" | "crispEdges" | "geometricPrecision";
 /**
  * Type for the [[tabSize]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/tab-size
- * @category Style Property
+ *
  */
 export declare type TabSize_StyleType = CssNumber | ILengthProxy;
 /**
  * Type for the [[tableLayout]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/table-layout
- * @category Style Property
+ *
  */
 export declare type TableLayout_StyleType = "auto" | "fixed";
 /**
  * Type for the [[textAlign]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-align
- * @category Style Property
+ *
  */
 export declare type TextAlign_StyleType = "start" | "end" | "left" | "right" | "center" | "justify" | "match-parent";
 /**
  * Type for the [[textAlignLast]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-align-last
- * @category Style Property
+ *
  */
 export declare type TextAlignLast_StyleType = "auto" | "start" | "end" | "left" | "right" | "center" | "justify";
 /**
  * Type for the [[textAnchor]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-anchor
- * @category Style Property
+ *
  */
 export declare type TextAnchor_StyleType = "start" | "middle" | "end";
 /**
  * Type for the [[textCombineUpright]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-combine-upright
- * @category Style Property
+ *
  */
 export declare type TextCombineUpright_StyleType = "none" | "all" | "digits" | number;
 /**
  * Type for the [[textDecoration]] style property. If a number is specified, it will be interpreted
  * as color - not as thickness.
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration
- * @category Style Property
+ *
  */
 export declare type TextDecoration_StyleType = TextDecorationLine_StyleType | TextDecorationStyle_StyleType | CssColor | TextDecorationThickness_StyleType | {
     line?: Extended<TextDecorationLine_StyleType>;
@@ -1253,31 +1243,31 @@ export declare type TextDecoration_StyleType = TextDecorationLine_StyleType | Te
 /**
  * Type for the [[textDecorationLine]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-line
- * @category Style Property
+ *
  */
 export declare type TextDecorationLine_StyleType = "none" | "spelling-error" | "grammar-error" | OneOrMany<"underline" | "overline" | "line-through">;
 /**
  * Type for the [[textDecorationStyle]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-style
- * @category Style Property
+ *
  */
 export declare type TextDecorationStyle_StyleType = "solid" | "double" | "dotted" | "dashed" | "wavy";
 /**
  * Type for the [[textDecorationSkipInk]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-skip-ink
- * @category Style Property
+ *
  */
 export declare type TextDecorationSkipInk_StyleType = "none" | "auto" | "all";
 /**
  * Type for the [[textDecorationThickness]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-thickness
- * @category Style Property
+ *
  */
 export declare type TextDecorationThickness_StyleType = "from-font" | CssLengthOrAuto;
 /**
  * Type for the [[textEmphasis]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-emphasis
- * @category Style Property
+ *
  */
 export declare type TextEmphasis_StyleType = TextEmphasisStyle_StyleType | CssColor | [
     Extended<TextEmphasisStyle_StyleType>,
@@ -1286,23 +1276,23 @@ export declare type TextEmphasis_StyleType = TextEmphasisStyle_StyleType | CssCo
 /**
  * Type for the [[textEmphasisPosition]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-emphasis-position
- * @category Style Property
+ *
  */
 export declare type TextEmphasisPosition_StyleType = "over left" | "over right" | "under left" | "under right";
 /**
  * Shape for the text-emphasis-style style property
- * @category Style Helper
+ *
  */
 export declare type TextEmphasisShape = "dot" | "circle" | "double-circle" | "triangle" | "sesame" | string;
 /**
  * Fill option for the text-emphasis-style style property
- * @category Style Helper
+ *
  */
 export declare type TextEmphasisFill = "filled" | "open";
 /**
  * Type for the [[textEmphasisStyle]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-emphasis-style
- * @category Style Property
+ *
  */
 export declare type TextEmphasisStyle_StyleType = "none" | TextEmphasisFill | TextEmphasisShape | [
     Extended<TextEmphasisFill>,
@@ -1311,7 +1301,7 @@ export declare type TextEmphasisStyle_StyleType = "none" | TextEmphasisFill | Te
 /**
  * Type for the [[textIndent]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-inden
- * @category Style Property
+ *
  */
 export declare type TextIndent_StyleType = CssLength | [
     Extended<CssLength>,
@@ -1320,30 +1310,30 @@ export declare type TextIndent_StyleType = CssLength | [
 /**
  * Type for the [[textJustify]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-justify
- * @category Style Property
+ *
  */
 export declare type TextJustify_StyleType = "auto" | "inter-character" | "inter-word" | "none";
 /**
  * Type for the [[textOrientation]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-orientation
- * @category Style Property
+ *
  */
 export declare type TextOrientation_StyleType = "mixed" | "upright" | "sideways";
 /**
  * Type for the [[textOverflow]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow
- * @category Style Property
+ *
  */
 export declare type TextOverflow_StyleType = OneOrPair<"clip" | "ellipsis" | "fade" | string>;
 /**
  * Type for the [[textRendering]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-rendering
- * @category Style Property
+ *
  */
 export declare type TextRendering_StyleType = "auto" | "optimizeSpeed" | "optimizeLegibility" | "geometricPrecision";
 /**
  * Type for the single value of the tex"t-shadow style property
- * @category Style Helper
+ *
  */
 export declare type TextShadow = "none" | {
     x: Extended<CssLength>;
@@ -1354,19 +1344,19 @@ export declare type TextShadow = "none" | {
 /**
  * Type for the [[textShadow]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow
- * @category Style Property
+ *
  */
 export declare type TextShadow_StyleType = OneOrMany<TextShadow>;
 /**
  * Type for the [[textSizeAdjust]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-size-adjust
- * @category Style Property
+ *
  */
 export declare type TextSizeAdjust_StyleType = "none" | "auto" | CssPercent;
 /**
  * Type for the [[textStroke]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-stroke
- * @category Style Property
+ *
  */
 export declare type TextStroke_StyleType = LineWidth | CssNonNumericColor | [
     Extended<LineWidth>,
@@ -1381,19 +1371,19 @@ export declare type TextStroke_StyleType = LineWidth | CssNonNumericColor | [
 /**
  * Type for the [[textTransform]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform
- * @category Style Property
+ *
  */
 export declare type TextTransform_StyleType = "none" | "capitalize" | "uppercase" | "lowercase" | "full-width" | "full-size-kana";
 /**
  * Type for the [[textUnderlinePosition]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/text-underline-position
- * @category Style Property
+ *
  */
 export declare type TextUnderlinePosition_StyleType = "auto" | "under" | "left" | "right" | "auto-pos" | "above" | "below";
 /**
  * Type for the [[touchAction]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action
- * @category Style Property
+ *
  */
 export declare type TouchAction_StyleType = "auto" | "none" | "manipulation" | "pan-x" | "pan-left" | "pan-right" | "pan-y" | "pan-up" | "pan-down" | "pinch-zoom" | [
     "pan-x" | "pan-left" | "pan-right",
@@ -1412,19 +1402,19 @@ export declare type TouchAction_StyleType = "auto" | "none" | "manipulation" | "
 /**
  * Type for [[transform]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/transform
- * @category Style Property
+ *
  */
 export declare type Transform_StyleType = "none" | OneOrMany<TransformFuncs>;
 /**
  * Type for [[transformBox]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/transform-box
- * @category Style Property
+ *
  */
 export declare type TransformBox_StyleType = "content-box" | "border-box" | "fill-box" | "stroke-box" | "view-box";
 /**
  * Type for [[transformOrigin]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin
- * @category Style Property
+ *
  */
 export declare type TransformOrigin_StyleType = HorizontalPositionKeyword | VerticalPositionKeyword | CssLength | [
     Extended<HorizontalPositionKeyword | CssLength>,
@@ -1434,12 +1424,12 @@ export declare type TransformOrigin_StyleType = HorizontalPositionKeyword | Vert
 /**
  * Type for [[transformStyle]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/transform-style
- * @category Style Property
+ *
  */
 export declare type TransformStyle_StyleType = "flat" | "preserve-3d";
 /**
  * Type for single transition
- * @category Style Helper
+ *
  */
 export declare type Transition_Single = string | {
     property?: Extended<TransitionProperty>;
@@ -1450,24 +1440,24 @@ export declare type Transition_Single = string | {
 /**
  * Type for [[transition]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/transition
- * @category Style Property
+ *
  */
 export declare type Transition_StyleType = OneOrMany<Transition_Single>;
 /**
  * Type for single [[transitionProperty]] style property
- * @category Style Helper
+ *
  */
 export declare type TransitionProperty = "none" | "all" | keyof IStyleset | IVarRule;
 /**
  * Type for [[transitionProperty]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property
- * @category Style Property
+ *
  */
 export declare type TransitionProperty_StyleType = OneOrMany<TransitionProperty>;
 /**
  * Type for the [[IStyleset.translate|translate]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/translate
- * @category Style Property
+ *
  */
 export declare type Translate_StyleType = "none" | CssLength | [
     Extended<CssLength>,
@@ -1477,79 +1467,79 @@ export declare type Translate_StyleType = "none" | CssLength | [
 /**
  * Type for the [[unicodeBidi]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/unicode-bidi
- * @category Style Property
+ *
  */
 export declare type UnicodeBidi_StyleType = "normal" | "embed" | "isolate" | "bidi-override" | "isolate-override" | "plaintext";
 /**
  * Type for the [[userSelect]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/user-select
- * @category Style Property
+ *
  */
 export declare type UserSelect_StyleType = "auto" | "text" | "none" | "contain" | "all";
 /**
  * Type for the [[verticalAlign]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align
- * @category Style Property
+ *
  */
 export declare type VerticalAlign_StyleType = "baseline" | "sub" | "super" | "text-top" | "text-bottom" | "middle" | "top" | "bottom" | CssLength;
 /**
  * Type for the [[visibility]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/visibility
- * @category Style Property
+ *
  */
 export declare type Visibility_StyleType = "visible" | "hidden" | "collapse";
 /**
  * Type for the [[vectorEffect]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/vector-effect
- * @category Style Property
+ *
  */
 export declare type VectorEffect_StyleType = "none" | "non-scaling-stroke" | "non-scaling-size" | "non-rotation" | "fixed-position";
 /**
  * Type for the [[whiteSpace]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/white-space
- * @category Style Property
+ *
  */
 export declare type WhiteSpace_StyleType = "normal" | "pre" | "nowrap" | "pre-wrap" | "pre-line" | "break-spaces";
 /**
  * Type for [[willChange]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/will-change
- * @category Style Property
+ *
  */
 export declare type WillChange_StyleType = "auto" | OneOrMany<"scroll-position" | "contents" | Exclude<keyof IStyleset, "willChange">>;
 /**
  * Type for the [[wordBreak]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/word-break
- * @category Style Property
+ *
  */
 export declare type WordBreak_StyleType = "normal" | "break-all" | "keep-all" | "break-word";
 /**
  * Type for the [[wordSpacing]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/word-spacing
- * @category Style Property
+ *
  */
 export declare type WordSpacing_StyleType = "normal" | CssLength;
 /**
  * Type for the [[writingMode]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode
- * @category Style Property
+ *
  */
 export declare type WritingMode_StyleType = "horizontal-tb" | "vertical-rl" | "vertical-lr" | "sideways-rl" | "sideways-lr";
 /**
  * Type for the [[zIndex]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/z-index
- * @category Style Property
+ *
  */
 export declare type ZIndex_StyleType = "auto" | CssNumber;
 /**
  * Type for the [[zoom]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/zoom
- * @category Style Property
+ *
  * @deprecated
  */
 export declare type Zoom_StyleType = "normal" | "reset" | CssPercent;
 /**
  * Type for style properties for which there is no special type defined.
- * @category Style Helper
+ *
  */
 export declare type DefaultStyleType = string;
 //# sourceMappingURL=StyleTypes.d.ts.map

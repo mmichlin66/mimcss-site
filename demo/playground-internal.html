@@ -7,8 +7,11 @@
     <script src="mim-tsplay.js"></script>
     <script src="mimcss-demo.js"></script>
     <script>
-        function loadPlayground() {
-            window.mountPlayground(document.body, `playground-config.json`);
+        function loadPlayground()
+        {
+            let qsp = new URL(location.href).searchParams;
+            let file = qsp && qsp.get("file");
+            window.mountPlayground(document.body, "playground-config.json", file ? `examples/${file}` : undefined);
         }
     </script>
 </body>

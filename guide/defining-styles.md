@@ -25,7 +25,7 @@ The `Styleset` type might look similar to the built-in `CSSStyleDeclaration` typ
 
 1. The `color` property. Mimcss provides names of all the built-in colors in the `Colors` type. You can either use its properties, e.g. `Colors.dodgerblue`, or directly type `"dodgerblue"`. When you start typing color names as strings, the autocomplete feature of your IDE will prompt you with the suitable names. If you misspell the color name, it will be immediately detected. You can add new named colors using the module augmentation technique. You can also specify colors as numbers, e.g. 0xFF0000 for red, which is similar to the CSS notation `"#FF0000"` but allows you to calculate the color value programmatically without the need to convert it to string. There are also special color functions such as `rgb()` or `alpha()` that allow manipulating color values. All of these methods are of course applicable not only to the `color` property but to any property that uses color.
 
-1. The `padding` property. CSS allows specifying 1 to 4 values for the `padding` property where each of the values must specify dimension units (except for 0). In Mimcss,  the `padding` property value can be specified as a number or an array of numbers with 2, 3, or 4 elements. Integer numbers will be considered as `px` units, while floating point numbers will be considered as `em` units. In additions, Mimcss provides functions for every CSS unit and these functions can be used in lieu of the numbers.
+1. The `padding` property. CSS allows specifying 1 to 4 values for the `padding` property where each of the values must specify dimension units (except for 0). In Mimcss,  the `padding` property value can be specified as a number or an array of numbers with 2, 3, or 4 elements. Integer numbers will be considered as `px` units, while floating point numbers will be considered as `em` units. In addition, Mimcss provides functions for every CSS unit and these functions can be used in lieu of the numbers.
 
 1. The `border` property. CSS defines the `border` property as a sequence of 1 to 3 values: width, style and color. In Mimcss you can specify the value as either a number or a Color value or as a tuple of 2 or 3 elements. Moreover, Mimcss provides all possible values for the style element, so that you cannot misspell it.
 
@@ -277,7 +277,7 @@ class MyClass extends css.StyleDefinition
     anchor = this.$style( "a", { color: "blue",
         ":first-child": { color: "green",
             ":visited": { color: "pink",
-                ":hover" { color: "maroon" }
+                ":hover": { color: "maroon" }
             }
         }
     })

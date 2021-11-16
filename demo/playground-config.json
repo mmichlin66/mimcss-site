@@ -89,6 +89,11 @@
             "path": "examples/transforms.tsx",
             "description": "Demonstrates CSS transform functions."
         },
+        {
+            "name": "Animations",
+            "path": "examples/animations.tsx",
+            "description": "Demonstrates CSS animations."
+        },
 
         { "name": "Theming" },
 
