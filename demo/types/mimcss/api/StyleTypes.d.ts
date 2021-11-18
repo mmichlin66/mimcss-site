@@ -405,7 +405,7 @@ export declare type BoxDecorationBreak_StyleType = "slice" | "clone";
  * Type for single box shadow.
  *
  */
-export declare type BoxShadow = "none" | {
+export declare type BoxShadow_Single = "none" | {
     x: Extended<CssLength>;
     y: Extended<CssLength>;
     blur?: Extended<CssLength>;
@@ -418,7 +418,7 @@ export declare type BoxShadow = "none" | {
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
  *
  */
-export declare type BoxShadow_StyleType = OneOrMany<BoxShadow>;
+export declare type BoxShadow_StyleType = OneOrMany<string | BoxShadow_Single>;
 /**
  * Type for [[boxSizing]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing

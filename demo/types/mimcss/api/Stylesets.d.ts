@@ -12,9 +12,9 @@ import { IClassNameRule, IClassRule, IStyleDefinition, IStyleDefinitionClass, IS
  */
 export interface IStyleset {
     /**
-     * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/all
+     * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/accent-color
      */
-    all?: Global_StyleType;
+    accentColor?: CssColor;
     /**
      * [[include: styleProps/alignContent.md]]
      */
@@ -31,6 +31,10 @@ export interface IStyleset {
      * [[include: styleProps/alignmentBaseline.md]]
      */
     alignmentBaseline?: st.AlignmentBaseline_StyleType;
+    /**
+     * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/all
+     */
+    all?: Global_StyleType;
     /**
      * [[include: styleProps/animation.md]]
      */
