@@ -1,4 +1,4 @@
-import { CssImage, CssSelector, CssString, DependentRuleCombinator, Direction, ExtendedProp, Global_StyleType, IParameterizedPseudoEntity, OneOrBox, OneOrMany, OneOrPair, PseudoEntity } from "./CoreTypes";
+import { CssImage, CssSelector, CssString, DependentRuleCombinator, Direction, ExtendedProp, Global_StyleType, IParameterizedPseudoEntity, OneOrBox, OneOrMany, OneOrPair, PseudoEntity, TimingFunction } from "./CoreTypes";
 import { CssColor } from "./ColorTypes";
 import { BorderRadius, CssAngle, CssAspectRatio, CssFrequency, CssLength, CssLengthOrAuto, CssMultiPosition, CssMultiPositionX, CssMultiPositionY, CssNumber, CssPercent, CssPoint, CssPosition, CssRadius, CssResolution, CssSize, CssTime } from "./NumericTypes";
 import * as st from "./StyleTypes";
@@ -18,19 +18,19 @@ export interface IStyleset {
     /**
      * [[include: styleProps/alignContent.md]]
      */
-    alignContent?: st.AlignContent_StyleType;
+    alignContent?: st.AlignContentKeywords;
     /**
      * [[include: styleProps/alignItems.md]]
      */
-    alignItems?: st.AlignItems_StyleType;
+    alignItems?: st.AlignItemsKeywords;
     /**
      * [[include: styleProps/alignSelf.md]]
      */
-    alignSelf?: st.AlignSelf_StyleType;
+    alignSelf?: st.AlignSelfKeywords;
     /**
      * [[include: styleProps/alignmentBaseline.md]]
      */
-    alignmentBaseline?: st.AlignmentBaseline_StyleType;
+    alignmentBaseline?: st.AlignmentBaselineKeywords;
     /**
      * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/all
      */
@@ -40,37 +40,37 @@ export interface IStyleset {
      */
     animation?: st.Animation_StyleType;
     /**
-     * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-delay
+     * [[include: styleProps/animationDelay.md]]
      */
-    animationDelay?: st.AnimationDelay_StyleType;
+    animationDelay?: OneOrMany<CssTime>;
     /**
-     * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction
+     * [[include: styleProps/animationDirection.md]]
      */
-    animationDirection?: st.AnimationDirection_StyleType;
+    animationDirection?: OneOrMany<st.AnimationDirectionKeywords>;
     /**
-     * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration
+     * [[include: styleProps/animationDuration.md]]
      */
-    animationDuration?: st.AnimationDuration_StyleType;
+    animationDuration?: OneOrMany<CssTime>;
     /**
-     * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode
+     * [[include: styleProps/animationFillMode.md]]
      */
-    animationFillMode?: st.AnimationFillMode_StyleType;
+    animationFillMode?: OneOrMany<st.AnimationFillModeKeywords>;
     /**
-     * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-iteration-count
+     * [[include: styleProps/animationIterationCount.md]]
      */
-    animationIterationCount?: st.AnimationIterationCount_StyleType;
+    animationIterationCount?: OneOrMany<st.AnimationIterationCount_Single>;
     /**
-     * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-name
+     * [[include: styleProps/animationName.md]]
      */
-    animationName?: st.AnimationName_StyleType;
+    animationName?: OneOrMany<st.AnimationName_Single>;
     /**
-     * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-play-state
+     * [[include: styleProps/animationPlayState.md]]
      */
-    animationPlayState?: st.AnimationPlayState_StyleType;
+    animationPlayState?: OneOrMany<st.AnimationPlayStateKeywords>;
     /**
-     * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function
+     * [[include: styleProps/animationTimingFunction.md]]
      */
-    animationTimingFunction?: st.TimingFunction_StyleType;
+    animationTimingFunction?: OneOrMany<TimingFunction>;
     /**
      * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/appearance
      */
@@ -1635,7 +1635,7 @@ export interface IStyleset {
     /**
      * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function
      */
-    transitionTimingFunction?: st.TimingFunction_StyleType;
+    transitionTimingFunction?: OneOrMany<TimingFunction>;
     /**
      * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/translate
      */

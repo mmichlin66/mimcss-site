@@ -1090,6 +1090,42 @@ export interface ISelectorBuilder extends ISelectorFunc {
  */
 export declare type CssSelector = ElementTagName | PseudoEntity | IRuleWithSelector | ISelectorProxy | ISelectorFunc | IAttrSelectorFunc | IParameterizedPseudoEntityFunc<any> | SelectorCombinator | IRawProxy | string | CssSelector[];
 /**
+ * Type for simple animation timing functions - those that don't have parameters
+ *
+ */
+export declare type TimingFunctionKeywords = "linear" | "ease" | "ease-in" | "ease-out" | "ease-in-out" | "step-start" | "step-end";
+/** Type for step animation timing function jump-term */
+export declare type TimingFunctionJumpTerm = "jump-start" | "jump-end" | "jump-none" | "jump-both" | "start" | "end";
+/**
+ * The IStepsFunc interface represents an invocation of the CSS `steps()` function. It is returned
+ * from the [[steps]] function.
+ * @category Transition and Animation
+ */
+export interface IStepsFunc extends ICssFuncObject {
+    fn: "steps";
+    /** Number of stops */
+    n: Extended<number>;
+    /** Jump term */
+    j?: TimingFunctionJumpTerm;
+}
+/**
+ * The ICubicBezierFunc interface represents an invocation of the CSS `cubic-bezier()` function.
+ * It is returned from the [[cubicBezier]] function.
+ * @category Transition and Animation
+ */
+export interface ICubicBezierFunc extends ICssFuncObject {
+    fn: "cubic-bezier";
+    n1: Extended<number>;
+    n2: Extended<number>;
+    n3: Extended<number>;
+    n4: Extended<number>;
+}
+/**
+ * Type for single animation timing function
+ *
+ */
+export declare type TimingFunction = TimingFunctionKeywords | IStepsFunc | ICubicBezierFunc;
+/**
  * The IUrlFunc interface represents an invocation of the CSS `url()` function. It is returned from
  * the [[url]] function.
  */

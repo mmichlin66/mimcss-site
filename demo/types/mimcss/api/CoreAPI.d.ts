@@ -1,4 +1,4 @@
-import { CssSelector, ISelectorProxy, IRawProxy, Extended, IUrlFunc, ICursorFunc, IStringProxy, ISelectorBuilder } from "./CoreTypes";
+import { CssSelector, ISelectorProxy, IRawProxy, Extended, IUrlFunc, ICursorFunc, IStringProxy, ISelectorBuilder, TimingFunctionJumpTerm, ICubicBezierFunc, IStepsFunc } from "./CoreTypes";
 import { ICounterRule, IIDRule, IVarRule } from "./RuleTypes";
 import { AttrTypeKeyword, AttrUnitKeyword, ListStyleType_StyleType } from "./StyleTypes";
 import { ExtendedVarValue } from "./Stylesets";
@@ -46,6 +46,18 @@ export declare const selector: (parts: TemplateStringsArray, ...params: CssSelec
  * @returns
  */
 export declare const sel: (...items: CssSelector[]) => ISelectorBuilder;
+/**
+ * Returns a function representing an invocation of the CSS `steps()` function.
+ *
+ * @category Transition and Animation
+ */
+export declare const steps: (n: Extended<number>, j?: TimingFunctionJumpTerm | undefined) => IStepsFunc;
+/**
+* Returns a function representing an invocation of the CSS `cubic-bezier()` function.
+*
+* @category Transition and Animation
+*/
+export declare const cubicBezier: (n1: Extended<number>, n2: Extended<number>, n3: Extended<number>, n4: Extended<number>) => ICubicBezierFunc;
 /**
  * The `raw` function allows specifying arbitrary text for properties whose type normally doesn't
  * allow strings.This function is a tag function and must be invoked with the template string

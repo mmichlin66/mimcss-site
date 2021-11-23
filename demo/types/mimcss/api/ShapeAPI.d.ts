@@ -1,7 +1,7 @@
 import { CssImage, Extended, ExtentKeyword } from "./CoreTypes";
 import { CssAngle, CssLength, CssNumber, CssPercent, CssPoint } from "./NumericTypes";
 import { CssColor } from "./ColorTypes";
-import { GradientStopOrHint, ShapeRadius, IMinMaxFunc, IPathBuilder, IRepeatFunc, IGridSpanFunc, TimingFunctionJumpTerm, FillRule, ICircleBuilder, IEllipseBuilder, IInsetBuilder, IPolygonBuilder, IRayFunc, IStepsFunc, ICubicBezierFunc, IPercentFilterFunc, IBlurFunc, IDropShadowFunc, IHueRotateFunc, IMatrixFunc, IMatrix3dFunc, IPerspectiveFunc, IRotateFunc, IRotate3dFunc, IScale1dFunc, IScaleFunc, IScale3dFunc, ISkewFunc, ISkew1dFunc, ITranslate1dFunc, ITranslate3dFunc, ITranslateFunc, ILinearGradientBuilder, IRadialGradientBuilder, IConicGradientBuilder, ICrossFadeBuilder, ICrossFadeFunc, IImageSetFunc, ImageSetItem } from "./ShapeTypes";
+import { GradientStopOrHint, ShapeRadius, IMinMaxFunc, IPathBuilder, IRepeatFunc, IGridSpanFunc, FillRule, ICircleBuilder, IEllipseBuilder, IInsetBuilder, IPolygonBuilder, IRayFunc, IPercentFilterFunc, IBlurFunc, IDropShadowFunc, IHueRotateFunc, IMatrixFunc, IMatrix3dFunc, IPerspectiveFunc, IRotateFunc, IRotate3dFunc, IScale1dFunc, IScaleFunc, IScale3dFunc, ISkewFunc, ISkew1dFunc, ITranslate1dFunc, ITranslate3dFunc, ITranslateFunc, ILinearGradientBuilder, IRadialGradientBuilder, IConicGradientBuilder, ICrossFadeBuilder, ICrossFadeFunc, IImageSetFunc, ImageSetItem } from "./ShapeTypes";
 import { GridLineCountOrName, GridTrack, GridTrackSize } from "./StyleTypes";
 /**
  * Function returning the ILinearGradientBuilder interface representing the `linear-gradient` CSS functions.
@@ -533,16 +533,4 @@ export declare const repeat: (count: Extended<CssNumber> | "auto-fill" | "auto-f
  * @category Grid
  */
 export declare const span: (p1: Extended<GridLineCountOrName>, p2?: Extended<GridLineCountOrName>) => IGridSpanFunc;
-/**
- * Returns a function representing an invocation of the CSS `steps()` function.
- *
- * @category Transition and Animation
- */
-export declare const steps: (n: Extended<number>, j?: TimingFunctionJumpTerm | undefined) => IStepsFunc;
-/**
- * Returns a function representing an invocation of the CSS `cubic-bezier()` function.
- *
- * @category Transition and Animation
- */
-export declare const cubicBezier: (n1: Extended<number>, n2: Extended<number>, n3: Extended<number>, n4: Extended<number>) => ICubicBezierFunc;
 //# sourceMappingURL=ShapeAPI.d.ts.map

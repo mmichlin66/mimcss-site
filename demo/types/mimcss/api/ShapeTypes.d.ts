@@ -752,30 +752,4 @@ export interface IGridSpanFunc extends ICssFuncObject {
     /** Second span argument */
     p2?: Extended<GridLineCountOrName>;
 }
-/** Type for step animation timing function jump-term */
-export declare type TimingFunctionJumpTerm = "jump-start" | "jump-end" | "jump-none" | "jump-both" | "start" | "end";
-/**
- * The IStepsFunc interface represents an invocation of the CSS `steps()` function. It is returned
- * from the [[steps]] function.
- * @category Transition and Animation
- */
-export interface IStepsFunc extends ICssFuncObject {
-    fn: "steps";
-    /** Number of stops */
-    n: Extended<number>;
-    /** Jump term */
-    j?: TimingFunctionJumpTerm;
-}
-/**
- * The ICubicBezierFunc interface represents an invocation of the CSS `cubic-bezier()` function.
- * It is returned from the [[cubicBezier]] function.
- * @category Transition and Animation
- */
-export interface ICubicBezierFunc extends ICssFuncObject {
-    fn: "cubic-bezier";
-    n1: Extended<number>;
-    n2: Extended<number>;
-    n3: Extended<number>;
-    n4: Extended<number>;
-}
 //# sourceMappingURL=ShapeTypes.d.ts.map

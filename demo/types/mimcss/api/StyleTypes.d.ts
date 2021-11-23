@@ -1,8 +1,8 @@
-import { Extended, OneOrPair, OneOrBox, OneOrMany, CssString, CssImage, ICursorFunc, IUrlFunc } from "./CoreTypes";
+import { Extended, OneOrPair, OneOrBox, OneOrMany, CssString, CssImage, ICursorFunc, IUrlFunc, TimingFunction } from "./CoreTypes";
 import { CssNumber, CssPosition, CssTime, CssLength, CssAngle, CssPercent, HorizontalPositionKeyword, VerticalPositionKeyword, IFitContentProxy, ILengthProxy, CssAspectRatio, IRectProxy, CssLengthOrAuto, AngleUnits, FrequencyUnits, LengthUnits, PercentUnits, ResolutionUnits, TimeUnits } from "./NumericTypes";
 import { CssColor, CssNonNumericColor } from "./ColorTypes";
 import { FontStretchKeyword, FontStyle, FontWeight, SystemFont } from "./FontTypes";
-import { BasicShape, IMinMaxFunc, IRepeatFunc, IGridSpanFunc, FilterFuncs, IRayFunc, IStepsFunc, ICubicBezierFunc, TransformFuncs } from "./ShapeTypes";
+import { BasicShape, IMinMaxFunc, IRepeatFunc, IGridSpanFunc, FilterFuncs, IRayFunc, TransformFuncs } from "./ShapeTypes";
 import { IVarRule, IAnimationRule, ICounterRule, IIDRule, IGridLineRule, IGridAreaRule, ICounterStyleRule } from "./RuleTypes";
 import { IStyleset } from "./Stylesets";
 /**
@@ -17,19 +17,19 @@ export declare type AttrUnitKeyword = PercentUnits | LengthUnits | TimeUnits | A
  * Type for [[alignContent]] style property.
 
  */
-export declare type AlignContent_StyleType = "normal" | "stretch" | "center" | "start" | "end" | "flex-start" | "flex-end" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center" | "space-between" | "space-around" | "space-evenly";
+export declare type AlignContentKeywords = "normal" | "stretch" | "center" | "start" | "end" | "flex-start" | "flex-end" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center" | "space-between" | "space-around" | "space-evenly";
 /**
  * Type for [[alignItems]] style property
  */
-export declare type AlignItems_StyleType = "normal" | "stretch" | "center" | "start" | "end" | "flex-start" | "flex-end" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center";
+export declare type AlignItemsKeywords = "normal" | "stretch" | "center" | "start" | "end" | "flex-start" | "flex-end" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center";
 /**
  * Type for [[alignSelf]] style property
  */
-export declare type AlignSelf_StyleType = "auto" | "normal" | "stretch" | "center" | "start" | "end" | "flex-start" | "flex-end" | "self-start" | "self-end" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center";
+export declare type AlignSelfKeywords = "auto" | "normal" | "stretch" | "center" | "start" | "end" | "flex-start" | "flex-end" | "self-start" | "self-end" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center";
 /**
  * Type for [[alignmentBaseline]] style property
  */
-export declare type AlignmentBaseline_StyleType = "auto" | "baseline" | "before-edge" | "text-before-edge" | "middle" | "central" | "after-edge" | "text-after-edge" | "ideographic" | "alphabetic" | "hanging" | "mathematical" | "top" | "center" | "bottom";
+export declare type AlignmentBaselineKeywords = "auto" | "baseline" | "before-edge" | "text-before-edge" | "middle" | "central" | "after-edge" | "text-after-edge" | "ideographic" | "alphabetic" | "hanging" | "mathematical" | "top" | "center" | "bottom";
 /**
  * Type for single animation. Used by [[Animation_StyleType]].
  */
@@ -39,103 +39,40 @@ export declare type Animation_Single = {
     func?: Extended<TimingFunction>;
     delay?: Extended<CssTime>;
     count?: Extended<AnimationIterationCount_Single>;
-    direction?: Extended<AnimationDirection_Single>;
-    mode?: Extended<AnimationFillMode_Single>;
-    state?: Extended<AnimationPlayState_Single>;
+    direction?: Extended<AnimationDirectionKeywords>;
+    mode?: Extended<AnimationFillModeKeywords>;
+    state?: Extended<AnimationPlayStateKeywords>;
 };
 /**
  * Type for [[animation]] style property
  */
 export declare type Animation_StyleType = OneOrMany<string | Animation_Single>;
 /**
- * Type for [[animationDelay]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-delay
- *
+ * Keywords used to define animation direction.
  */
-export declare type AnimationDelay_StyleType = OneOrMany<CssTime>;
-/**
- * Type for single animation direction
- *
- */
-export declare type AnimationDirection_Single = "normal" | "reverse" | "alternate" | "alternate-reverse";
-/**
- * Type for [[animationDirection]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction
- *
- */
-export declare type AnimationDirection_StyleType = OneOrMany<AnimationDirection_Single>;
-/**
- * Type for [[animationDuration]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration
- *
- */
-export declare type AnimationDuration_StyleType = OneOrMany<CssTime>;
+export declare type AnimationDirectionKeywords = "normal" | "reverse" | "alternate" | "alternate-reverse";
 /**
  * Type for single animation fill mode
- *
  */
-export declare type AnimationFillMode_Single = "none" | "forwards" | "backwards" | "both";
-/**
- * Type for [[animationFillMode]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-fill-mode
- *
- */
-export declare type AnimationFillMode_StyleType = OneOrMany<AnimationDirection_Single>;
+export declare type AnimationFillModeKeywords = "none" | "forwards" | "backwards" | "both";
 /**
  * Type for single animation iteration count
- *
  */
 export declare type AnimationIterationCount_Single = "infinite" | CssNumber;
 /**
- * Type for [[animationIterationCount]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-iteration-count
- *
- */
-export declare type AnimationIterationCount_StyleType = OneOrMany<AnimationIterationCount_Single>;
-/**
  * Type for single animation name
- *
  */
 export declare type AnimationName_Single = "none" | string | IAnimationRule;
 /**
- * Type for [[animationName]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-name
- *
- */
-export declare type AnimationName_StyleType = OneOrMany<AnimationName_Single>;
-/**
  * Type for single animation play state
- *
  */
-export declare type AnimationPlayState_Single = "paused" | "running";
-/**
- * Type for [[animationPlayState]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-play-state
- *
- */
-export declare type AnimationPlayState_StyleType = OneOrMany<AnimationPlayState_Single>;
+export declare type AnimationPlayStateKeywords = "paused" | "running";
 /**
  * Type for [[appearance]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/appearance
  *
  */
 export declare type Appearance_StyleType = "none" | "auto" | "textfield" | "menulist-button" | "searchfield" | "textarea" | "push-button" | "slider-horizontal" | "checkbox" | "radio" | "square-button" | "menulist" | "listbox" | "meter" | "progress-bar" | "button";
-/**
- * Type for simple animation timing functions - those that don't have parameters
- *
- */
-export declare type TimingFunctionKeyword = "linear" | "ease" | "ease-in" | "ease-out" | "ease-in-out" | "step-start" | "step-end";
-/**
- * Type for single animation timing function
- *
- */
-export declare type TimingFunction = TimingFunctionKeyword | IStepsFunc | ICubicBezierFunc;
-/**
- * Type for [[animationTimingFunction]] and [[transitionTimingFunction]] style properties
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function
- *
- */
-export declare type TimingFunction_StyleType = OneOrMany<TimingFunction>;
 /**
  * Type for [[aspectRatio]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio
@@ -1068,19 +1005,19 @@ export declare type PerspectiveOrigin_StyleType = HorizontalPositionKeyword | Ve
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/place-content
  *
  */
-export declare type PlaceContent_StyleType = AlignContent_StyleType | [Extended<AlignContent_StyleType>, Extended<JustifyContent_StyleType>];
+export declare type PlaceContent_StyleType = AlignContentKeywords | [Extended<AlignContentKeywords>, Extended<JustifyContent_StyleType>];
 /**
  * Type for the [[placeItems]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/place-items
  *
  */
-export declare type PlaceItems_StyleType = AlignItems_StyleType | [Extended<AlignItems_StyleType>, Extended<JustifyItems_StyleType>];
+export declare type PlaceItems_StyleType = AlignItemsKeywords | [Extended<AlignItemsKeywords>, Extended<JustifyItems_StyleType>];
 /**
  * Type for the [[placeSelf]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/place-self
  *
  */
-export declare type PlaceSelf_StyleType = AlignSelf_StyleType | [Extended<AlignSelf_StyleType>, Extended<JustifySelf_StyleType>];
+export declare type PlaceSelf_StyleType = AlignSelfKeywords | [Extended<AlignSelfKeywords>, Extended<JustifySelf_StyleType>];
 /**
  * Type for the [[pointerEvents]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events
