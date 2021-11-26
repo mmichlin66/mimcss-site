@@ -72,11 +72,11 @@ export interface IStyleset {
      */
     animationTimingFunction?: OneOrMany<TimingFunction>;
     /**
-     * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/appearance
+     * [[include: styleProps/appearance.md]]
      */
-    appearance?: st.Appearance_StyleType;
+    appearance?: st.AppearanceKeywords | string;
     /**
-     * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio
+     * [[include: styleProps/aspectRatio.md]]
      */
     aspectRatio?: st.AspectRatio_StyleType;
     /**
@@ -98,7 +98,7 @@ export interface IStyleset {
     /**
      * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background-blend-mode
      */
-    backgroundBlendMode?: st.BackgroundBlendMode_StyleType;
+    backgroundBlendMode?: OneOrMany<st.BlendModeKeywords>;
     /**
      * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip
      */
@@ -1055,7 +1055,7 @@ export interface IStyleset {
     /**
      * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode
      */
-    mixBlendMode?: st.BlendMode;
+    mixBlendMode?: st.BlendModeKeywords;
     /**
      * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit
      */

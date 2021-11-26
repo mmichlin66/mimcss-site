@@ -14,24 +14,23 @@ export declare type AttrTypeKeyword = "string" | "color" | "url" | "integer" | "
  */
 export declare type AttrUnitKeyword = PercentUnits | LengthUnits | TimeUnits | AngleUnits | ResolutionUnits | FrequencyUnits;
 /**
- * Type for [[alignContent]] style property.
-
+ * Keywords used for the [[alignContent]] style property.
  */
 export declare type AlignContentKeywords = "normal" | "stretch" | "center" | "start" | "end" | "flex-start" | "flex-end" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center" | "space-between" | "space-around" | "space-evenly";
 /**
- * Type for [[alignItems]] style property
+ * Keywords used for the [[alignItems]] style property
  */
 export declare type AlignItemsKeywords = "normal" | "stretch" | "center" | "start" | "end" | "flex-start" | "flex-end" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center";
 /**
- * Type for [[alignSelf]] style property
+ * Keywords used for the [[alignSelf]] style property
  */
 export declare type AlignSelfKeywords = "auto" | "normal" | "stretch" | "center" | "start" | "end" | "flex-start" | "flex-end" | "self-start" | "self-end" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center";
 /**
- * Type for [[alignmentBaseline]] style property
+ * Keywords used for the [[alignmentBaseline]] style property
  */
 export declare type AlignmentBaselineKeywords = "auto" | "baseline" | "before-edge" | "text-before-edge" | "middle" | "central" | "after-edge" | "text-after-edge" | "ideographic" | "alphabetic" | "hanging" | "mathematical" | "top" | "center" | "bottom";
 /**
- * Type for single animation. Used by [[Animation_StyleType]].
+ * Type for single animation. Used by [[Animation_StyleType]] style property.
  */
 export declare type Animation_Single = {
     name?: Extended<AnimationName_Single>;
@@ -48,46 +47,39 @@ export declare type Animation_Single = {
  */
 export declare type Animation_StyleType = OneOrMany<string | Animation_Single>;
 /**
- * Keywords used to define animation direction.
+ * Keywords used for the [[animationDirection]] style property.
  */
 export declare type AnimationDirectionKeywords = "normal" | "reverse" | "alternate" | "alternate-reverse";
 /**
- * Type for single animation fill mode
+ * Keywords used for the [[animationFillMode]] style property
  */
 export declare type AnimationFillModeKeywords = "none" | "forwards" | "backwards" | "both";
 /**
- * Type for single animation iteration count
+ * Type for [[animationIterationCount]] style property
  */
 export declare type AnimationIterationCount_Single = "infinite" | CssNumber;
 /**
- * Type for single animation name
+ * Type for [[animationName]] style property
  */
 export declare type AnimationName_Single = "none" | string | IAnimationRule;
 /**
- * Type for single animation play state
+ * Keywords used for the [[animationPlayState]] style property
  */
 export declare type AnimationPlayStateKeywords = "paused" | "running";
 /**
- * Type for [[appearance]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/appearance
- *
+ * Keywords used for the [[appearance]] style property
  */
-export declare type Appearance_StyleType = "none" | "auto" | "textfield" | "menulist-button" | "searchfield" | "textarea" | "push-button" | "slider-horizontal" | "checkbox" | "radio" | "square-button" | "menulist" | "listbox" | "meter" | "progress-bar" | "button";
+export declare type AppearanceKeywords = "none" | "auto" | "textfield" | "menulist-button";
 /**
  * Type for [[aspectRatio]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio
- *
  */
 export declare type AspectRatio_StyleType = CssAspectRatio | "auto";
 /**
- * Type for [[backfaceVisibility]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/backface-visibility
- *
+ * Keywords used for the [[backfaceVisibilityMode]] style property
  */
 export declare type BackfaceVisibilityMode_StyleType = "visible" | "hidden";
 /**
  * Type for single background value
- *
  */
 export declare type Background_Single = string | CssColor | CssImage | {
     color?: Extended<CssColor>;
@@ -101,70 +93,52 @@ export declare type Background_Single = string | CssColor | CssImage | {
 };
 /**
  * Type for [[background]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background
- *
  */
 export declare type Background_StyleType = OneOrMany<Background_Single>;
 /**
- * Type for single background attachment
- *
+ * Keywords used for the [[backgroundAttachment]] style property
  */
 export declare type BackgroundAttachment = "scroll" | "fixed" | "local";
 /**
  * Type for [[backgroundAttachment]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background-attachment
- *
  */
 export declare type BackgroundAttachment_StyleType = OneOrMany<BackgroundAttachment>;
 /**
- * Type for single background blend mode
+ *Keywords used for the [[backgroundBlendMode]] and [[mixBlendMode]] properties
  *
  */
-export declare type BlendMode = "normal" | "multiply" | "screen" | "overlay" | "darken" | "lighten" | "color-dodge" | "color-burn" | "hard-light" | "soft-light" | "difference" | "exclusion" | "hue" | "saturation" | "color" | "luminosity";
+export declare type BlendModeKeywords = "normal" | "multiply" | "screen" | "overlay" | "darken" | "lighten" | "color-dodge" | "color-burn" | "hard-light" | "soft-light" | "difference" | "exclusion" | "hue" | "saturation" | "color" | "luminosity";
 /**
- * Type for [[backgroundBlendMode]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background-blend-mode
- *
- */
-export declare type BackgroundBlendMode_StyleType = OneOrMany<BlendMode>;
-/**
- * Type for single background clip
+ * Keywords used for the [[backgroundClip]] property
  *
  */
 export declare type BackgroundClip = "border-box" | "padding-box" | "content-box" | "text";
 /**
  * Type for [[backgroundClip]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background-clip
- *
  */
 export declare type BackgroundClip_StyleType = OneOrMany<BackgroundClip>;
 /**
  * Type for [[backgroundImage]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background-image
- *
  */
 export declare type BackgroundImage_StyleType = "none" | OneOrMany<CssImage>;
 /**
- * Type for single background origin
+ * Keywords used for the [[backgroundOrigin]] property
  *
  */
 export declare type BackgroundOrigin = "border-box" | "padding-box" | "content-box" | "text";
 /**
  * Type for [[backgroundOrigin]] style property
- * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background-origin
- *
  */
 export declare type BackgroundOrigin_StyleType = OneOrMany<BackgroundOrigin>;
 /**
  * Keywords for single background repeat
- *
  */
-export declare type BackgroundRepeatKeyword = "repeat" | "space" | "round" | "no-repeat";
+export declare type BackgroundRepeatKeywords = "repeat" | "space" | "round" | "no-repeat";
 /**
  * Type for single background repeat
  *
  */
-export declare type BackgroundRepeat = "repeat-x" | "repeat-y" | OneOrPair<BackgroundRepeatKeyword>;
+export declare type BackgroundRepeat = "repeat-x" | "repeat-y" | OneOrPair<BackgroundRepeatKeywords>;
 /**
  * Type for [[backgroundRepeat]] style property
  * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/background-repeat
