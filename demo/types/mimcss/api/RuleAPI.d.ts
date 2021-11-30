@@ -35,7 +35,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
     /**
      * Style definition instances are created directly only by the *styled components* - that is,
      * components that use different styles for each instance. Otherwise, style definition
-     * instances are created when either the [[$use]] or [[activate]] function is called.
+     * instances are created when either the [[$use]] method or [[activate]] function is called.
      * @param parent Reference to the parent style definition class
      */
     constructor(parent?: P);
@@ -764,6 +764,9 @@ export declare const chooseClass: (...classProps: ClassPropType[]) => string | n
  * most recent value set. Thus when a rule in the base class's constructor uses a virtualized
  * rule, the first rule will see the overridden value of the rule when accessed in the
  * post-constructor code.
+ *
+ * @deprecated This decorator is deprecated as  all rules defined in style definition classes are
+ * always virtualized.
  */
 export declare const virtual: (target: any, name: string) => void;
 /**
@@ -774,7 +777,6 @@ export declare const virtual: (target: any, name: string) => void;
  * @typeparam P Parent style definition class. Parent of a top-level class is null.
  */
 export declare abstract class ThemeDefinition<P extends StyleDefinition = any> extends StyleDefinition<P> {
-    constructor(parent?: P);
 }
 /**
  * Activates the given style definition class or instance and inserts all its rules into DOM. If
