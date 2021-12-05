@@ -1157,7 +1157,7 @@ export declare type ExtentKeyword = "closest-corner" | "closest-side" | "farthes
  * used whereever gradients are used.
  */
 export interface ICssImageFunc extends ICssFuncObject {
-    fn: "linear-gradient" | "radial-gradient" | "conic-gradient" | "cross-fade" | "image-set";
+    fn: "linear-gradient" | "radial-gradient" | "conic-gradient" | "cross-fade" | "image-set" | "paint";
 }
 /**
  * The CssImage type represents a type used for CSS properties that accept the `<image>` type.
