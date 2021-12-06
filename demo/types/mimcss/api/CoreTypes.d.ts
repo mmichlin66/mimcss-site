@@ -156,6 +156,40 @@ export declare type ImportantProp<T> = {
     "!": Extended<T> | Global_StyleType;
 };
 /**
+ * Type that allows specifying multiple values of a given type using an object with a single "[]"
+ * property. This type is used to include multiple occurrencies of the same style property in a
+ * styleset. This is useful when targeting advanced features not yet supported in all browsers and
+ * providing a fallback, which is supported everywhere.
+ *
+ * **Example**
+ * ```typescript
+ * class MyStyles extends StyleDefinition
+ * {
+ *     cls1 = this.$class({
+ *         backgroundImage: {"[]": [
+ *             // first, specify a static image (supported everywhere)
+ *             url("image.png"),
+ *             // second, use paint worklet (not supported everywhere yet)
+ *             paint("myPaintWorklet"),
+ *         ]}
+ *     })
+ * }
+ * ```
+ *
+ * This will produce the following CSS:
+ *
+ * ```css
+ * .cls1 {
+ *     backgroundImage: url("image.png");
+ *     backgroundImage: paint("myPaintWorklet");
+ * }
+ * ```
+ *
+ */
+export declare type MultiProp<T> = {
+    "[]": (Extended<T> | ImportantProp<T> | Global_StyleType)[];
+};
+/**
  * The ExtendedProp extends the given generic type with the following elements:
  * - [[ICustomVar]] interface that allows using a CSS custom property rule value.
  * - [[IConstant]] interface that allows using a constant rule value.
@@ -167,7 +201,7 @@ export declare type ImportantProp<T> = {
  *  Developers don't usually use this type directly - it is used by Mimcss to define types
  * of properties in the [[Styleset]] interface.
  */
-export declare type ExtendedProp<T> = Extended<T> | ImportantProp<T> | Global_StyleType;
+export declare type ExtendedProp<T> = Extended<T> | ImportantProp<T> | MultiProp<T> | Global_StyleType;
 /**
  * Type for pair-like properties that can have 1 or 2 values of the given type. This type is used
  * for style properties that can specify values for two dimensions (x and y), but also allow for a

@@ -1699,58 +1699,14 @@ export interface IStyleset {
     zoom?: st.Zoom_StyleType;
 }
 /**
- * The ExtendedBaseStyleset type maps all CSS properties defined in the [[IStyleset]] interface to the
- * "extended" versions of their types. These extended types are defined by adding basic keywords
+ * The ExtendedBaseStyleset type maps all CSS properties defined in the [[IStyleset]] interface to
+ * the "extended" versions of their types. These extended types are defined by adding basic keywords
  * (e.g. "unset", "initial", etc.) as well as [[StringProxy]] and [[ICustomVar]] to the type that
  * is defined in the IStyleset interface.
  */
-export declare type ExtendedBaseStyleset = {
+export declare type ExtendedIStyleset = {
     [K in keyof IStyleset]?: ExtendedProp<IStyleset[K]>;
 };
-/**
- * The `ICustomTypeStyleset` interface maps template names to the types, which can be used for
- * defining custom CSS properties (a.k.a. variables). Normally, variables are defined using the
- * names of the style properties and their type is determined by the type of this property in the
- * [[IStyleset]] interface. Sometimes, however, there is a need to define variables of some other
- * types, for which there is no suitable style property. The `IVarTemplateStyleset` interface provides
- * many basic types and it can also be extended using the TypeScript's module augmentation.
- */
-export interface ICustomTypeStyleset {
-    /** Allows having CSS variables and constants that accept value of any type */
-    "any"?: any;
-    /** Allows having CSS variables and constants that accept a `<string>` value */
-    CssString?: CssString;
-    /** Allows having CSS variables and constants that accept a `<number>` CSS value */
-    CssNumber?: CssNumber;
-    /** Allows having CSS variables and constants that accept a `<length>` CSS value */
-    CssLength?: CssLength;
-    /** Allows having CSS variables and constants that accept an `<angle>` CSS value */
-    CssAngle?: CssAngle;
-    /** Allows having CSS variables and constants that accept a `<time>` CSS value */
-    CssTime?: CssTime;
-    /** Allows having CSS variables and constants that accept a `<resolution>` CSS value */
-    CssResolution?: CssResolution;
-    /** Allows having CSS variables and constants that accept a `<frequency>` CSS value */
-    CssFrequency?: CssFrequency;
-    /** Allows having CSS variables and constants that accept a `<percent>` CSS value */
-    CssPercent?: CssPercent;
-    /** Allows having CSS variables and constants that accept a size value */
-    CssSize?: CssSize;
-    /** Allows having CSS variables and constants that accept a point value */
-    CssPoint?: CssPoint;
-    /** Allows having CSS variables and constants that accept a `<position>` CSS value */
-    CssPosition?: CssPosition;
-    /** Allows having CSS variables and constants that accept multiple `<position>` CSS values */
-    CssMultiPosition?: CssMultiPosition;
-    /** Allows having CSS variables and constants that accept a `<radius>` CSS value */
-    CssRadius?: CssRadius;
-    /** Allows having CSS variables and constants that accept a `<ratio>` CSS value */
-    CssAspectRatio?: CssAspectRatio;
-    /** Allows having CSS variables and constants that accept a `<color>` CSS value */
-    CssColor?: CssColor;
-    /** Allows having CSS variables and constants that accept an `<image>` CSS value */
-    CssImage?: CssImage;
-}
 /**
  * The `ISyntaxTypeStyleset` interface maps CSS syntax names to the types, which can be used for
  * defining custom CSS properties (a.k.a. variables) via the @property rules.
@@ -1803,6 +1759,34 @@ export interface ISyntaxTypeStyleset {
     "<transform-list>+"?: OneOrMany<TransformFuncs>;
 }
 /**
+ * The `ICustomTypeStyleset` interface maps template names to the types, which can be used for
+ * defining custom CSS properties (a.k.a. variables). Normally, variables are defined using the
+ * names of the style properties and their type is determined by the type of this property in the
+ * [[IStyleset]] interface. Sometimes, however, there is a need to define variables of some other
+ * types, for which there is no suitable style property. The `ICustomTypeStyleset` interface provides
+ * many basic types and it can also be extended using the TypeScript's module augmentation.
+ */
+export interface ICustomTypeStyleset {
+    /** Allows having CSS variables and constants that accept value of any type */
+    "any"?: any;
+    /** Allows having CSS variables and constants that accept a `"string"` value */
+    "<string>"?: CssString;
+    /** Allows having CSS variables and constants that accept a `"frequency"` CSS value */
+    "<frequency>"?: CssFrequency;
+    /** Allows having CSS variables and constants that accept a `"size"` value */
+    "<size>"?: CssSize;
+    /** Allows having CSS variables and constants that accept a `"point"` value */
+    "<point>"?: CssPoint;
+    /** Allows having CSS variables and constants that accept a `"position"` CSS value */
+    "<position>"?: CssPosition;
+    /** Allows having CSS variables and constants that accept multiple `"multi-position"` CSS values */
+    "<multi-position>"?: CssMultiPosition;
+    /** Allows having CSS variables and constants that accept a `"radius"` CSS value */
+    "<radius>"?: CssRadius;
+    /** Allows having CSS variables and constants that accept a `"ratio"` CSS value */
+    "<aspect-ratio>"?: CssAspectRatio;
+}
+/**
  * The `IVarTemplateStyleset` interface maps template names to the types, which can be used for
  * defining custom CSS properties (a.k.a. variables). Normally, variables are defined using the
  * names of the style properties and their type is determined by the type of this property in the
@@ -1810,7 +1794,7 @@ export interface ISyntaxTypeStyleset {
  * types, for which there is no suitable style property. The `IVarTemplateStyleset` interface provides
  * many basic types and it can also be extended using the TypeScript's module augmentation.
  */
-export interface IVarTemplateStyleset extends IStyleset, ICustomTypeStyleset, ISyntaxTypeStyleset {
+export interface IVarTemplateStyleset extends IStyleset, ISyntaxTypeStyleset, ICustomTypeStyleset {
 }
 /**
  * The VarTemplateName type defines the keys (strings) that can be used as templates for defining
@@ -1908,7 +1892,7 @@ export declare type CustomVar_StyleType<K extends VarTemplateName = any> = [
  * which is an array of [[CustomVar_StyleType]] objects each specifying a value for a single
  * custom property.
  */
-export declare type Styleset = ExtendedBaseStyleset & {
+export declare type Styleset = ExtendedIStyleset & {
     /**
      * Special property "--" specifies an array that contains [[CustomVar_StyleType]] objects each
      * representing a definition of a custom CSS property.

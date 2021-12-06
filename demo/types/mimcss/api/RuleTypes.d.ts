@@ -1,5 +1,5 @@
 import { ICustomVar, PseudoEntity, PagePseudoClass, IParameterizedPseudoEntity, DependentRuleCombinator, IConstant, IRuleWithSelector } from "./CoreTypes";
-import { ExtendedBaseStyleset, VarTemplateName, VarValue, ExtendedVarValue, AnimationStyleset } from "./Stylesets";
+import { ExtendedIStyleset, VarTemplateName, VarValue, ExtendedVarValue, AnimationStyleset, IStyleset } from "./Stylesets";
 /**
  * The IRule interface is a base interface that is implemented by all rules.
  */
@@ -54,7 +54,7 @@ export interface IStyleRule extends IRule, IRuleWithSelector {
      * @param schedulerType ID of a registered scheduler type that is used to write the property
      * value to the DOM. If undefined, the current default scheduler will be used.
      */
-    setProp<K extends keyof ExtendedBaseStyleset>(name: K, value: ExtendedBaseStyleset[K], important?: boolean, schedulerType?: number): void;
+    setProp<K extends keyof IStyleset>(name: K, value: ExtendedIStyleset[K], important?: boolean, schedulerType?: number): void;
     /**
      * Adds/replaces/removes the value of the given custmom CSS property in this rule.
      * @param customVar IVarRule object defining a custom CSS property.

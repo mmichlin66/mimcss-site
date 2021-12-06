@@ -98,14 +98,14 @@ export declare const imageSet: (...items: ImageSetItem[]) => IImageSetFunc;
  */
 export declare const registerPaintWorklet: <K extends string | number>(name: K, syntax?: IPaintWorklets[K], url?: string | undefined) => Promise<void>;
 /**
- * Reurns the IPaintFunc object describing an invocation of the `paint()` CSS function.
+ * Returns the IPaintFunc object describing an invocation of the `paint()` CSS function.
  *
  * @param name Paint worklet name.
- * @param args Optional parameters to be passed to the paint worklet.
+ * @param args Parameters to be passed to the paint worklet.
  *
  * @category Image
  *
- * @ts-expect-error: Erroneously reports TS2370 although the rest type is an array (a tuple) */
+ * @ts-expect-error: Erroneously reports TS2370 although the rest's type is an array (a tuple) */
 export declare const paint: <K extends string | number>(name: K, ...args: MappedSyntaxTypes<IPaintWorklets[K]>) => IPaintFunc;
 /**
  * Returns an [[IPercentFilterFunc]] object representing the `brightness()` CSS function.
