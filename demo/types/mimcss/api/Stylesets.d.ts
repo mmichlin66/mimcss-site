@@ -1953,11 +1953,11 @@ export declare type StringStyleset = {
 export declare type CombinedStyleset = Styleset & {
     "+"?: IStyleRule | IStyleRule[];
 } & {
-    [K in PseudoEntity]?: CombinedStyleset;
+    [K in PseudoEntity]?: CombinedStyleset | CombinedStyleset[];
 } & {
-    [K in keyof IParameterizedPseudoEntity]?: [IParameterizedPseudoEntity[K], CombinedStyleset][];
+    [K in keyof IParameterizedPseudoEntity]?: [IParameterizedPseudoEntity[K], CombinedStyleset | CombinedStyleset[]][];
 } & {
-    [K in DependentRuleCombinator]?: [CssSelector, CombinedStyleset][];
+    [K in DependentRuleCombinator]?: [CssSelector, CombinedStyleset | CombinedStyleset[]][];
 };
 /**
  * Extends the CombinedStyleset type with the "++" property, which

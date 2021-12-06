@@ -120,7 +120,7 @@ export declare type AnimationWaypoint = "from" | "to" | number | ("from" | "to" 
  * The waypoint can be specified as "from" or "to" strings or as a number 0 to 100, which will be
  * treated as percents.
  */
-export declare type AnimationFrame = [AnimationWaypoint, AnimationStyleset];
+export declare type AnimationFrame = [AnimationWaypoint, AnimationStyleset | AnimationStyleset[]];
 /**
  * The IAnimationRule interface represents the `@keyframes` rule.
  * Objects implementing this interface are returned from the [[$keyframes]] function.

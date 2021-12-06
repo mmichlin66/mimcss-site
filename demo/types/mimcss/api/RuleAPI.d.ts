@@ -83,7 +83,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * @param styleset Styleset that will be inherited by style rules that extend this abstract rule.
      * @returns `IStyleRule` object that should be used by the derived rules in the `"+"` property.
      */
-    $abstract(styleset: CombinedStyleset): IStyleRule;
+    $abstract(styleset: CombinedStyleset | CombinedStyleset[]): IStyleRule;
     /**
      * Creates a new class rule. The class name will be created when the rule is processed as part of
      * the style definition class. The name can be also overridden by providing either an explicit
@@ -125,7 +125,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * @returns `IClassRule` object that should be used for getting the class name and for accessing
      * the style properties if needed.
      */
-    $class(styleset?: CombinedClassStyleset, nameOverride?: string | IClassRule): IClassRule;
+    $class(styleset?: CombinedClassStyleset | CombinedStyleset[], nameOverride?: string | IClassRule): IClassRule;
     /**
      * Creates a new class name rule, which combines one or more other class names. This creates a
      * "synonym" that is easier to apply to an element's class attribute than an array of two or
@@ -207,7 +207,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * @returns `IIDRule` object that should be used for getting the ID name and for accessing
      * the style properties if needed.
      */
-    $id(styleset?: CombinedStyleset, nameOverride?: string | IIDRule): IIDRule;
+    $id(styleset?: CombinedStyleset | CombinedStyleset[], nameOverride?: string | IIDRule): IIDRule;
     /**
      * Creates a new style rule for the given HTML or SVG element tags. The `tag` parameter specifies
      * either a single tag or an array of tags. In addition, an asterisk symbol (`"*"`) can be
@@ -236,7 +236,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * @param styleset Styleset that defines style properties for the tags.
      * @returns `IStyleRule` object representing the tag rule.
      */
-    $tag(tag: "*" | OneOrMany<ElementTagName>, styleset: CombinedStyleset): IStyleRule;
+    $tag(tag: "*" | OneOrMany<ElementTagName>, styleset: CombinedStyleset | CombinedStyleset[]): IStyleRule;
     /**
      * Creates a new style rule with an arbitrary complex selector. Selectors can be specified as
      * one or array of [[SelectorItem]] objects where each `SelectorItem` is one of the following
@@ -278,7 +278,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * @param styleset Styleset that defines style properties for this selector.
      * @returns `IStyleRule` object representing the style rule.
      */
-    $style(selector: CssSelector, styleset: CombinedStyleset): IStyleRule;
+    $style(selector: CssSelector, styleset: CombinedStyleset | CombinedStyleset[]): IStyleRule;
     /**
      * Creates new animation rule. The animation name will be created when the rule is processed as
      * part of the style definition class. The name can be also overridden by providing either an
@@ -446,7 +446,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * satisfies the type defined by the `template` parameter including other constants, custom
      * properties and functions.
      *
-     * No CSS rules are created for costants and due to this fact constants are preferable to custom
+     * No CSS rules are created for constants and, due to this fact, constants are preferable to custom
      * properties unless the intention is to change the variable value at run-time or to redefine its
      * value under different style rules.
      *
