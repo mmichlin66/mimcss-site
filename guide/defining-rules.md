@@ -222,7 +222,7 @@ class MyStyles extends css.StyleDefinition
     ifSmallScreen = this.$media( { maxWidth: 600 },
         class extends css.StyleDefinition<MyStyles>
         {
-            p = this.$style( "p", { color: this.$parent.defultColor })
+            p = this.$style( "p", { color: this.$parent.defaultColor })
         }
     )
 }

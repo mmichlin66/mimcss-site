@@ -45,6 +45,27 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * and other members defined in the parent definition class can be accessed. For top-level
      * style definitions, this property is always undefined. This property can also be undefined
      * if it was not provided to the constructor when creating the style definition class manually.
+     *
+     * The `$parent` reference is used when there is a need to refer from grouping rules (created
+     * by `$media()` or `$support()` functions) to the rules defined in the parent style definition
+     * class. If there are multiple nested grouping rules, then the constuct `this.$parent.$parent...`
+     * allows reaching to rules defined in any ancestor style definition class.
+     *
+     * **Example:**
+     *
+     * ```typescript
+     * class MyStyles extends css.StyleDefinition
+     * {
+     *     defaultColor = this.$var( "color", "blue")
+     *
+     *     ifSmallScreen = this.$media( { maxWidth: 600 },
+     *         class extends css.StyleDefinition<MyStyles>
+     *         {
+     *             p = this.$style( "p", { color: this.$parent.defaultColor })
+     *         }
+     *     )
+     * }
+     * ```
      */
     get $parent(): P | undefined;
     /**
@@ -66,13 +87,13 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      *         }
      *     })
      *
-     *     box1 = this.$class({
+     *     box = this.$class({
      *         "+": this.colorBox,
      *         width: 200,
      *         height: 200,
      *     })
      *
-     *     box2 = this.$class({
+     *     specialElm = this.$id({
      *         "+": this.colorBox,
      *         width: 600,
      *         height: 400,
@@ -80,7 +101,8 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * }
      * ```
      *
-     * @param styleset Styleset that will be inherited by style rules that extend this abstract rule.
+     * @param styleset One or more styleset objects that will be inherited by style rules that
+     * extend this abstract rule.
      * @returns `IStyleRule` object that should be used by the derived rules in the `"+"` property.
      */
     $abstract(styleset: CombinedStyleset | CombinedStyleset[]): IStyleRule;
@@ -117,7 +139,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * }
      * ```
      *
-     * @param styleset Styleset that defines style properties of the class.
+     * @param styleset One or more styleset objects that define style properties of the class.
      * @param nameOverride string or another `IClassRule` object that determines the name of the class.
      * If this optional parameter is defined, the name will override the Mimcss name assignment
      * mechanism. This might be useful if there is a need for the class to match a name of another,
@@ -125,7 +147,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * @returns `IClassRule` object that should be used for getting the class name and for accessing
      * the style properties if needed.
      */
-    $class(styleset?: CombinedClassStyleset | CombinedStyleset[], nameOverride?: string | IClassRule): IClassRule;
+    $class(styleset?: CombinedClassStyleset | CombinedClassStyleset[], nameOverride?: string | IClassRule): IClassRule;
     /**
      * Creates a new class name rule, which combines one or more other class names. This creates a
      * "synonym" that is easier to apply to an element's class attribute than an array of two or
@@ -200,7 +222,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * }
      * ```
      *
-     * @param styleset Styleset that defines style properties of the element.
+     * @param styleset One or more styleset objects that define style properties of the element.
      * @param nameOverride string or another `IIDRule` object that determines the name of the ID.
      * If this optional parameter is defined, the name will override the Mimcss name assignment
      * mechanism. This might be useful if there is a need for the ID to match a name of another ID.
@@ -233,7 +255,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * ```
      *
      * @param tag One or more element tags
-     * @param styleset Styleset that defines style properties for the tags.
+     * @param styleset One or more styleset objects that define style properties for the tags.
      * @returns `IStyleRule` object representing the tag rule.
      */
     $tag(tag: "*" | OneOrMany<ElementTagName>, styleset: CombinedStyleset | CombinedStyleset[]): IStyleRule;
@@ -274,8 +296,8 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * }
      * ```
      *
-     * @param selector One or more [[SelectorItem]] objects
-     * @param styleset Styleset that defines style properties for this selector.
+     * @param selector Style rule selector
+     * @param styleset One or more styleset objects that define style properties for this selector.
      * @returns `IStyleRule` object representing the style rule.
      */
     $style(selector: CssSelector, styleset: CombinedStyleset | CombinedStyleset[]): IStyleRule;
@@ -364,7 +386,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * This variant allows specifying syntax as one of predefined syntax items such as `<number>`
      * or `<color>` optionally accompanied with the multipliers `"#"` or `"+". The type of initial
      * value as well as the type that can be passed to the `setValue` method of the returned
-     * [[IVarValue]] interface will be enforced according to the syntax specified.
+     * [[IVarRule]] interface will be enforced according to the syntax specified.
      *
      * **Example:**
      *
@@ -404,7 +426,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      *
      * This variant allows specifying arbitrary syntax and the developers are responsible to
      * provide correct syntax. The type of initial value as well as the type that can be passed to
-     * the `setValue` method of the returned [[IVarValue]] interface are limited to string. The
+     * the `setValue` method of the returned [[IVarRule]] interface are limited to string. The
      * developers are responsible to pass values that conform to the specified syntax.
      *
      * **Example:**
@@ -413,7 +435,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * class MyStyles extends css.StyleDefinition
      * {
      *     // define and use custom CSS property
-     *     importantTextColor = this.$property( "<color>", "red", false)
+     *     importantTextColor = this.$property( ["<color># | none"], "red", false)
      *     important = this.$class({
      *         color: this.importantTextColor
      *     })

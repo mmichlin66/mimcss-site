@@ -1756,7 +1756,7 @@ export interface ISyntaxTypeStyleset {
     "<custom-ident>#"?: OneOrMany<string>;
     /** Allows having CSS variables and constants that accept a `<transform-function>` value */
     "<transform-function>"?: TransformFuncs;
-    "<transform-list>+"?: OneOrMany<TransformFuncs>;
+    "<transform-list>"?: OneOrMany<TransformFuncs>;
 }
 /**
  * The `ICustomTypeStyleset` interface maps template names to the types, which can be used for
