@@ -33,13 +33,6 @@ import { Styleset, VarTemplateName, ExtendedVarValue, CombinedStyleset, Combined
  */
 export declare abstract class StyleDefinition<P extends StyleDefinition = any> implements IStyleDefinition<P> {
     /**
-     * Style definition instances are created directly only by the *styled components* - that is,
-     * components that use different styles for each instance. Otherwise, style definition
-     * instances are created when either the [[$use]] method or [[activate]] function is called.
-     * @param parent Reference to the parent style definition class
-     */
-    constructor(parent?: P);
-    /**
      * Refers to the instance of the style definition class which is the parent of this style
      * definition object in the chain of style definition classes. Through this member, all rules
      * and other members defined in the parent definition class can be accessed. For top-level
@@ -67,7 +60,14 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * }
      * ```
      */
-    get $parent(): P | undefined;
+    readonly $parent?: P;
+    /**
+     * Style definition instances are created directly only by the *styled components* - that is,
+     * components that use different styles for each instance. Otherwise, style definition
+     * instances are created when either the [[$use]] method or [[activate]] function is called.
+     * @param parent Reference to the parent style definition class
+     */
+    constructor(parent?: P);
     /**
      * Creates a new abstract rule, which defines a styleset that can be extended by other style rules.
      * Abstract rules don't have selectors and are not inserted into the DOM. Abstract rules can
