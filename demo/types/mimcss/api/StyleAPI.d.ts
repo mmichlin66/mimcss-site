@@ -1,4 +1,3 @@
-import { IStyleDefinitionClass, IStyleDefinition, ICssSerializer } from "./RuleTypes";
 import { ExtendedMediaFeatureset, IMediaQueryProxy, ISupportsQueryProxy, MediaStatement, SupportsStatement } from "./MediaTypes";
 import { Styleset, ExtendedIStyleset, StringStyleset, IStyleset } from "./Stylesets";
 /**
@@ -128,16 +127,4 @@ export declare const supports: (parts: TemplateStringsArray, ...params: Styleset
  * Converts the given supports query value to the CSS supports query string.
  */
 export declare const supportsToString: (query: SupportsStatement) => string;
-/**
- * Creates a new ICssSerializer object that allows adding style definition classes
- * and instances and serializing them to a string. This can be used for server-side rendering when
- * the resultant string can be set as the content of a `<style>` element.
- */
-export declare const createCssSerializer: () => ICssSerializer;
-/**
- * Serializes one or more style definition classes and instances and returns their CSS string
- * representation. This can be used for server-side rendering when the resultant string can be
- * set as the content of a `<style>` element.
- */
-export declare const serializeToCSS: (...args: (IStyleDefinition | IStyleDefinitionClass)[]) => string;
 //# sourceMappingURL=StyleAPI.d.ts.map

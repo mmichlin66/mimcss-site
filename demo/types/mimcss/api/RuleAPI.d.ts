@@ -40,7 +40,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      */
     constructor(parent?: P);
     /**
-     * Refers to the instance of the style definition class which is the parnt of this style
+     * Refers to the instance of the style definition class which is the parent of this style
      * definition object in the chain of style definition classes. Through this member, all rules
      * and other members defined in the parent definition class can be accessed. For top-level
      * style definitions, this property is always undefined. This property can also be undefined
@@ -903,4 +903,26 @@ export declare const deactivate: (instance: IStyleDefinition, schedulerType?: nu
  * if no instance is currently active.
  */
 export declare const getActiveTheme: (themeClass: IStyleDefinitionClass<ThemeDefinition>) => ThemeDefinition | undefined;
+/**
+ * Sets server-side activation context. Throws an error if non-default activation context is
+ * already set.
+ */
+export declare const startSSR: () => void;
+/**
+ * Stops server-side activation functionality and returns a string with serialized styles. The
+ * string should be added to the `<head>` element using `insertAdjacentHTML()` method.
+ * Throws an error if SSR has not been started.
+ * @returns String containing serialized styles
+ */
+export declare const stopSSR: () => string;
+/**
+ * Sets hydration activation context. Throws an error if non-default activation context is
+ * already set.
+ */
+export declare const startHydration: () => void;
+/**
+ * Stops hydration activation functionality and restore the default activation context.
+ * @returns String containing serialized styles
+ */
+export declare const stopHydration: () => void;
 //# sourceMappingURL=RuleAPI.d.ts.map

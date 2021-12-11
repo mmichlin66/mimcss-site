@@ -10,10 +10,6 @@ export declare const forceDOMUpdate: (schedulerType?: number | undefined) => voi
  */
 export declare const cancelDOMUpdate: (schedulerType?: number | undefined) => void;
 /**
- * Returns the current default scheduler type.
- */
-export declare const getDefaultScheduler: () => number;
-/**
  * Sets the default scheduling type that is used by activate and deactivate functions that are
  * called without explicitly providing value to the scheduling parameter. Returns the type of the
  * previous default activator or 0 if an error occurs (e.g. the given scheduler type ID is not
@@ -25,8 +21,4 @@ export declare const setDefaultScheduler: (schedulerType: number) => number;
  * should be used when calling activate and deactivate functions.
  */
 export declare const registerScheduler: (scheduler: IScheduler) => number;
-/**
- * Unregisters a scheduler object with the given scheduler type identifier.
- */
-export declare const unregisterScheduler: (schedulerType: number) => void;
 //# sourceMappingURL=SchedulingAPI.d.ts.map

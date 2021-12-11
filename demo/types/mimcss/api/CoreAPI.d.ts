@@ -37,7 +37,7 @@ export declare const selector: (parts: TemplateStringsArray, ...params: CssSelec
  *     cls = this.$class({...})
  *     myID = this.$id({...})
  *
- *     // produces CSS: label.cls1[data-item="myID"]:hover {...}
+ *     // produces CSS: label.cls1[for="myID"]:hover {...}
  *     s1 = this.$style( css.sel("label").and(this.cls1)).attr("for", this.myID).hover, {...})
  * }
  * ```
