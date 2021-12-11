@@ -67,16 +67,10 @@ export interface IStyleRule extends IRule, IRuleWithSelector {
     setCustomProp<K extends VarTemplateName>(customVar: IVarRule<K>, value: ExtendedVarValue<K>, important?: boolean, schedulerType?: number): void;
 }
 /**
- * The `INamedStyleRule` interface combines IStyleRule and INamedEntity interfaces. This is used
- * for class and ID rules.
- */
-export interface INamedStyleRule extends IStyleRule, INamedEntity {
-}
-/**
  * The `IClassRule` interface represents a style rule where the selector is a single class name.
  * This interface is returned from the [[$class]] function.
  */
-export interface IClassRule extends INamedStyleRule {
+export interface IClassRule extends IStyleRule, INamedEntity {
     /** Name of the class prefixed with `"."` */
     readonly cssClassName: string;
 }
@@ -106,7 +100,7 @@ export declare type ClassPropType = string | IClassRule | IClassNameRule | Class
  * The `IIDRule` interface represents a style rule where the selector is a single element ID.
  * This interface is returned from the [[$id]] function.
  */
-export interface IIDRule extends INamedStyleRule {
+export interface IIDRule extends IStyleRule, INamedEntity {
     /** Element identifier prefixed with `"#"` */
     readonly cssIDName: string;
 }
