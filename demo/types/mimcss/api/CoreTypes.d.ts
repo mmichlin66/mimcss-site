@@ -464,6 +464,19 @@ export interface IParameterizedPseudoElement {
 export interface IParameterizedPseudoEntity extends IParameterizedPseudoClass, IParameterizedPseudoElement {
 }
 /**
+ * Represents a selector for one or more namespaced tags; that is, tags accompanied by a namespace
+ * prefix. This interface is returned from the [[tagNS]] function.
+ */
+export interface INSTagFunc extends ICssFuncObject {
+    fn: "nstag";
+    /** Namespace prefix string or reference to a namespace rule */
+    ns: string | INamespaceRule;
+    /** One or more element tag names */
+    tags: "*" | ElementTagName | ElementTagName[];
+    /** Optional selector combinator if more than one tag is given. Default is `","`. */
+    comb?: SelectorCombinator;
+}
+/**
  * Represents an invocation of a parameterized pseudo entity with corresponding parameter.
  */
 export interface IParameterizedPseudoEntityFunc<T extends keyof IParameterizedPseudoEntity> extends ICssFuncObject {
@@ -1122,7 +1135,7 @@ export interface ISelectorBuilder extends ISelectorFunc {
  * Type for a CSS selector. This type is used to produce arbitrary complex selectors used by the
  * [[$style]] function. If array is specified, all items are converted to strings and concatenated.
  */
-export declare type CssSelector = ElementTagName | PseudoEntity | IRuleWithSelector | ISelectorProxy | ISelectorFunc | IAttrSelectorFunc | IParameterizedPseudoEntityFunc<any> | SelectorCombinator | IRawProxy | string | CssSelector[];
+export declare type CssSelector = ElementTagName | INSTagFunc | PseudoEntity | IRuleWithSelector | ISelectorProxy | ISelectorFunc | IAttrSelectorFunc | IParameterizedPseudoEntityFunc<any> | SelectorCombinator | IRawProxy | string | CssSelector[];
 /**
  * Type for simple animation timing functions - those that don't have parameters
  *

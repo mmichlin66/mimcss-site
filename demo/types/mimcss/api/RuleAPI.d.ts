@@ -1,4 +1,4 @@
-import { CssSelector, PagePseudoClass, OneOrMany, ElementTagName, ExtendedProp } from "./CoreTypes";
+import { CssSelector, PagePseudoClass, ElementTagName, ExtendedProp } from "./CoreTypes";
 import { IStyleRule, IClassRule, IIDRule, AnimationFrame, IAnimationRule, IVarRule, ICounterRule, IGridLineRule, IGridAreaRule, IImportRule, IFontFaceRule, INamespaceRule, IPageRule, IStyleDefinitionClass, ISupportsRule, IMediaRule, IClassNameRule, IConstRule, ClassPropType, NameGenerationMethod, ICounterStyleRule, IStyleDefinition } from "./RuleTypes";
 import { MediaStatement, SupportsStatement } from "./MediaTypes";
 import { ExtendedFontFace } from "./FontTypes";
@@ -243,13 +243,16 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * ```typescript
      * class MyStyles extends css.StyleDefinition
      * {
-     *     // using string for selecting a single elemenet tag
+     *     // using string for selecting a single elemenet tag;
+     *     // produces CSS "tr {}"
      *     tr = this.$tag( "tr", {})
      *
-     *     // using array for selecting multiple elemenet tags
+     *     // using array for selecting multiple elemenet tags;
+     *     // produces CSS "h1, h2, h3 {}"
      *     header123 = this.$tag( ["h1", "h2", "h3"], {})
      *
      *     // using asterisk to address all elements
+     *     // produces CSS "* {}"
      *     all = this.$tag( "*", {})
      * }
      * ```
@@ -258,7 +261,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * @param styleset One or more styleset objects that define style properties for the tags.
      * @returns `IStyleRule` object representing the tag rule.
      */
-    $tag(tag: "*" | OneOrMany<ElementTagName>, styleset: CombinedStyleset | CombinedStyleset[]): IStyleRule;
+    $tag(tag: "*" | ElementTagName | ElementTagName[], styleset: CombinedStyleset | CombinedStyleset[]): IStyleRule;
     /**
      * Creates a new style rule with an arbitrary complex selector. Selectors can be specified as
      * one or array of [[SelectorItem]] objects where each `SelectorItem` is one of the following
