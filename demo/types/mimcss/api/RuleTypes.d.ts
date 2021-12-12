@@ -309,8 +309,10 @@ export interface IStyleDefinitionClass<T extends IStyleDefinition<P> = any, P ex
  * The IGroupRule interface represents a grouping CSS rule.
  */
 export interface IGroupRule<T extends IStyleDefinition = any> extends IRule {
+    /** Condition of this grouping rule. */
     readonly condition: string;
-    readonly sd: T;
+    /** Instance of the style definition class defining the rules under this grouping rule */
+    readonly gsd: T;
     /** CSSOM grouping rule */
     readonly cssRule: CSSGroupingRule | null;
 }
