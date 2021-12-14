@@ -310,7 +310,7 @@ export declare const blur: (r: Extended<CssLength>) => IBlurFunc;
  *
  * @category Filter
  */
-export declare const dropShadow: (x: Extended<CssLength>, y: Extended<CssLength>, color?: Extended<CssColor>, blur?: Extended<CssLength>) => IDropShadowFunc;
+export declare const dropShadow: (x: Extended<CssLength>, y: Extended<CssLength>, color?: Extended<CssColor> | undefined, blur?: Extended<CssLength> | undefined) => IDropShadowFunc;
 /**
  * Returns an [[IHueRotateFunc]] object representing the `hue-rotate()` CSS function parameters.
  *
@@ -385,7 +385,7 @@ export declare const rotate3d: (x: Extended<CssNumber>, y: Extended<CssNumber>, 
  *
  * @category Transform
  */
-export declare const scale: (sx: Extended<CssNumber>, sy?: Extended<CssNumber>) => IScaleFunc;
+export declare const scale: (sx: Extended<CssNumber>, sy?: Extended<CssNumber> | undefined) => IScaleFunc;
 /**
  * Returns an IScale1dFunc function representing the `scaleX()` CSS function.
  *
@@ -415,7 +415,7 @@ export declare const scale3d: (sx: Extended<CssNumber>, sy: Extended<CssNumber>,
  *
  * @category Transform
  */
-export declare const skew: (ax: Extended<CssAngle>, ay?: Extended<CssAngle>) => ISkewFunc;
+export declare const skew: (ax: Extended<CssAngle>, ay?: Extended<CssAngle> | undefined) => ISkewFunc;
 /**
  * Returns an ISkew1dFunc function representing the `skewX()` CSS function.
  *
@@ -433,7 +433,7 @@ export declare const skewY: (a: Extended<CssAngle>) => ISkew1dFunc;
  *
  * @category Transform
  */
-export declare const translate: (x: Extended<CssLength>, y?: Extended<CssLength>) => ITranslateFunc;
+export declare const translate: (x: Extended<CssLength>, y?: Extended<CssLength> | undefined) => ITranslateFunc;
 /**
  * Returns an ITranslate1dFunc function representing the `translateX()` CSS function.
  *
@@ -471,7 +471,7 @@ export declare const translate3d: (x: Extended<CssLength>, y: Extended<CssLength
  *
  * @category Basic Shape
  */
-export declare const inset: (o1: Extended<CssLength>, o2?: Extended<CssLength>, o3?: Extended<CssLength>, o4?: Extended<CssLength>) => IInsetBuilder;
+export declare const inset: (o1: Extended<CssLength>, o2?: Extended<CssLength> | undefined, o3?: Extended<CssLength> | undefined, o4?: Extended<CssLength> | undefined) => IInsetBuilder;
 /**
  * Returns an ICircleBuilder object representing the `circle()` CSS function.
  *
@@ -485,7 +485,7 @@ export declare const inset: (o1: Extended<CssLength>, o2?: Extended<CssLength>, 
  *
  * @category Basic Shape
  */
-export declare const circle: (r?: ShapeRadius) => ICircleBuilder;
+export declare const circle: (r?: ShapeRadius | undefined) => ICircleBuilder;
 /**
  * Returns an IEllipseBuilder object representing the `ellipse()` CSS function.
  *
@@ -537,7 +537,7 @@ export declare const path: (fillRule?: FillRule | undefined) => IPathBuilder;
  *
  * @category Basic Shape
  */
-export declare const ray: (angle: Extended<CssAngle>, size?: Extended<ExtentKeyword | CssLength>, contain?: boolean | undefined) => IRayFunc;
+export declare const ray: (angle: Extended<CssAngle>, size?: Extended<ExtentKeyword | CssLength> | undefined, contain?: boolean | undefined) => IRayFunc;
 /**
 * Returns an IMinMax function representing the `minmax()` CSS function.
 *
@@ -557,5 +557,5 @@ export declare const repeat: (count: Extended<CssNumber> | "auto-fill" | "auto-f
  *
  * @category Grid
  */
-export declare const span: (p1: Extended<GridLineCountOrName>, p2?: Extended<GridLineCountOrName>) => IGridSpanFunc;
+export declare const span: (p1: Extended<GridLineCountOrName>, p2?: Extended<GridLineCountOrName> | undefined) => IGridSpanFunc;
 //# sourceMappingURL=ShapeAPI.d.ts.map

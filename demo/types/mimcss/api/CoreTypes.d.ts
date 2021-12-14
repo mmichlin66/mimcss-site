@@ -135,7 +135,7 @@ export interface IConstant<T = any> {
  * Developers don't usually use this type directly - it is used by Mimcss to define style property
  * types as well as function parameter types.
  */
-export declare type Extended<T> = T | ICustomVar<T> | IConstant<T> | IRawProxy | null | undefined;
+export declare type Extended<T> = T | ICustomVar<T> | IConstant<T> | IRawProxy;
 /**
  * Type that encapsulates the type of property in an object with a single "!" property. This
  * type is used to indicate that the property value must be flagged as "!important".

@@ -308,36 +308,32 @@ export interface IStyleDefinitionClass<T extends IStyleDefinition<P> = any, P ex
 /**
  * The IGroupRule interface represents a grouping CSS rule.
  */
-export interface IGroupRule<T extends IStyleDefinition = any> extends IRule {
+export interface IGroupRule<T extends IStyleDefinition = any, R extends CSSGroupingRule = any> extends IRule {
     /** Condition of this grouping rule. */
     readonly condition: string;
     /** Instance of the style definition class defining the rules under this grouping rule */
     readonly gsd: T;
     /** CSSOM grouping rule */
-    readonly cssRule: CSSGroupingRule | null;
+    readonly cssRule: R | null;
 }
 /**
  * The ISupportsRule interface represents the CSS @supports rule.
  * Objects implementing this interface are returned from the [[$supports]] function.
  */
-export interface ISupportsRule<T extends IStyleDefinition = any> extends IGroupRule<T> {
+export interface ISupportsRule<T extends IStyleDefinition = any> extends IGroupRule<T, CSSSupportsRule> {
     /** Flag indicated whether the browser supports this rule's query */
     readonly isSupported: boolean;
-    /** CSSOM supports rule */
-    readonly cssRule: CSSSupportsRule | null;
 }
 /**
  * The IMediaRule interface represents the CSS @media rule.
  * Objects implementing this interface are returned from the [[$media]] function.
  */
-export interface IMediaRule<T extends IStyleDefinition = any> extends IGroupRule<T> {
+export interface IMediaRule<T extends IStyleDefinition = any> extends IGroupRule<T, CSSMediaRule> {
     /**
      * Returns `MediaQueryList` object that allows programmatic checking whether the document matches
      * the media statement and also allows listening to its `change` event
      */
     readonly queryList: MediaQueryList | undefined;
-    /** CSSOM media rule */
-    readonly cssRule: CSSMediaRule | null;
 }
 /**
  * Provides values that identify the method used to generate names of CSS named entities (e.g.

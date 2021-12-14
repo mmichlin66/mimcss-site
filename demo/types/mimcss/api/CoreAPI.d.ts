@@ -140,14 +140,14 @@ export declare function cursor(p: Extended<string | IIDRule>, x: number, y: numb
  * @param fallback Optional value that is used if the attribute is not found on the element.
  * @returns
  */
-export declare const attr: (attrName: Extended<string>, typeOrUnit?: Extended<AttrTypeKeyword | AttrUnitKeyword>, fallback?: Extended<string>) => IStringProxy;
+export declare const attr: (attrName: Extended<string>, typeOrUnit?: Extended<AttrTypeKeyword | AttrUnitKeyword> | undefined, fallback?: Extended<string> | undefined) => IStringProxy;
 /**
  * Returns a representation of the CSS `counter()` function with an optional counter style.
  *
  * @param c Counter name or counter rule object
  * @returns ICounterFunc object representing the invocation of the `counter()` CSS function
  */
-export declare const counter: (counterObj: Extended<ICounterRule | string>, style?: Extended<ListStyleType_StyleType>) => IStringProxy;
+export declare const counter: (counterObj: Extended<ICounterRule | string>, style?: Extended<ListStyleType_StyleType> | undefined) => IStringProxy;
 /**
  * Returns a representation of the CSS `counters()` function with the given separator and
  * an optional counter style.
@@ -157,7 +157,7 @@ export declare const counter: (counterObj: Extended<ICounterRule | string>, styl
  * @param style Counter style
  * @returns ICounterFunc object representing the invocation of the `counter()` CSS function
  */
-export declare const counters: (counterObj: Extended<ICounterRule | string>, sep: Extended<string>, style?: Extended<ListStyleType_StyleType>) => IStringProxy;
+export declare const counters: (counterObj: Extended<ICounterRule | string>, sep: Extended<string>, style?: Extended<ListStyleType_StyleType> | undefined) => IStringProxy;
 /**
  * Returns a function representing the invocation of the `var()` CSS function for the given custom
  * CSS property with optional fallbacks. Usually, when you want to refer to a custom CSS property
@@ -187,5 +187,5 @@ export declare const counters: (counterObj: Extended<ICounterRule | string>, sep
  * @returns The `IRawProxy` callable interface, whcih allows the `usevar` function to be called
  * in any context.
  */
-export declare const usevar: <K extends keyof import("./Stylesets").IVarTemplateStyleset>(varObj: IVarRule<K>, fallback?: ExtendedVarValue<K>) => IRawProxy;
+export declare const usevar: <K extends keyof import("./Stylesets").IVarTemplateStyleset>(varObj: IVarRule<K>, fallback?: ExtendedVarValue<K> | undefined) => IRawProxy;
 //# sourceMappingURL=CoreAPI.d.ts.map
