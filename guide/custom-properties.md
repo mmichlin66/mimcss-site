@@ -10,7 +10,7 @@ rootpath: ".."
 
 * [Custom Properties in CSS Files](#custom-properties-in-css-files)
 * [Custom Properties in Mimcss](#custom-properties-in-mimcss)
-* [Custom Properties vs. Constants](#custom-properties-vs.-constants)
+* [Custom Properties vs. Constants](#custom-properties-vs-constants)
 
 ## Custom Properties in CSS Files
 CSS custom properties are properties with arbitrary names beginning with two dashes. The properties are defined as having arbitrary values and they are used as values of the style properties. Here is an example:
