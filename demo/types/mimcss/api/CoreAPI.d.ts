@@ -1,7 +1,8 @@
 import { CssSelector, ISelectorProxy, IRawProxy, Extended, IUrlFunc, ICursorFunc, IStringProxy, ISelectorBuilder, TimingFunctionJumpTerm, ICubicBezierFunc, IStepsFunc, INSTagFunc, ElementTagName, SelectorCombinator } from "./CoreTypes";
 import { ICounterRule, IIDRule, INamespaceRule, IVarRule } from "./RuleTypes";
 import { AttrTypeKeyword, AttrUnitKeyword, ListStyleType_StyleType } from "./StyleTypes";
-import { ExtendedVarValue } from "./Stylesets";
+import { ExtendedVarValue, Styleset } from "./Stylesets";
+import { ExtendedMediaFeatureset, IMediaQueryProxy, ISupportsQueryProxy } from "./MediaTypes";
 /**
  * Returns a string representation of a selector. This function is a tag function and must be
  * invoked with the template string without parentheses. This function can be used wherever the
@@ -52,7 +53,7 @@ export declare const sel: (...items: CssSelector[]) => ISelectorBuilder;
  * namespace rule. The `tags` parameter specifies either a single tag or an array of tags. In
  * addition, an asterisk symbol (`"*"`) can be specified to target all elements.
  *
- * When multiple tags are specified, the will be combied using the selector combinators
+ * When multiple tags are specified, they will be combied using the selector combinators
  * specified by the `comb` parameter.
  *
  * **Examples:**
@@ -94,6 +95,44 @@ export declare const steps: (n: Extended<number>, j?: TimingFunctionJumpTerm | u
 * @category Transition and Animation
 */
 export declare const cubicBezier: (n1: Extended<number>, n2: Extended<number>, n3: Extended<number>, n4: Extended<number>) => ICubicBezierFunc;
+/**
+ * Tag function that represents a media query. This function allows expressing media queries in
+ * a natural string form while embedding media feature values in type safe manner. The string can
+ * contain any media expressions while the embedded objects must be of type [[IMediaFeatureset]].
+ * Multiple features in the feature set will be expanded into clauses combined with the "and"
+ * operator.
+ *
+ * **Example:**
+ *
+ * ```typescript
+ * class MyStyles extends StyleDefinition
+ * {
+ *     // screen and (min-width: 400px) and (max-width: 600px) and (orientation: portrait)
+ *     ifNarrowDevice = this.$media(
+ *         css.media`screen and ${{width:[400,600], orientation: "portrait"}}`, ...)
+ * }
+ * ```
+ */
+export declare const media: (parts: TemplateStringsArray, ...params: ExtendedMediaFeatureset[]) => IMediaQueryProxy;
+/**
+ * Tag function that represents a supports query. This function allows expressing supports
+ * queries in a natural string form while embedding media feature values in type safe manner. The
+ * string can contain any supports expressions while the embedded objects must be of type
+ * Styleset. Multiple properties in the styleset will be expanded into clauses combined with the
+ * "or" operator.
+ *
+ * **Example:**
+ *
+ * ```typescript
+ * class MyStyles extends StyleDefinition
+ * {
+ *     // not (transform-origin: 30px 30px 30px)
+ *     ifNoTransformOrigin = this.$supports(
+ *         css.supports`not (${{transform-origin: [30, 30, 30]}})`, ...)
+ * }
+ * ```
+ */
+export declare const supports: (parts: TemplateStringsArray, ...params: Styleset[]) => ISupportsQueryProxy;
 /**
  * The `raw` function allows specifying arbitrary text for properties whose type normally doesn't
  * allow strings.This function is a tag function and must be invoked with the template string

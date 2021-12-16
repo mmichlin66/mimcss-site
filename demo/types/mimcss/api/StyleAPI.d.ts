@@ -1,4 +1,4 @@
-import { ExtendedMediaFeatureset, IMediaQueryProxy, ISupportsQueryProxy, MediaStatement, SupportsStatement } from "./MediaTypes";
+import { MediaStatement, SupportsStatement } from "./MediaTypes";
 import { Styleset, ExtendedIStyleset, StringStyleset, IStyleset } from "./Stylesets";
 /**
  * Registers the given function to be used for converting values of the given style property to
@@ -80,49 +80,11 @@ declare global {
     }
 }
 /**
- * Tag function that represents a media query. This function allows expressing media queries in
- * a natural string form while embedding media feature values in type safe manner. The string can
- * contain any media expressions while the embedded objects must be of type [[IMediaFeatureset]].
- * Multiple features in the feature set will be expanded into clauses combined with the "and"
- * operator.
- *
- * **Example:**
- *
- * ```typescript
- * class MyStyles extends StyleDefinition
- * {
- *     // screen and (min-width: 400px) and (max-width: 600px) and (orientation: portrait)
- *     ifNarrowDevice = this.$media(
- *         css.media`screen and ${{width:[400,600], orientation: "portrait"}}`, ...)
- * }
- * ```
- */
-export declare const media: (parts: TemplateStringsArray, ...params: ExtendedMediaFeatureset[]) => IMediaQueryProxy;
-/**
  * Converts the given media query value to the CSS media query string. This function can be used
  * by libraries that allow specifying [[MediaStatement]] for the `media` attribute of elements
  * such as `<link>`, `<style>` and `<source>`
  */
 export declare const mediaToString: (query: MediaStatement) => string;
-/**
- * Tag function that represents a supports query. This function allows expressing supports
- * queries in a natural string form while embedding media feature values in type safe manner. The
- * string can contain any supports expressions while the embedded objects must be of type
- * Styleset. Multiple properties in the styleset will be expanded into clauses combined with the
- * "or" operator.
- *
- * **Example:**
- *
- * ```typescript
- * class MyStyles extends StyleDefinition
- * {
- *     // not (transform-origin: 30px 30px 30px)
- *     ifNoTransformOrigin = this.$supports(
- *         css.supports`not (${{transform-origin: [30, 30, 30]}})`, ...)
- * }
- * ```
- */
-export declare const supports: (parts: TemplateStringsArray, ...params: Styleset[]) => ISupportsQueryProxy;
 /**
  * Converts the given supports query value to the CSS supports query string.
  */

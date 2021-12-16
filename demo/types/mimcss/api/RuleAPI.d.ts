@@ -140,10 +140,11 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * ```
      *
      * @param styleset One or more styleset objects that define style properties of the class.
-     * @param nameOverride string or another `IClassRule` object that determines the name of the class.
-     * If this optional parameter is defined, the name will override the Mimcss name assignment
-     * mechanism. This might be useful if there is a need for the class to match a name of another,
-     * probably external, class.
+     * @param nameOverride string or another `IClassRule` object that determines the name of the
+     * class. If this optional parameter is defined, the name will override the Mimcss name
+     * assignment mechanism. This might be useful if there is a need for the class to match a name
+     * of another, probably external, class. If this parameter is defined as a string, it should
+     * not have the `"."` prefix.
      * @returns `IClassRule` object that should be used for getting the class name and for accessing
      * the style properties if needed.
      */
@@ -226,6 +227,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * @param nameOverride string or another `IIDRule` object that determines the name of the ID.
      * If this optional parameter is defined, the name will override the Mimcss name assignment
      * mechanism. This might be useful if there is a need for the ID to match a name of another ID.
+     * If this parameter is defined as a string, it should not have the `"."` prefix.
      * @returns `IIDRule` object that should be used for getting the ID name and for accessing
      * the style properties if needed.
      */
@@ -376,7 +378,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * @param nameOverride String or another `IVarRule` object that determines the name of the
      * custom property. If this optional parameter is defined, the name will override the Mimcss name
      * assignment mechanism. This might be useful if there is a need for the name to match a name of
-     * existing property.
+     * existing property. If this parameter is defined as a string, it should not have the `"."` prefix.
      * @returns The `IVarRule` object that represents the custom property. Any usage of this object in
      * style properties or function parameters is substituted by the `var()` CSS function invocation.
      */
@@ -417,7 +419,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * @param nameOverride String or another `IVarRule` object that determines the name of the
      * custom property. If this optional parameter is defined, the name will override the Mimcss name
      * assignment mechanism. This might be useful if there is a need for the name to match a name of
-     * existing property.
+     * existing property. If this parameter is defined as a string, it should not have the `"."` prefix.
      * @returns The `IVarRule` object that represents the `@property` rule. Any usage of this object in
      * style properties or function parameters is substituted by the `var()` CSS function invocation.
      */
@@ -457,7 +459,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * @param nameOverride String or another `IVarRule` object that determines the name of the
      * custom property. If this optional parameter is defined, the name will override the Mimcss name
      * assignment mechanism. This might be useful if there is a need for the name to match a name of
-     * existing property.
+     * existing property. If this parameter is defined as a string, it should not have the `"."` prefix.
      * @returns The `IVarRule` object that represents the `@property` rule. Any usage of this object in
      * style properties or function parameters is substituted by the `var()` CSS function invocation.
      */

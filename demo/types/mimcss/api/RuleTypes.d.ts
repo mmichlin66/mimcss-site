@@ -20,6 +20,22 @@ export interface INamedEntity {
     readonly name: string;
 }
 /**
+ * The IPrefixedNamedEntity interface is a base interface implemented by rules that use prefix to
+ * refer to the rule name within CSS.
+ */
+export interface IPrefixedNamedEntity extends INamedEntity {
+    /**
+     * Prefix used to create the CSS name.
+     */
+    readonly prefix: "." | "#" | "--";
+    /**
+     * Rule's name - this is a unique name that is assigned by the Mimcss infrastructure. This name
+     * has the prefix that is used when referring to classes (.), IDs (#) and custom CSS
+     * properties (--).
+     */
+    readonly cssName: string;
+}
+/**
  * Type representing an object that contains dependent rules of a style rule
  */
 export declare type DependentRules = {
@@ -54,7 +70,7 @@ export interface IStyleRule extends IRule, IRuleWithSelector {
      * @param schedulerType ID of a registered scheduler type that is used to write the property
      * value to the DOM. If undefined, the current default scheduler will be used.
      */
-    setProp<K extends keyof IStyleset>(name: K, value: ExtendedIStyleset[K], important?: boolean, schedulerType?: number): void;
+    setProp<K extends keyof IStyleset>(name: K, value?: ExtendedIStyleset[K] | null, important?: boolean, schedulerType?: number): void;
     /**
      * Adds/replaces/removes the value of the given custmom CSS property in this rule.
      * @param customVar IVarRule object defining a custom CSS property.
@@ -71,8 +87,7 @@ export interface IStyleRule extends IRule, IRuleWithSelector {
  * This interface is returned from the [[$class]] function.
  */
 export interface IClassRule extends IStyleRule, INamedEntity {
-    /** Name of the class prefixed with `"."` */
-    readonly cssClassName: string;
+    prefix: ".";
 }
 /**
  * The `IClassNameRule` interface represents a combination of two or more class names. It can be
@@ -83,9 +98,8 @@ export interface IClassRule extends IStyleRule, INamedEntity {
  * combined class name, e.g. `"class1 class2"`. The `cssClassName` property contains the combined
  * selector, e.g. `"".class1.class2"`.
  */
-export interface IClassNameRule extends INamedEntity, IRuleWithSelector {
-    /** Name of all the class names prefixed with "." */
-    readonly cssClassName: string;
+export interface IClassNameRule extends IPrefixedNamedEntity, IRuleWithSelector {
+    prefix: ".";
 }
 /**
  * Type for defining the `class` property of HTML elements. It can be expressed in one of the
@@ -101,8 +115,7 @@ export declare type ClassPropType = string | IClassRule | IClassNameRule | Class
  * This interface is returned from the [[$id]] function.
  */
 export interface IIDRule extends IStyleRule, INamedEntity {
-    /** Element identifier prefixed with `"#"` */
-    readonly cssIDName: string;
+    prefix: "#";
 }
 /**
  * The AnimationWaypoint type defines a type that can be used to define a waypoint in an
@@ -138,7 +151,7 @@ export interface IAnimationFrameRule extends IStyleRule {
  * The IVarRule interface represents a CSS custom property definition. Objects implementing this
  * interface are returned from the [[$var]] and [[$property]] function.
  */
-export interface IVarRule<K extends VarTemplateName = any> extends INamedEntity, ICustomVar<VarValue<K>> {
+export interface IVarRule<K extends VarTemplateName = any> extends IPrefixedNamedEntity, ICustomVar<VarValue<K>> {
     /**
      * Name of a non-custom CSS property whose type determines the type of the custom property
      * value. This name is a property of [[IVarTemplateStyleset]] interface; that is, it is either
@@ -146,8 +159,6 @@ export interface IVarRule<K extends VarTemplateName = any> extends INamedEntity,
      * Mimcss types such as `"CssLength"`, `"CssColor"`, etc.
      */
     readonly template: K;
-    /** Custom CSS property name prefixed with `"--"` */
-    readonly cssVarName: string;
     /**
      * Gets the value of the property.
      */
