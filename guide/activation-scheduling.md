@@ -1,22 +1,22 @@
 ---
 layout: mimcss-guide
 unit: 10
-title: "Mimcss Guide: Activation Scheduling"
+title: "Mimcss Guide: Activation scheduling"
 description: "Scheduling of style activation and other DOM writing events to avoid layout thrashing."
 rootpath: ".."
 ---
 
-# Mimcss Guide: Activation Scheduling
+# Activation scheduling
 
-- [Scheduler Types](#scheduler-types)
-  - [Synchronous Scheduler](#synchronous-scheduler)
-  - [Animation Frame Scheduler](#animation-frame-scheduler)
-  - [Manual Scheduler](#manual-scheduler)
-- [Custom Schedulers](#custom-schedulers)
+- [Scheduler types](#scheduler-types)
+- [Synchronous scheduler](#synchronous-scheduler)
+- [Animation Frame scheduler](#animation-frame-scheduler)
+- [Manual scheduler](#manual-scheduler)
+- [Custom schedulers](#custom-schedulers)
 
 We already mentioned in the previous units that activating style definitions as well as changing style properties are operations that write to the DOM and that without the proper care these operations can have adverse impact on performance such as layout thrashing. Mimcss addresses this problem by introducing *scheduler types*.
 
-## Scheduler Types
+## Scheduler types
 When the `activate` function or the `IStyleRule.setProp` method is called, a DOM writing operation should be performed, which will cause style and optionally layout recalculations. Normally, these recalculations will occur asynchronously after the primary JavaScript thread finishes its event loop iteration. If, however, the JavaScript code tries to read certain information from the DOM after the changes have been made the style and layout recalculations can be performed synchronously. If this happens frequently enough - especially in a loop - this can significantly degrade the page performance.
 
 The solution to the above problem is to not execute the DOM writing operations immediately but to schedule them for after all other code in the event loop iteration has finished executing. There are several techniques for doing this and different component libraries can provide different solutions. Mimcss uses *schedulers* to implement scheduling techniques. All calls to the functions such as `activate`, `deactivate` and `IStyleRule.setProp` are accumulated along with their parameters and the role of the scheduler is to execute them at the appropriate time.
@@ -42,24 +42,24 @@ After the above call, all calls to the `activate`, `deactivate` and `IStyleRule.
 
 Note that the call to the `setDefaultSchedulerType` function should occur early in the application lifetime before any activation and style property setting occurs. On the other hand, nothing stops application developers to switch to a different scheduler in the middle of the application, although it is hard to see a real case for it.
 
-### Synchronous Scheduler
+## Synchronous scheduler
 The Synchronous scheduler doesn't do any real scheduling; calls to the `activate`, `deactivate` and `IStyleRule.setProp` functions directly make changes to the DOM. This scheduler may be useful for applications that already take care of calling the above functions in a manner that avoids unnecessary style and layout recalculations.
 
 The Synchronous scheduler is the default scheduler unless a different scheduler is set using the `setDefaultSchedulerType` function.
 
 
-### Animation Frame Scheduler
+## Animation Frame scheduler
 The Animation Frame scheduler schedules the DOM writing operations for the next animation frame by using the `requestAnimationFrame` API function. No matter how many times the functions `activate`, `deactivate` and `IStyleRule.setProp` are called since the last animation frame, all the corresponding DOM changes will be made in the next animation frame.
 
-### Manual Scheduler
+## Manual scheduler
 While the Animation Frame scheduler can serve well under certain circumstances, it does not guarantee that layout thrashing is avoided. If the application (or some library used by the application) also uses animation frames, it is unpredictable in which order the animation frame callbacks are executed, which can lead to intermingling of DOM reads and writes.
 
 Mimcss implements the Manual scheduler type, which can be used by applications to achieve more predictable results. With the Manual scheduler set as the default, the calls to the `activate`, `deactivate` and `IStyleRule.setProp` functions are accumulated until the application calls the `forceDOMUpdate` function. This allows applications to synchronize style changes with other DOM writing activities.
 
-## Custom Schedulers
+## Custom schedulers
 Mimcss allows writing custom schedulers, which can be a reasonable approach for component authoring libraries or for applications that have a particular way of synchronizing DOM writing operations.
 
-A custom scheduler is a JavaScript class that implements the `IScheduler` interface. The custom scheduler object should be registered with Mimcss using the `registerScheduler` function. This function returns the number identifying the new scheduler type and this number should be passed to the `setDefaultSchedulerType` function in order to set the new scheduler as the default one.
+A custom scheduler is a JavaScript class that implements the `IScheduler` interface. The custom scheduler object should be registered with Mimcss using the `registerScheduler` function. This function returns the number identifying the new scheduler type, which should be passed to the `setDefaultSchedulerType` function in order to set the new scheduler as the default one.
 
 Once the custom scheduler is registered and set as the default, all calls to the `activate`, `deactivate`, `IStyleRule.setProp`, `forceDOMUpdate` and `cancelDOMUpdate` functions will be accumulated by the Mimcss scheduling infrastructure and the scheduler object's methods will be called:
 

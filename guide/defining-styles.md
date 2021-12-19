@@ -1,21 +1,21 @@
 ---
 layout: mimcss-guide
 unit: 3
-title: "Mimcss Guide: Defining Styles"
+title: "Mimcss Guide: Defining styles"
 description: "Mimcss uses the full power of the TypeScript typing system to define style property values in a type-safe and convenient ways."
 rootpath: ".."
 ---
 
-# Mimcss Guide: Defining Styles
+# Defining styles
 
 * [Styleset](#styleset)
-* [Combined Styleset](#combined-styleset)
-* [Reusing Styles](#reusing-styles)
-* [Reusing Classes](#reusing-classes)
-* [Dependent Styles](#dependent-styles)
-* [Pseudo Classes and Pseudo Elements](#pseudo-classes-and-pseudo-elements)
-* [Complex Dependent Selectors](#complex-dependent-selectors)
-* [Selector Combinators](#selector-combinators)
+* [Combined styleset](#combined-styleset)
+* [Reusing styles](#reusing-styles)
+* [Reusing classes](#reusing-classes)
+* [Dependent styles](#dependent-styles)
+* [Pseudo classes and elements](#pseudo-classes-and-elements)
+* [Complex dependent selectors](#complex-dependent-selectors)
+* [Selector combinators](#selector-combinators)
 
 ## Styleset
 Styles are defined using style rules, which usually accept some kind of selector and an object that gives values to a set of standard CSS style properties - such as `color`, `margin`, etc. This object is called a *styleset* and is defined by Mimcss using the `Styleset` type.
@@ -30,6 +30,8 @@ The `Styleset` type might look similar to the built-in `CSSStyleDeclaration` typ
 
 1. The `border` property. CSS defines the `border` property as a sequence of 1 to 3 values: width, style and color. In Mimcss you can specify the value as either a number or a Color value or as a tuple of 2 or 3 elements. Moreover, Mimcss provides all possible values for the style element, so that you cannot misspell it.
 
+1. The `transform` property. CSS defines several functions that can be used in the `transform` property such as `translate()` or `skew()`. Mimcss defines a TypeScript function for every CSS function. These functions accept parameters of appropriate types, so that you cannot accidentally specify wrong parameters.
+
 Here are a few examples of how such styles are used for defining style rules:
 
 ```tsx
@@ -38,26 +40,29 @@ class MyStyles extends css.StyleDefinition
     button1 = this.$class({
         backgroundColor: css.Colors.blue,   // built-in color property
         padding: 4,                         // 4px for all sides
-        border: 2                           // 2px width with default style and color
+        border: 2,                          // 2px width with default style and color
+        transform: css.translate(20, 30),   // translate(20px, 30px)
     })
 
     button2 = this.$class({
         backgroundColor: "yellow",          // built-in color constant
         padding: [4, 0.3],                  // 4px top and bottom, 0.3em left and right
-        border: ["solid", "brown"]          // defined as a two-element tuple
+        border: ["solid", "brown"],         // defined as a two-element tuple
+        transform: css.skew(20, 0.25),      // skew(20deg, 0.25turn)
     })
 
     button3 = this.$class({
         backgroundColor: 0xFF00,            // green
         padding: [4, css.inch(0.1)],        // 4px top and bottom, 0.1in left and right
-        border: [1, "solid", "brown"]       // defined as a three element tuple
+        border: [1, "solid", "brown"],      // defined as a three element tuple
+        transform: css.rotate(30),          // rotate(30deg)
     })
 }
 ```
 
 Mimcss strives to avoid defining `string` as property type, especially for those properties that have a lot of keyword values such as `justify-items`, `cursor`, `list-style-type`, `border-style`, etc. If `string` is among the possible property types, then first, the autocomplete feature doesn't work, and second, misspellings are not detected at compile time. Ultimately, the decision whether or not to have `string` for a property type is a trade-off between the above considerations and the developer's convenience.
 
-### Custom CSS Properties
+## Custom CSS properties
 The `Styleset` type has a special `"--"` property for specifying custom CSS properties. This allows defining or re-defining the custom CSS properties under the specific rule. The `"--"` property takes an array of tuples where the first parameter refers to a custom CSS property previously defined using the `$var()` method. The second element of the tuple provides the value for the custom property.
 
 ```tsx
@@ -83,8 +88,8 @@ class MyStyles extends css.StyleDefinition
 Custom CSS properties will be explained in more details in the [Custom Properties](custom-properties.html) unit.
 
 
-### Specifying !important flag
-CSS allows adding the `!important` flag to any style property to increase its specificity. For many style properties, Mimcss doesn't include the `string` type; however, for any property, Mimcss allows specifying an object with a single property `"!"`, which contains the property value.
+## Specifying !important flag
+CSS allows adding the `!important` flag to any style property to increase its specificity. For many style properties, Mimcss doesn't include the `string` type; however, for every property, Mimcss allows specifying an object with a single property `"!"`, which contains the property value.
 
 ```tsx
 class MyClass extends css.StyleDefinition
@@ -97,7 +102,46 @@ class MyClass extends css.StyleDefinition
 }
 ```
 
-## Combined Styleset
+## Specifying multiple property values
+CSS allows the same property multiple times in a single ruleset, so that the latest valid value wins. It is usually used when there are features that are not yet supported across all browsers. In this case, you would specify the property with the widely supported value first and the less supported value last.For example:
+
+```css
+.bg
+{
+    background: "beige";
+    background: cross-fade( url(yellow.png) 35%, url(green.png) 65%);
+}
+```
+
+In Mimcss, rulesets are modeled by plain JavaScript objects and it is not possible to specify the same property multiple times. To overcome this restriction, Mimcss allows specifying an object with a single property `"[]"`, which allows specifying multiple values. So the previous CSS would be modeled as the following in Mimcss:
+
+```tsx
+class MyClass extends css.StyleDefinition
+{
+    // .isNotImportant { min-width: 20px; }
+    bg = this.$class({
+        background: {"[]":[
+            beige",
+            css.crossFade( [css.url("yellow.png"), 35], [css.url("green.png"), 65])
+        ]}
+    })
+}
+```
+
+Alternatively, Mimcss allows specifying an array of stylesets wherever a single styleset is accepted. So the alternative way to have more than one value for a CSS property would be as follows:
+
+```tsx
+class MyClass extends css.StyleDefinition
+{
+    // .isNotImportant { min-width: 20px; }
+    bg = this.$class([
+        {background: "beige"},
+        {background: css.crossFade( [css.url("yellow.png"), 35], [css.url("green.png"), 65])}
+    ]})
+}
+```
+
+## Combined styleset
 The functions that create style rules - such as `$style`, `$class` and `$id` - accept not just the `Styleset` type described above, but an extended variant of it called `CombinedStyleset`. The `CombinedStyleset` type adds a number of properties to the `Styleset` type, which allow for the following features:
 
 - Combined styleset can specify that it *extends* (*composites*, *inherits*, *derives from*) one or more stylesets defined by other style rules.
@@ -105,7 +149,7 @@ The functions that create style rules - such as `$style`, `$class` and `$id` - a
 
 These features are discussed in details in the following sections.
 
-### Reusing Styles
+## Reusing styles
 With CSS pre-processors, the idea of a style rule re-using other rules (a.k.a. style extending/composing/inheriting) became very popular. Mimcss also has this capability and it uses the TypeScript's type-safety features to eliminate errors. Here is an example:
 
 ```tsx
@@ -168,7 +212,7 @@ The above code is equivalent to the following CSS (except that actual names woul
 
 The `"+"` property allows any style rule to extend any other style rule. For example, an animation styleset used in a `$keyframes` rule can extend an `$id` rule. Extending another style rule via the `"+"` property simply means that Mimcss copies all style properties from the rules being extended and then applies our own style properties. Notice how the `width` property from the `rightbar` class overrode the value of this property defined in the `sidebar` class.
 
-### Reusing Classes
+## Reusing classes
 When a class rule extends other class rules, there is a different method that provides more efficient extension mechanism. A special property `"++"` can specify one or more class rules. In this case, there is no copying of style properties; instead, the name generated for the extending class will contain the names of the extended classes. Consider the following example:
 
 ```tsx
@@ -210,7 +254,7 @@ will generate the following HTML:
 
 > Note that since using the double plus property changes the name generation mechanism, caution must be exercised when using it for classes whose name should be consistent when used in different style definition classes; in particular, when defining media rules and when using style definition class inheritance for theming (which will be discussed later in this guide).
 
-### Dependent Styles
+## Dependent styles
 
 In CSS, we often define styles for a class and then define additional styles (or override styles) for this class in combination with a pseudo class or a pseudo element. Also quite often we reuse an already defined class in a complex selector specifying child, descendant or sibling relationships to other classes or tags. For example:
 
@@ -244,7 +288,7 @@ td > .mydiv, li > .mydiv {
 Mimcss supports such dependent and related rules via an easy-to-use construct using special properties of the `CombinedStyleset` type. First let's see how pseudo styles and pseudo elements are specified.
 
 
-#### Pseudo Classes and Pseudo Elements
+## Pseudo classes and elements
 Mimcss allows names of all pseudo entities as properties in the `CombinedStyleset`. The value of these properties is another `CombinedStyleset`, so that the process of defining dependent rules is recursive. Here is how the `:hover` pseudo class from the example above is defined:
 
 ```tsx
@@ -282,16 +326,15 @@ class MyClass extends css.StyleDefinition
 }
 ```
 
-#### Complex Dependent Selectors
+## Complex dependent selectors
 To support complex selectors, Mimcss uses a special property `"&"`, which specifies an array of two-element tuples, where the first element is a selector and the second element is a styleset assigned to this selector. Every occurrence of the ampersand symbol in the selector string will be replaced with the selector one level above - a.k.a. parent selector.
 
 The selector in the first element of each tuple can be of several types: all of them are used to produce a selector string within which any occurrence of the ampersand symbol will be replaced with the parent selector.
 
-- String.
+- String - allows composing selectors from many components using a template string with embedded parameters.
 - Class rule object. The selector string is obtained by taking the class name and prefixing it with the dot symbol.
 - ID rule object. The selector string is obtained by taking the ID name and prefixing it with the pound sign.
 - Style rule object. The selector string is the rule's selector.
-- `selector()` function - allows composing selectors from many components using a template string with embedded parameters.
 - Array of the above. The selector string is obtained by getting selector strings of the array items and concatenating them.
 
 Here is how the second part of our CSS example above is expressed in Mimcss:
@@ -307,7 +350,7 @@ class MyStyles extends css.StyleDefinition
         "&": [
             [ "tr > &, li > &", { padding: 0 }],
             [ this.solid, { border: "solid" }],
-            [ css.selector`& > ${this.myspan}`, { border: "dashed" }]
+            [ `& > ${this.myspan.cssName}`, { border: "dashed" }]
         ]
     })
 }
@@ -315,10 +358,10 @@ class MyStyles extends css.StyleDefinition
 
 The second tuple specifies the ID rule object. The selector string obtained for this object is `"#solid` and it doesn't specify any ampersand symbols. In this case, this string is simply appended to the parent selector.
 
-The third tuple uses the `selector` function to create a selector that combines two classes. As in the first tuple, the ampersand symbol stands for the class name behind the `mydiv` property. The `selector` function allows specifying multiple placeholders; therefore, it is possible to create arbitrary complex selectors that involve multiple classes, IDs, tags, pseudo classes and pseudo elements.
+The third tuple uses the template literal to create a selector that combines two classes. As in the first tuple, the ampersand symbol stands for the class name behind the `mydiv` property. With template literals, it is possible to create arbitrary complex selectors that involve multiple classes, IDs, tags, pseudo classes and pseudo elements.
 
-#### Selector Combinators
-The `selector()` function allows building very complex selectors; however, it is quite verbose. For simpler cases, the `CombinedStyleset` type provides several *combinator* properties that make it easy to combine a parent selector with another selector. These combinator properties are named using the ampersand symbol prefixed or followed by one of the CSS selector combinator symbols:
+## Selector combinators
+Template literals allow building very complex selectors; however, it is quite verbose. For simpler cases, the `CombinedStyleset` type provides several *combinator* properties that make it easy to combine a parent selector with another selector. These combinator properties are named using the ampersand symbol prefixed or followed by one of the CSS selector combinator symbols:
 
 - `"& "` and `" &"` for descendants
 - `"&>"` and `">&"` for immediate children
@@ -326,7 +369,7 @@ The `selector()` function allows building very complex selectors; however, it is
 - `"&~"` and `"~&"` for general siblings
 - `"&,"` and `",&"` for selector lists
 
-With these properties, it is easy to specify selectors that combine the parent selector with a single class or element ID without using the `selector()` function.
+With these properties, it is easy to specify selectors that combine the parent selector with a single class or element ID:
 
 ```tsx
 class MyStyles extends css.StyleDefinition

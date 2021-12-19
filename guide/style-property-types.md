@@ -6,18 +6,19 @@ description: "Describes the category of style properties and what TypeScript typ
 rootpath: ".."
 ---
 
-# Mimcss Guide: Style Property Types
+# Style property types
 
-* [Style Property Categories](#style-property-categories)
-* [General Approach](#general-approach)
-* [Numeric Types](#numeric-types)
-* [Working with Colors](#working-with-colors)
-* [Complex Property Types](#complex-property-types)
-* [Proxy Interfaces](#proxy-interfaces)
+* [Style property categories](#style-property-categories)
+* [General approach](#general-approach)
+* [Numeric types](#numeric-types)
+* [Mathematical functions](#mathematical-functions)
+* [Working with colors](#working-with-colors)
+* [Custom named colors](#custom-named-colors)
+* [Complex property types](#complex-property-types)
 
 As we already mentioned earlier, the `Styleset` type, which is used to specify style property values in Mimcss, resembles the `CSSStyleDeclaration` type in that it has properties with the same names: the camel-cased names of all CSS shorthand and longhand properties. The difference is that while the `CSSStyleDeclaration` type defines all the properties to have the type `string`, the `Styleset` type defines a different type for each property with the goal of making it easier and less error-prone for developers to assign values to them. This unit describes the different types of the properties in the `Styleset` type.
 
-## Style Property Categories
+## Style property categories
 We can divide all the style properties into the following broad categories based on the values they accept:
 
 - Keyword-based properties. These properties use keywords to define their values. An example is the `visibility` property, whose allowed values are `visible` or `hidden` or `collapse`.
@@ -33,7 +34,7 @@ When deciding what type to use for each individual style property, in addition t
 - All properties can accept the value of a custom CSS property using the `var()` CSS function.
 - Number-based properties must support the numeric functions, such as `min()` and `calc()`.
 
-## General Approach
+## General approach
 The goal of Mimcss is to boost the developers' productivity by increasing convenience and decreasing the number of errors. These two requirements are somewhat contradictory: the fastest and most convenient way to specify property values is to use strings but it is the most error-prone way too. The least error-prone way is to use the strictest types possible, but this is often inconvenient. Mimcss has to make a certain trade off balancing between the convenience and type strictness and here is the general approach that Mimcss has settled on:
 
 - For keyword-based properties, the property type is defined as a union of string literals. The `string` type is not part of type definition. For example, the type for the `visibility` property is defined as:
@@ -69,7 +70,7 @@ The goal of Mimcss is to boost the developers' productivity by increasing conven
 
 - All properties accept the result of the `css.raw()` function, which serves as an escape hatch when there is a need to specify a string value for a property that normally doesn't accept the `string` type. Note that the `raw()` function is a *tag* function and must be invoked with the template string without parentheses.
 
-## Numeric Types
+## Numeric types
 CSS defines the `<number>` type for unitless numbers and several numeric types which require unit specification, e.g. `<length>`, `<angle>`, `<percent>`, etc. For each of these types, Mimcss defines a TypeScript type, which serves dual purpose:
 
 1. To allow for convenient numeric operations, and
@@ -107,7 +108,7 @@ class MyStyles extends css.StyleDefinition
 }
 ```
 
-### Mathematical Functions
+## Mathematical functions
 CSS specifies functions `min()`, `max()`, `clamp()` and `calc()` for working with numeric values. The type-specific objects listed above implement these functions in a type safe manner.
 
 The `min()` and `max()` functions accept a variable number of parameters of the corresponding numeric type. The return value can only be assigned to the property of the compatible type.
@@ -153,7 +154,7 @@ class MyStyles extends css.StyleDefinition
 }
 ```
 
-## Working with Colors
+## Working with colors
 Mimcss provides the `CssColor` type for using with properties that accept colors either as their values or as parameters in arrays, objects and functions used to set their values. The `CssColor` type is defined as a union of all named colors (keys of the `INamedColors` interface), the built-in keyword values of `transparent` and `currentcolor`, and a `number` type. Notably, the `CssColor` value cannot be defined as an arbitrary string.
 
 The `number` type allows specifying color values using hexadecimal numbers, which resembles the CSS hexadecimal color notation. If in regular CSS, a color can be specified as `#A1B2C3`, in Mimcss, the same value will be expressed as a number `0xA1B2C3`. The alpha channel value can be included just as in regular CSS: `#A1B2C380` in CSS and `0xA1B2C380` in Mimcss. Note that Mimcss does not support the CSS 3-digit hexadecimal notation such as `#CCC` - all numeric values are treated as having two hexadecimal digits per color separation.
@@ -184,15 +185,15 @@ class MyStyles extends css.StyleDefinition
     // alpha() function with named color
     cls5 = this.$class({ color: css.alpha( "red", 0.5) })
 
-    // raw() function
+    // raw`` function
     cls6 = this.$class({ color: css.raw`#CCC` })
 }
 ```
 
-### Custom Named Colors
+## Custom named colors
 Mimcss allows assigning names to your own color values and using them just as you use the built in color names. This can be useful for defining colors that are widely used in your application. The technique involves the TypeScript module augmentation mechanism and the Mimcss-provided `Colors` object.
 
-Let's assume that you have a color value `0xA1B2C3` and you want to assign the name `myFavColor` to it. The first step is to add this name to the `INamedColors` interface as a property of the `number` type:
+Let's assume that you have a color value `#A1B2C3` and you want to assign the name `myFavColor` to it. The first step is to add this name to the `INamedColors` interface as a property of the `number` type:
 
 ```tsx
 declare module "mimcss"
@@ -221,12 +222,12 @@ css.Colors.myFavColor = 0xA1B2C3;
 
 Now we can use the string `"myFavColor"` (or its `css.Colors.myFavColor` counterpart) in any place where color values are accepted.
 
-## Complex Property Types
+## Complex property types
 There are quite a few CSS properties with complex property types, whose values involve multiple parts of different types. Mimcss strives to make assigning values to these properties as easy and type-safe as possible and employs all types available in TypeScript including tuples, arrays, objects and functions.
 
 > Note: we distinguish tuples from arrays in that tuple has a pre-defined number of elements, which can be of different types. TypeScript doesn't have a special type for tuples, although it is possible to define a type as an array with a finite number of elements with different types. TypeScript will enforce element types for such arrays.
 
-Mimcss defines a separate type for each complex property. The `string` type is also part of type definition for these properties, so that developers can simply set property values as strings without the need to use the `raw()` function. Note, however, that with the special property types, developers can leverage the full power of the TypeScript language as well as Mimcss features such as custom CSS properties, constants, etc.
+Mimcss defines a separate type for each complex property. With these property types, developers can leverage the full power of the TypeScript language as well as Mimcss features such as custom CSS properties, constants, etc.
 
 The following list gives a brief description of the complex properties:
 
@@ -249,19 +250,21 @@ The following list gives a brief description of the complex properties:
         cls4 = this.$class({ margin: this.defaultMargin })
 
         // tuple with four elements mixing numbers, strings and custom variables
-        defaultTopMargin = this.$var( "CssLength", 8)
+        defaultTopMargin = this.$var( "<length>", 8)
         cls5 = this.$class({ margin: [this.defaultTopMargin, "auto", 0.5, 4] })
     }
     ```
 
 - Properties like `animation`, `background`, `box-shadow`, `font`, `text-decoration`, `text-shadow`, `transition`. These are shorthand properties, with multiple elements of different types. For the majority of these properties, the `string` type is allowed. Mimcss also defines object types where the object's fields correspond to the different parts of the CSS property value. For example, the `animation` property has the object type as part of its type definition that defines fields `name`, `duration`, `func`, `delay`, `count`, `direction`, `mode` and `state`. All these fields are declared as optional; therefore, developers can only specify those that they need to.
 
-    In CSS, in most cases, the order of the elements in the shorthand properties is not important; however, sometimes it is and that can create confusion and errors. For example, in the string for the `animation` property, the first time value is always the duration and the second is the delay. In Mimcss, with the object notation, there is no confusion because the field names unambiguously convey the meaning of the parameters. Object notation for the shorthand properties in some sence is similar to using longhand properties; however, it is different in two aspects:
+    In CSS, in most cases, the order of the elements in the shorthand properties is not important; however, sometimes it is and that can create confusion and errors. For example, in the string for the `animation` property, the first time value is always the duration and the second is the delay. In Mimcss, with the object notation, there is no confusion because the field names unambiguously convey the meaning of the parameters.
+
+    Object notation for the shorthand properties is in some sense similar to using longhand properties; however, it is different in two aspects:
 
     1. It results in a shorthand property being used in the CSS rule, which resets the unspecified longhand properties.
     1. It is less verbose and thus more convenient.
 
-    Note that for every field in the object notation, developers can use not just constants, but any allowed method that results in the proper type including custom variables and references to other Mimcss objects. For example, for the `animation` property, the name of the animation is usually given as a reference to the previously defined @keyframes rule:
+    Note that for every field in the object notation, developers can use not just constants, but any allowed method that results in the proper type including custom variables and references to other Mimcss objects. For example, for the `animation` property, the name of the animation is usually given as a reference to the previously defined `@keyframes` rule:
 
     ```tsx
     class MyStyles extends css.StyleDefinition
@@ -272,7 +275,7 @@ The following list gives a brief description of the complex properties:
             [ "to", { top: "100%" } ]
         ])
 
-        defaultDuration = this.$var( "CssTime", 1200)
+        defaultDuration = this.$var( "<time>", 1200)
 
         cls = this.$class({
             animation: { name: this.move, duration: this.defaultDuration }
@@ -280,64 +283,11 @@ The following list gives a brief description of the complex properties:
     }
     ```
 
-- For properties using images such as `background-image`, `list-style-image`, `cursor`, etc., Mimcss provides implementations of the functions listed under the `<image>` CSS type. This includes `url()`, `gradient()` and their variants.
+- For properties using images such as `background-image`, `list-style-image`, `cursor`, etc., Mimcss provides implementations of the functions listed under the `<image>` CSS type. This includes `url()`, `linearGradient()`, `imageSet()` and others.
 
 - For the `transform` property, Mimcss provides implementations of the functions listed under the `<transform-function>` CSS type. This includes `matrix()`, `perspective()` `rotate()`, `scale()`, `skew()`, `translate()` and their variants.
 
 - For the `filter` and `backdrop-filter` properties, Mimcss provides implementations of the functions listed under the `<filter-function>` CSS type. This includes `blur()`, `brightness()` `contrast()`, `dropShadow()`, `grayscale()`, `hueRotate()`, `invert()`, `opacity()`, `saturate()` and `sepia()`.
 
 - For the `clip-path`, `shape-outside` and `offset-path` properties, Mimcss provides implementations of the functions listed under the `<basic-shape>` CSS type. This includes `inset()`, `circle()` `ellipse()`, `polygon()` and `path()`.
-
-## Proxy Interfaces
-Mimcss provides a number of *Proxy* interfaces such as `IFilterProxy`, `ITransformProxy`, etc. These are *callable* interfaces, which means that entities that implement them are functions and not classes. All these interfaces derive from the `IGenericProxy` interface, which is defined as follows:
-
-```tsx
-export interface IGenericProxy<T extends string>
-{
-    (p?: T): string;
-}
-```
-
-The derived proxy interfaces are defined as follows:
-
-```tsx
-export interface IFilterProxy extends IGenericProxy<"filter"> {}
-
-export interface ITransformProxy extends IGenericProxy<"transform"> {}
-```
-
-The main purpose of the proxy interfaces is to provide type safety. Let's take, for example, two style properties: `filter` and `transform`. The `filter` property accepts strings according to the CSS `<filter-function>` type, for example `filter: blur(5px)`. The `transform` property accepts strings according to the CSS `<transform-function>` type, for example `transform: scale(0.5)`.
-
-What if a developer makes a mistake of incorrectly assigning the style properties in a regular CSS file? For example:
-
-```css
-/* INCORRECT !!! */
-.my-class {
-    filter: scale(0.5);
-    transform: blur(0.5);
-}
-```
-
-The error will only be found at run time when the browser understands that the style values are invalid.
-
-The goal of Mimcss is to catch errors like this at compile time and that's where proxy interfaces come to help. Mimcss uses the `IFilterProxy` interface as one of the types for the `filter` property and the `ITransformProxy` interface as one of the types for the `transform` property. The `blur()` and `scale()` functions are declared as follows:
-
-```tsx
-export function blur( radius: Extended<CssLength>): IFilterProxy
-
-export function scale( cx: Extended<CssNumber>, sy?: Extended<CssNumber>): ITransformProxy
-```
-
-Since the `IFilterProxy` and `ITransformProxy` interfaces are incompatible due to the different values of the generic type, the following code will not compile:
-
-```tsx
-class MyStyles extends StyleDefinition
-{
-    myClass = this.$class({
-        filter: css.scale(0.5),     // COMPILATION ERROR !!!
-        transform: css.blur(0.5)    // COMPILATION ERROR !!!
-    })
-}
-```
-
 

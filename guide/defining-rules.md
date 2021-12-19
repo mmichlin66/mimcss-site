@@ -1,23 +1,23 @@
 ---
 layout: mimcss-guide
 unit: 1
-title: "Mimcss Guide: Defining Rules"
+title: "Mimcss Guide: Defining rules"
 description: "Mimcss uses TypeScript classes to mimic a CSS stylesheets and uses the classes' properties to define CSS style and at-rules."
 rootpath: ".."
 ---
 
-# Mimcss Guide: Defining Rules
+# Defining rules
 
-* [Style Definitions](#style-definitions)
-* [Rule Types](#rule-types)
-* [Rules Activation](#rules-activation)
-* [Referencing External Style Definitions](#referencing-external-style-definitions)
-* [Embedding Style Definitions](#embedding-style-definitions)
-* [Conditional Grouping Rules](#conditional-grouping-rules)
-* [Style Definition Properties](#style-definition-properties)
-* [Style Definition Instances](#style-definition-instances)
+* [Style definitions](#style-definitions)
+* [Rule types](#rule-types)
+* [Rules activation](#rules-activation)
+* [Referencing external style definitions](#referencing-external-style-definitions)
+* [Embedding style definitions](#embedding-style-definitions)
+* [Conditional grouping rules](#conditional-grouping-rules)
+* [Style definition properties](#style-definition-properties)
+* [Style definition instances](#style-definition-instances)
 
-## Style Definitions
+## Style definitions
 In regular CSS, a unit of style definition is a rule. There are regular style rules that define a selector followed by a styleset, and at-rules: @import, @font-face, @keyframes, @media, @supports and others. Rules such as @media and @support are conditional grouping rules; that is, they define a condition and a set of nested rules, which, in turn, might be style rules or at-rules. Multiple rules are combined into a CSS file, which is sometimes called a stylesheet.
 
 In Mimcss, a stylesheet is represented by a class - called a Style Definition Class. Individual rules are defined as properties of a style definition class. More precisely, a property of a style definition class can either define a single rule or be an array of rules. If the property defines a single rule, it is called a named rule because the property name allows referring to the rule by the property name. If a property is an array of rules, those rules are called unnamed rules because there is no property by which individual rules can be addressed.
@@ -51,13 +51,13 @@ class MyStyles extends css.StyleDefinition
 }
 ```
 
-Hopefully, the rules defined above are more or less self-explanatory. The `$tag`,`$class` and `$id` functions define style rules where the selector is a tag name, a class name and an element ID respectively. The `$style` function defines a style rule that has a more complicated selector than just a tag or class name or an element ID. The `$tag`, `$class`, `$id` and `$style` functions accept a `Styleset` object, which is defined by Mimcss as an object with property names corresponding to the camel-cased names of CSS properties. The `$var` function defines a custom CSS property. The `$keyframes` function defines a @keyframes (animation) rule.
+Hopefully, the rules defined above are more or less self-explanatory. The `$tag`,`$class` and `$id` methods define style rules where the selector is a tag name, a class name and an element ID respectively. The `$style` method defines a style rule that has a more complicated selector than just a tag or class name or an element ID. The `$tag`, `$class`, `$id` and `$style` methods accept a `Styleset` object, which is defined by Mimcss as an object with property names corresponding to the camel-cased names of CSS properties. The `$var` method defines a custom CSS property. The `$keyframes` method defines a @keyframes (animation) rule.
 
 The rules that require names are assigned to the class's properties. The names of these properties will be later used as names of the corresponding CSS entities (classes, IDs, etc.) when writing JSX code. Rules that don't require names - such as simple tag rules or a universal rule (*) - are gathered into an array. The array does get assigned to a property, but this is only because the language's syntax requires it; this property name is usually not used in any way.
 
-Note that we didn't specify the name of the class (nor of the ID, animation or custom property). This is because we usually don't define the names that will be used in HTML; instead, we will use the properties to refer to the class and other entities. This is a fundamental aspect of Mimcss: names are hidden from the developers, so that the developers never have a chance to misspell the names. Mimcss mechanism generates the names that will be used in HTML and makes sure that the properties, to which the rules are assigned, refer to these names. If there is a need for a rule to have a pre-defined name, it can be specified as an optional parameter to `$class`, `$id` or `$var()` functions - this will override the name-generation mechanism.
+Note that we didn't specify the name of the class (nor of the ID, animation or custom property). This is because we usually don't define the names that will be used in HTML; instead, we will use the properties to refer to the class and other entities. This is a fundamental aspect of Mimcss: names are hidden from the developers, so that the developers never have a chance to misspell the names. Mimcss mechanism generates the names that will be used in HTML and makes sure that the properties, to which the rules are assigned, refer to these names. If there is a need for a rule to have a pre-defined name, it can be specified as an optional parameter to `$class`, `$id` or `$var()` methods - this will override the name-generation mechanism.
 
-## Rule Types
+## Rule Ttypes
 Mimcss supports all CSS rules except @charset - the latter is not needed because developers don't actually write text-based CSS files. This section gives a brief description of `StyleDefinition` methods that create the rules.
 
 - [$class()](../reference.html?path=classes/RuleAPI.StyleDefinition.html#_class) - creates CSS style rule with a class selector.
@@ -84,7 +84,7 @@ Mimcss supports all CSS rules except @charset - the latter is not needed because
 
 Under the CSS specification, @import and @namespace rules should precede all style rules in the style sheet. Mimcss doesn't impose such a restriction: when Mimcss inserts the CSS rules into the DOM, it creates the @import statements first and the @namespace rules second, followed by other rules - regardless of their position in the style definition class. Mimcss will ignore any @import and @namespace rules specified under the nested grouping rules, such as @media and @supports - also in accordance with the CSS specification.
 
-## Rules Activation
+## Rules activation
 By now we have defined our rules with a TypeScript class, but how do we insert the rules into the DOM so that they start applying to the HTML? This process is called "activation" and is accomplished using the [activate](../reference.html?path=modules/RuleAPI.html#activate) function.
 
 ```tsx
@@ -151,7 +151,7 @@ Activating and deactivating style definitions is a DOM writing activity. Without
 Mimcss supports several built-in scheduler types and allows the library users to create their own schedulers. For more information see the [Activation Scheduling](activation-scheduling.html) unit.
 
 
-## Referencing External Style Definitions
+## Referencing external style definitions
 So far we used a single style definition class in our examples. In practice, it is usually desirable to divide application styles into several areas and use a separate style definition class for each of them. The styles defined by these classes are not usually completely isolated from one another though; that is, rules from one definition class may need to use the rules from another one. For example, a rule in class *A* may need to extend the rule from class *B* or a selector may need to combine CSS classes from two or more style definition classes.
 
 Mimcss allows one style definition class to reference another one via the `$use` method as in the following example:
@@ -185,7 +185,7 @@ The `$use` method returns the instance of the referenced style definition class.
 When our style definition class is activated and deactivated, all the referenced style definition classes are activated and deactivated along with it. The activation reference-counting mentioned above makes sure that only a single instance of the style definition exists no matter how many times it was referenced from other style definitions or activated directly. This provides a nice encapsulation of the referenced classes and makes the style definition classes self-contained units.
 
 
-## Embedding Style Definitions
+## Embedding style definitions
 When creating a set of components, developers often define small stylesheets for each component, which contain only styles for that single component. These small stylesheets are later combined into a bigger CSS files via the compile-time tools in order to reduce the number of CSS files that are loaded into a Web page.
 
 In Mimcss, the small stylesheets would be created as separate style definition classes. Normally, each style definition class creates its own `<style>` element when activated. With small style definition files defined for each component, the number of `<style>` elements would be the same as the number of components - which can be quite big. In order to reduce the number of `<style>` elements, Mimcss allows marking style definition classes as *embedded* by applying the `@embedded` TypeScript decorator. The decorator takes a string parameter called *category*. All style definition classes marked as belonging to the same category string will be embedded in a single `<style>` element.
@@ -217,7 +217,7 @@ let bbbStyles = css.activate(WidgetBBBStyles);
 After being decorated with `@embedded`, the style definition classes are activated as usual. In the example above, the classes are activated right after being defined; however, it is possible to activate the classes only when needed and deactivate them when they are not needed any longer. Activating one embedded class will insert rules from all classes belonging to the same category. Activating multiple embedded classes will insert the rules only once; however, in order to remove the rules (if desired at all), all activated classes must be deactivated.
 
 
-## Conditional Grouping Rules
+## Conditional grouping rules
 CSS defines several conditional rules, such as @supports and @media. These rules contain other CSS rules. In Mimcss, these rules are modeled in the same way as the top-level style definition class. The only difference is that for the grouping rules it is beneficial (but optional) to pass the class name of the parent as a generic parameter. Here is an example of the @media rule:
 
 ```tsx
@@ -260,12 +260,12 @@ class MyStyles extends css.StyleDefinition
 
 In the top-level class, we defined a custom CSS variable that defines font color and in the @media rule, we referred to it using the `this.$parent.defaultColor` notation. Since we defined `MyStyles` class as a generic parameter for the `StyleDefinition` class, the TypeScript compiler knows the type of the `$parent` property and will help us with the autocomplete feature. Note that since we only use the `$parent` property, we don't need to define the second generic type.
 
-## Style Definition Properties
+## Style definition properties
 Style definition classes are regular TypeScript classes and thus can have any types of properties and methods. Since the main purpose of a style definition class is to define CSS style and at-rules, the majority of properties will be initialized using methods like `$tag`, `$class`, `$id`, `$style`, etc. Note that property initializations are actually part of object construction, which run even before the body of the constructor (if given) does.
 
 Properties can refer to other properties defined in the same class using the `this.` notation. The only requirement is that if property A references property B, property A must be defined *after* property B.
 
 Depending on the method used to initialize a property, it has a type that may allow some actions on the property value after the style definition has been activated (and thus there is an instance of the style definition class). For example, all style rules have a method `setProp`, which allows setting a value of a style property at run-time. You can also create methods in the style definition class that manipulate property values. This can be useful, for example, if you want to change values of multiple properties at once.
 
-## Style Definition Instances
-In all of the examples above, we never instantiated the style definition classes directly; instead, the instances were created by Mimcss upon activation of style definition classes. In fact it is possible to created style definition instances directly using the `new` operator and then activate or reference these instances using the `activate()` and `$use()` functions respectively. In this case, the names for CSS entities will be generated uniquely for each instance. This is the basis for creating *styled components* and this will be discussed in more details in the [Styled Components](styled-components) unit.
+## Style definition instances
+In all of the examples above, we never instantiated the style definition classes directly; instead, the instances were created by Mimcss upon activation of style definition classes. In fact it is possible to created style definition instances directly using the `new` operator and then activate or reference these instances using the `activate()` function and `$use()` method respectively. In this case, the names for CSS entities will be generated uniquely for each instance. This is the basis for creating *styled components* and this will be discussed in more details in the [Styled Components](styled-components) unit.

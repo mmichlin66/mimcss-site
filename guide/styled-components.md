@@ -6,34 +6,34 @@ description: "Styled components define and manipulate styles as though the style
 rootpath: ".."
 ---
 
-# Mimcss Guide: Styled Components
+# Styled Components
 
-* [Global vs. Local Styles](#global-vs.-local-styles)
-* [Style Definition Instance](#style-definition-instance)
+* [Global vs. local styles](#global-vs-local-styles)
+* [Style definition instance](#style-definition-instance)
 * [Example](#example)
-* [Dynamic Styles](#dynamic-styles)
-* [Referencing External Style Definitions](#referencing-external-style-definitions)
-* [Grouping Rules](#grouping-rules)
-* [When to Use](#when-to-use)
+* [Dynamic styles](#dynamic-styles)
+* [Referencing external style definitions](#referencing-external-style-definitions)
+* [Grouping rules](#grouping-rules)
+* [When to use](#when-to-use)
 
-## Global vs. Local Styles
+## Global vs. local styles
 CSS rules are by definition global. As long as a rule exists as part of a document, it applies to any element that satisfies the rule's selector - no matter what code created the rule and the element. This is both a blessing and a curse: blessing, because a relatively small number of rules can provide styles for a huge number of elements; and curse, because rules can come into conflict with one another.
 
 There are many attempts to try to minimize the possibility of conflicts between CSS rules and they all revolve around creating unique names for those CSS entities that have names - mostly classes, but also IDs, animations and custom CSS properties. That's the idea behind styled components: each instance of the component comes with rules whose names are auto-generated and thus cannot stomp on each other. This is especially important for components that create their styles based on parameters passed on to them from outside - e.g. React properties. Such styles are called "local" - because only a single instance of the component has access to the names used in these style rules.
 
-So far in this guide we have only seen global styles in Mimcss. A Style Definition class was instantiated only once - no matter how many times the `activate` (or `$use`) function was called for it. This unit describes how Mimcss can create "local" styles and thus support styled components.
+So far in this guide we have only seen global styles in Mimcss. A style definition class was instantiated only once - no matter how many times the `activate()` function or `$use()` method was called for it. This unit describes how Mimcss can create "local" styles and thus support styled components.
 
-## Style Definition Instance
-A style definition class is a regular TypeScript class and can have multiple instances. When we call the `activate` or `$use` function and pass the class to it, Mimcss first looks whether there is already an instance of this class. If not, the instance is created; if yes, the existing instance is used. The names for the classes, IDs and other named entities are generated when the instance is created - that is, when the `activate` function is called for the first time for the style definition class. The instance remains associated with the class even after we call the `deactivate` function and the rules are removed from the DOM.
+## Style definition instance
+A style definition class is a regular TypeScript class and can have multiple instances. When we call the `activate()` function or `$use()` method and pass the class to it, Mimcss first looks whether there is already an instance associated with this class. If not, the instance is created and associated with the class; if yes, the existing instance is used. The names for the classes, IDs and other named entities are generated when the instance is created - that is, when the `activate()` function or `$use()` method is called for the first time for the style definition class. The instance remains associated with the class even after we call the `deactivate()` function and the rules are removed from the DOM.
 
-Let's now look at the definition of the `activate` and `$use` functions:
+Let's now look at the definitions of the `activate()` function and `$use()` method:
 
 ```tsx
-export function activate<T extends StyleDefinition>( instanceOrClass: T | IStyleDefinitionClass<T>): T | null
-export function $use<T extends StyleDefinition>( instanceOrClass: T | IStyleDefinitionClass<T>): T | null
+activate<T extends StyleDefinition>( instanceOrClass: T | IStyleDefinitionClass<T>): T | null
+$use<T extends StyleDefinition>( instanceOrClass: T | IStyleDefinitionClass<T>): T | null
 ```
 
-We see that the function parameter can be not only a style definition class (that's what we have been using so far) but also an instance of a style definition class. That means that we can create an instance of the style definition class by ourselves and pass it on to the `activate` function. When Mimcss gets a newly created instance of a style definition class it will create completely new CSS rules with new auto-generated names for its named entities. That's the key for creating styled components.
+We see that the function parameter can be not only a style definition class (that's what we have been using so far) but also an instance of a style definition class. That means we can create an instance of the style definition class by ourselves and pass it on to the `activate()` function. When Mimcss gets a newly created instance of a style definition class it will create completely new CSS rules with new auto-generated names for its named entities. That's the key for creating styled components.
 
 A styled component in Mimcss terminology is a component that creates its own instance of a style definition class. This instance is usually activated when the component is mounted and deactivated when the component is unmounted. Two instances of the same component use the same style definition class; however, they create two different instances of this class and have their style rules completely isolated from each other.
 
@@ -133,7 +133,7 @@ We added the keyword `private` to the constructor's parameter, which does two th
 
 Now we can use `this.bgColor` in our rule definition.
 
-## Dynamic Styles
+## Dynamic styles
 In the previous section's example, we used the property passed to our component in the constructor to initialize the instance-specific styles. We didn't have any code, however, that would handle changes in that property value. Indeed, the code that uses our component can pass a different value for the `bgColor` property at any time and our component should react by rendering the box in the appropriated color.
 
 Since our component doesn't use the `bgColor` property directly in the rendering code, we have to change the value of the `background-color` property in our style rule. This can be accomplished with the help of the same `setProp` method we already used in our example. When the `setProp` method is called on the rule that has already been inserted into the DOM, it will change the CSS rule object itself and the browser will react by recalculating and applying the styles.
@@ -151,12 +151,12 @@ export class ColorBox extends Component
 
 We don't actually need to perform any rendering because we are not changing any HTML structure - that's why we return `false`. For complex components, this can be an efficient way to handle style changes - changing the styles directly instead of re-rendering with different style rules. Using the styles this way makes then "dynamic" - the feature that all browsers support but which is rarely used in the standard CSS approach where the style rules are seen as static.
 
-There is a caveat in the above code though: setting a style property isn't different from other DOM-writing operations and without the proper care it can have adverse effects such as layout thrashing. Mimcss provides several methods of *activation scheduling* that work for both style activation and style property setting. The `setProp` method has an optional parameter `schedulerType` that can be used to specify what scheduling/activation method to use. Alternatively (and preferably) a default scheduling method can be set using the [setDefaultScheduler](/mimcss/reference/modules/schedulingapi.html#setdefaultscheduler) function.
+There is a caveat in the above code though: setting a style property isn't different from other DOM-writing operations and without the proper care it can have adverse effects such as layout thrashing. Mimcss provides several methods of *activation scheduling* that work for both style activation and style property setting. The `setProp` method has an optional parameter `schedulerType` that can be used to specify what scheduling/activation method to use. Alternatively (and preferably) a default scheduling method can be set using the [setDefaultScheduler](../reference.html?path=modules/SchedulingAPI.html#setDefaultScheduler) function.
 
 Mimcss supports several built-in scheduler types and allows the library users to create their own schedulers. For more information see the [Activation Scheduling](activation-scheduling.html) unit.
 
-## Referencing External Style Definitions
-We have seen in this guide how we can reference rules defined in a different style definition class using the `$use` function:
+## Referencing external style definitions
+We have seen in this guide how we can reference rules defined in a different style definition class using the `$use` method:
 
 ```tsx
 class CommonStyles extends css.StyleDefinition
@@ -172,9 +172,9 @@ class MyStyles extends css.StyleDefinition
 }
 ```
 
-This syntax is also possible if MyStyles is used by a styled component. When a styled component creates an instance of the `MyStyles` class, the `$use` function will be called for the `CommonStyles` class and the rule `red` will be inserted into the DOM. If a second instance of the same styled component creates a second instance of the `MyStyles` class, the `$use` function will be called again for the `CommonStyles` class - but this time Mimcss will find an existing instance of the `CommonStyles` class and will NOT insert the new rules into the DOM.
+This syntax is also possible if `MyStyles` is used by a styled component. When a styled component creates an instance of the `MyStyles` class, the `$use` method will be called for the `CommonStyles` class and the rule `red` will be inserted into the DOM. If a second instance of the same styled component creates a second instance of the `MyStyles` class, the `$use` method will be called again for the `CommonStyles` class - but this time Mimcss will find an existing instance of the `CommonStyles` class and will NOT insert the new rules into the DOM.
 
-This is quite logical if you want to re-use some common rules that are the same for every instance of the styled component. But what if you have two different style definition classes and you want both of them to create separate instances for separate instances of the styled component? The solution is easy - just create an instance of the second style definition class by yourself and pass it to the `$use` function:
+This is quite logical if you want to re-use some common rules that are the same for every instance of the styled component. But what if you have two different style definition classes and you want both of them to create separate instances for separate instances of the styled component? The solution is easy - just create an instance of the second style definition class by yourself and pass it to the `$use` method:
 
 ```tsx
 class Style1 extends css.StyleDefinition
@@ -192,8 +192,8 @@ class Style2 extends css.StyleDefinition
 
 Whenever a new instance of the `Style2` class is created, the new instance of the `Style1` class will be created along with it.
 
-## Grouping Rules
-Grouping rules like @media and @supports are another place we used style definition classes. If we want to use grouping rules with styled components, we again need to use instances instead of classes. Here is an example using the @media rule:
+## Grouping rules
+Grouping rules like @media and @supports are another place where we use style definition classes. If we want to use grouping rules with styled components, we again need to use instances instead of classes. Here is an example using the @media rule:
 
 ```tsx
 class ColorBoxStyles extends css.StyleDefinition
@@ -226,8 +226,8 @@ class ColorBoxStyles extends css.StyleDefinition
 
 We still use anonymous class; however, we directly create an instance of it. Note that we pass `this` to its constructor. In this context, `this` is the reference to the instance of the `ColorBoxStyles` class. The value passed to the constructor of the grouping definition class becomes the value of the `$parent` property whose type is defined by the generic parameter. This allows us to refer to properties of the top-level class like `this.$parent.box`.
 
-## When to Use
-Styled components is a powerful tool in the developers' arsenal; however, as any tool, it is suitable more to some tasks than to others. The main differentiator of the style components' functionality is twofold:
+## When to use
+Styled components is a powerful tool in the developers' arsenal; however, as any tool, it is suitable more to some tasks than to others. The main differentiator of the style components functionality is twofold:
 
 1. The ability to define styles based on externally provided parameters such as component properties, and
 1. The ability to change visual representation of HTML content by changing styles instead of changing HTML structure.

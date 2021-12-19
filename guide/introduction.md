@@ -6,13 +6,13 @@ description: "Quick introduction to Mimcss style authoring library."
 rootpath: ".."
 ---
 
-# Mimcss Guide: Introduction
+# Introduction
 
 Mimcss is a CSS-in-JS library that allows authoring CSS styles without creating CSS files. You code your style rules including CSS tags, classes, animations, media etc. by creating TypeScript classes. The Mimcss library processes these classes and creates the rules that are inserted into `<style>` elements in the `<head>` of your HTML document. As a result, all advantages of dynamic JavaScript coding combined with type-safety and convenience of TypeScript coding apply to CSS authoring. In addition, your application or library bundle is self contained and doesn't require a separate CSS bundle.
 
 * [Features](#features)
 * [Installation](#installation)
-* [Quick Start](#quick-start)
+* [Quick Sstart](#quick-start)
 
 ## Features
 The goal of the Mimcss library is to support all CSS features in a type-safe and easy-to-use manner. Mimcss provides the following capabilities:
@@ -60,7 +60,7 @@ import * as css from "mimcss"
 
 Mimcss provides [Reference](../reference.html) documents for developers, which undergoes constant improvements. Mimcss also provides a [Playground](../demo/playground.html), where you can explore Mimcss examples as well as write your own TypeScript code using Mimcss features and immediately see the results.
 
-## Quick Start
+## Quick start
 Let's assume that you need to create simple styles for a class and an element ID. With CSS you would create a CSS file:
 
 ```css
