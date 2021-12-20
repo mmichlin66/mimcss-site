@@ -22,7 +22,7 @@ and other members defined in the parent definition class can be accessed. For to
 style definitions, this property is always undefined. This property can also be undefined
 if it was not provided to the constructor when creating the style definition class manually.</p>
 </div><div><p>The <code>$parent</code> reference is used when there is a need to refer from grouping rules (created
-by <code>$media()</code> or <code>$support()</code> functions) to the rules defined in the parent style definition
+by <code>$media()</code> or <code>$support()</code> methods) to the rules defined in the parent style definition
 class. If there are multiple nested grouping rules, then the constuct <code>this.$parent.$parent...</code>
 allows reaching to rules defined in any ancestor style definition class.</p>
 <p><strong>Example:</strong></p>
@@ -306,7 +306,7 @@ types:</p>
 <li>string - allows any content but lacks type-safety checks.</li>
 <li>any style rule, that is a rule that implements the <a href="../interfaces/RuleTypes.IStyleRule.html">IStyleRule</a> interface. This allows
 using prevously defined tag, class, ID and other style rules as selector items</li>
-<li>[[selector]] function - a tag function that allows convenient mixing of free-format strings
+<li><a href="../modules/CoreAPI.html#selector">selector</a> function - a tag function that allows convenient mixing of free-format strings
 and strongly typed style rules.</li>
 </ul>
 </div><div><p>When multiple selector items are specified, they will be concatenated into a single string.</p>
@@ -349,11 +349,11 @@ be separated by commas.</p>
 entities. For a given style definition class only a single instance is created, no matter how
 many times this function is invoked. However, if an instance, which has not yet been processed,
 is passed, then a new set of unique names will be created for it.</p>
-</div><div><p>The <code>$use</code> function is used to reference a style definition from another style definition, for
+</div><div><p>The <code>$use</code> method is used to reference a style definition from another style definition, for
 example:</p>
 <pre><code class="language-typescript"><span class="hl-0">class</span><span class="hl-1"> </span><span class="hl-2">CommonStyles</span><span class="hl-1"> </span><span class="hl-0">extends</span><span class="hl-1"> </span><span class="hl-2">css</span><span class="hl-1">.</span><span class="hl-2">StyleDefinition</span><br/><span class="hl-1">{</span><br/><span class="hl-1">    </span><span class="hl-4">error</span><span class="hl-1"> = </span><span class="hl-0">this</span><span class="hl-1">.</span><span class="hl-5">$class</span><span class="hl-1">({ </span><span class="hl-4">color:</span><span class="hl-1"> </span><span class="hl-7">&quot;red&quot;</span><span class="hl-1">})</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-0">class</span><span class="hl-1"> </span><span class="hl-2">PageStyles</span><span class="hl-1"> </span><span class="hl-0">extends</span><span class="hl-1"> </span><span class="hl-2">css</span><span class="hl-1">.</span><span class="hl-2">StyleDefinition</span><br/><span class="hl-1">{</span><br/><span class="hl-1">    </span><span class="hl-4">common</span><span class="hl-1"> = </span><span class="hl-0">this</span><span class="hl-1">.</span><span class="hl-5">$use</span><span class="hl-1">( </span><span class="hl-4">CommonStyles</span><span class="hl-1">)</span><br/><br/><span class="hl-1">    </span><span class="hl-4">erroMessage</span><span class="hl-1"> = </span><span class="hl-0">this</span><span class="hl-1">.</span><span class="hl-5">$class</span><span class="hl-1">({</span><br/><span class="hl-1">        </span><span class="hl-7">&quot;+&quot;</span><span class="hl-4">:</span><span class="hl-1"> </span><span class="hl-0">this</span><span class="hl-1">.</span><span class="hl-4">common</span><span class="hl-1">.</span><span class="hl-4">error</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-4">fontWeight:</span><span class="hl-1"> </span><span class="hl-7">&quot;bold&quot;</span><br/><span class="hl-1">    })</span><br/><span class="hl-1">}</span>
 </code></pre>
-<p>When the <code>$use</code> function is called, the rules from the referenced style definition are not
+<p>When the <code>$use</code> method is called, the rules from the referenced style definition are not
 inserted into the DOM; they will be inserted when the style definition class that contains
 the <code>$use</code> call is activated. The same style definition class can be used from several
 other style definitions: as long as there is at least one referencing style definition that

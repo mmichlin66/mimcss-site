@@ -953,7 +953,7 @@ export interface IStyleset {
      */
     mask?: st.DefaultStyleType;
     /**
-     * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/border-image
+     * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/mask-border
      */
     maskBorder?: st.MaskBorder_StyleType;
     /**
