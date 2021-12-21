@@ -1708,6 +1708,16 @@ export declare type ExtendedIStyleset = {
     [K in keyof IStyleset]?: ExtendedProp<IStyleset[K]>;
 };
 /**
+ * The `IPageStyleset` interface defines properties that can be used in the `@page` rule in
+ * addition to regular style properties.
+ */
+export interface IPageStyleset {
+    /**
+     * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/@page/size
+     */
+    size?: st.Size_StyleType;
+}
+/**
  * The `ISyntaxTypeStyleset` interface maps CSS syntax names to the types, which can be used for
  * defining custom CSS properties (a.k.a. variables) via the @property rules.
  */
@@ -1794,7 +1804,7 @@ export interface ICustomTypeStyleset {
  * types, for which there is no suitable style property. The `IVarTemplateStyleset` interface provides
  * many basic types and it can also be extended using the TypeScript's module augmentation.
  */
-export interface IVarTemplateStyleset extends IStyleset, ISyntaxTypeStyleset, ICustomTypeStyleset {
+export interface IVarTemplateStyleset extends IStyleset, IPageStyleset, ISyntaxTypeStyleset, ICustomTypeStyleset {
 }
 /**
  * The VarTemplateName type defines the keys (strings) that can be used as templates for defining
@@ -1904,6 +1914,11 @@ export declare type Styleset = ExtendedIStyleset & {
  */
 export declare type StringStyleset = {
     [K: string]: string | null | undefined;
+};
+export declare type PageRuleStyleset = Styleset & {
+    [K in keyof IPageStyleset]?: ExtendedProp<IPageStyleset[K]>;
+} & {
+    "+"?: IStyleRule | IStyleRule[];
 };
 /**
  * The `CombinedStyleset` type extends the Styleset type with certain properties that provide

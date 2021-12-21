@@ -3,7 +3,7 @@ import { IStyleRule, IClassRule, IIDRule, AnimationFrame, IAnimationRule, IVarRu
 import { MediaStatement, SupportsStatement } from "./MediaTypes";
 import { ExtendedFontFace } from "./FontTypes";
 import { ExtendedCounterStyleset } from "./CounterTypes";
-import { Styleset, VarTemplateName, ExtendedVarValue, CombinedStyleset, CombinedClassStyleset, ISyntaxTypeStyleset } from "./Stylesets";
+import { VarTemplateName, ExtendedVarValue, CombinedStyleset, CombinedClassStyleset, ISyntaxTypeStyleset, PageRuleStyleset } from "./Stylesets";
 /**
  * The `StyleDefinition` class is a base for all classes that contain defininitions of CSS rules.
  * Style definition classes are regular TypeScript classes and as such can have any fields and
@@ -726,7 +726,7 @@ export declare abstract class StyleDefinition<P extends StyleDefinition = any> i
      * @param styleset Styles to apply.
      * @returns The `IPageRule` object that represents the page rule.
      */
-    $page(pseudoClass?: PagePseudoClass, styleset?: Styleset): IPageRule;
+    $page(pseudoClass?: PagePseudoClass, styleset?: PageRuleStyleset): IPageRule;
     /**
      * Creates a new `@supports` rule.
      *

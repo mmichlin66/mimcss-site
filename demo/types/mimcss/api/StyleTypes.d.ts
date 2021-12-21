@@ -945,6 +945,20 @@ export declare type OverscrollBehavior = "contain" | "none" | "auto";
  */
 export declare type OverscrollBehavior_StyleType = OneOrPair<OverscrollBehavior>;
 /**
+ * Keywords for page sizes
+ */
+export declare type PageSizeKeyword = "A5" | "A4" | "A3" | "B5" | "B4" | "JIS-B5" | "JIS-B4" | "letter" | "legal" | "ledger";
+/**
+ * Keywords for page orientations
+ */
+export declare type PageOrientation = "portrait" | "landscape";
+/**
+ * Type for the [[size]] style property
+ * - MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/@page/size
+ *
+ */
+export declare type Size_StyleType = "auto" | OneOrPair<CssLength> | PageSizeKeyword | PageOrientation | [PageSizeKeyword, PageOrientation];
+/**
  * Type for the paint-order style property
  *
  */
