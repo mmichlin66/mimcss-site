@@ -26,11 +26,10 @@ So far in this guide we have only seen global styles in Mimcss. A style definiti
 ## Style definition instance
 A style definition class is a regular TypeScript class and can have multiple instances. When we call the `activate()` function or `$use()` method and pass the class to it, Mimcss first looks whether there is already an instance associated with this class. If not, the instance is created and associated with the class; if yes, the existing instance is used. The names for the classes, IDs and other named entities are generated when the instance is created - that is, when the `activate()` function or `$use()` method is called for the first time for the style definition class. The instance remains associated with the class even after we call the `deactivate()` function and the rules are removed from the DOM.
 
-Let's now look at the definitions of the `activate()` function and `$use()` method:
+Let's now look at the definitions of the `activate()` function:
 
 ```tsx
-activate<T extends StyleDefinition>( instanceOrClass: T | IStyleDefinitionClass<T>): T | null
-$use<T extends StyleDefinition>( instanceOrClass: T | IStyleDefinitionClass<T>): T | null
+activate<T extends StyleDefinition>( instOrClass: T | IStyleDefinitionClass<T>, <other parameters omitted for clarity>): T | null
 ```
 
 We see that the function parameter can be not only a style definition class (that's what we have been using so far) but also an instance of a style definition class. That means we can create an instance of the style definition class by ourselves and pass it on to the `activate()` function. When Mimcss gets a newly created instance of a style definition class it will create completely new CSS rules with new auto-generated names for its named entities. That's the key for creating styled components.
@@ -174,7 +173,7 @@ class MyStyles extends css.StyleDefinition
 
 This syntax is also possible if `MyStyles` is used by a styled component. When a styled component creates an instance of the `MyStyles` class, the `$use` method will be called for the `CommonStyles` class and the rule `red` will be inserted into the DOM. If a second instance of the same styled component creates a second instance of the `MyStyles` class, the `$use` method will be called again for the `CommonStyles` class - but this time Mimcss will find an existing instance of the `CommonStyles` class and will NOT insert the new rules into the DOM.
 
-This is quite logical if you want to re-use some common rules that are the same for every instance of the styled component. But what if you have two different style definition classes and you want both of them to create separate instances for separate instances of the styled component? The solution is easy - just create an instance of the second style definition class by yourself and pass it to the `$use` method:
+This is quite logical if you want to re-use some common rules that are the same for every instance of the styled component. But what if you have two different style definition classes and you want both of them to create separate instances for separate instances of the styled component? The solution is easy - just create an instance of the second style definition class by yourself and directly assign it to the property:
 
 ```tsx
 class Style1 extends css.StyleDefinition
@@ -184,9 +183,9 @@ class Style1 extends css.StyleDefinition
 
 class Style2 extends css.StyleDefinition
 {
-    style1 = this.$use( new Style1())
+    style1 = new Style1()
 
-    superRed = this.$class({ "+": this.style2.red, fontWeight: "bold" })
+    superRed = this.$class({ "+": this.style1.red, fontWeight: "bold" })
 }
 ```
 

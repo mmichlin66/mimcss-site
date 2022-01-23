@@ -936,6 +936,7 @@ export declare abstract class ThemeDefinition<P extends StyleDefinition = any> e
  *     {
  *         // we must pass the shadow root object to the `deactivate()` function too.
  *         css.deactivate( this.styles, this.shadow);
+ *         css.releaseShadow( this.shadow);
  *     }
  * }
  * ```
@@ -1040,6 +1041,14 @@ export declare const deactivate: (sd: IStyleDefinition, root?: DocumentOrShadowR
  * if no instance is currently active.
  */
 export declare const getActiveTheme: (themeClass: IStyleDefinitionClass<ThemeDefinition>) => ThemeDefinition | undefined;
+/**
+ * Releases internal resources that Mimcss created for the given shadow root object when activating
+ * style definitions. This function should be called from the *disconnectedCallback* of the custom
+ * Web element.
+ *
+ * @param root Shadow root of the custom Web element
+ */
+export declare const releaseShadow: (root: ShadowRoot) => void;
 /**
  * Starts server-side activation functionality. This function should be called before any style
  * definitions that are part of the application are activated.

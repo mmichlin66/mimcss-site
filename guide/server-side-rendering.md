@@ -2,15 +2,15 @@
 layout: mimcss-guide
 unit: 11
 title: "Mimcss Guide: Server side rendering"
-description: "Style definition classes can use inheritance to allow changing visual aspects of the application without changing its HTML code."
+description: "Supporting server-side rendering and client-side hydration."
 rootpath: ".."
 ---
 
 # Server side rendering
 
-Server side rendering (SSR) is a technique to render an initial state of a client application on the server to speed up page rendering in the browser. The component rendering code is invoked on the server and the result is captured to an HTML string. The string is then written to the server's output stream and becomes part of the static HTML delivered from the server to the client. The *hydration* process is the client counterpart of server side rendering, in which the component rendering instead of producing HTML elements, finds the existing elements and links them to the appropriate components. After the hydration process is finished the application continues to work normally and rendering components causes HTML elements to be added, removed or changed.
+Server side rendering (SSR) is a technique to render an initial state of a client application on the server to speed up page rendering in the browser. The component rendering code is invoked on the server and the result is captured to an HTML string. The string is then written to the server's output stream and becomes part of the static HTML delivered from the server to the client. The *hydration* process is the client counterpart of server side rendering, in which the component rendering, instead of producing HTML elements, finds the existing elements and links them to the appropriate components. After the hydration process is finished the application continues to work normally and rendering components causes HTML elements to be added, removed or changed.
 
-With Mimcss, components activate and use style definitions, which results in `<style>` elements being created in the HTML's `<head>` element. To support server side rendering, Mimcss provides functions, which are called on the server before and after the component rendering is invoked. This allows capturing the content, which is normally written to the `<head>` element, to the string. This string is manually added before the end of the `<head>` element in the output HTML stream. For the hydration on the client, Mimcss provides functions that are called before and after the first rendering phase, which ensures that necessary style definitions are created and "linked" to the appropriate `<style>` elements.
+With Mimcss, components activate and use style definitions, which results in `<style>` elements being created in the HTML's `<head>` element. To support server side rendering, Mimcss provides functions, which are called on the server before and after the component rendering is invoked. This allows capturing the content, which is normally written to the `<head>` element, to a string. This string is manually added before the end of the `<head>` element in the output HTML stream. For the hydration on the client, Mimcss provides functions that are called before and after the first rendering phase, which ensures that necessary style definitions are created and "linked" to the appropriate `<style>` elements.
 
 As an example, let's have an application page consisting of one simple component that uses a simple style definition class. Here is the style definition and component code (we are using pseudo-React code):
 
