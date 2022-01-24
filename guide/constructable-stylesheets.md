@@ -58,7 +58,6 @@ class MyCustomElement extends HTMLElement
         css.releaseShadow( this.shadowRoot);
     }
 
-    private shadow: ShadowRoot;
     private styles: WebElementStyles;
 }
 
