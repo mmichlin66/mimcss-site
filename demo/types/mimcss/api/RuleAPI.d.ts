@@ -984,9 +984,9 @@ export declare const getActiveTheme: (themeClass: IStyleDefinitionClass<ThemeDef
  * [[popAdoptionContext]] function must be called.
  *
  * For custom Web elements, the pair of `pushAdoptionContext` and [[popAdoptionContext]] functions
- * is usually called in the `connected` callback; however, they can be called whenever new style
- * definitions are activated. For example, they can be called when handling events within the
- * custom Web element's code.
+ * is usually called in the `connectedCallback` method; however, they should be called whenever new
+ * style definitions are activated or deactivated. For example, they may need to be called when
+ * handling events within the custom Web element's code.
  *
  * @param root Document or ShadowRoot object to which style definitions will be adopted
  */
