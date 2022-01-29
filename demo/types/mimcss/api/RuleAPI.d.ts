@@ -1000,14 +1000,6 @@ export declare const pushAdoptionContext: (root: DocumentOrShadowRoot) => void;
  */
 export declare const popAdoptionContext: (root: DocumentOrShadowRoot) => void;
 /**
-* Releases internal resources that Mimcss created for the given shadow root object when activating
-* style definitions. This function should be called from the *disconnectedCallback* of the custom
-* Web element.
-*
-* @param root Shadow root of the custom Web element
-*/
-export declare const releaseShadow: (root: ShadowRoot) => void;
-/**
  * Starts server-side activation functionality. This function should be called before any style
  * definitions that are part of the application are activated.
  *

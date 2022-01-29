@@ -12,14 +12,12 @@ Constructable stylesheets is a new technology, which is currently only supported
 
 Mimcss supports constructable stylesheets by establishing an *adoption context* linked to a given `Document` or `ShadowRoot` object before the `activate` function call. The context is established using the `pushAdoptionContext` function and is removed using the `popAdoptionContext` function. If an adoption context is active when the `activate` function is called, Mimcss will create an instance of the style definition class, serialize it to a `CSSStyleSheet` instance and adopt it to the `Document` or `ShadowRoot` element whose adoption context is currently active. If the `activate` function is called again with the same style definition class but the adoption context for a different `root` parameter, Mimcss will adopt the existing `CSSStyleSheet` instance to the new root object.
 
-When an adoption context is created for a given `ShadowRoot` object for a custom Web element, Mimcss creates some internal resources, which remain linked to the `ShadowRoot` object even after the adoption context is removed. This is needed because adoption context can be created and removed many times - although it is usually needed during the Web element constructor or `connectedCallback` method, it can also be needed whenever styles are activated or deactivated; for example, in an event handler. When the Web element is removed from DOM, the Web element should inform Mimcss by calling the `releaseShadow` function so that these resources can be released. This is usually done in the `disconnectedCallback` method. Note that this is only needed for `ShadowRoot` objects and not for `Document` objects.
-
-In the browsers that don't yet support constructable stylesheets, Mimcss will instead create `<style>` elements under the given `Document` or `ShadowRoot` element so that developers don't need to worry whether the browsers support constructable stylesheets or not.
+In the browsers that don't support constructable stylesheets yet, Mimcss will instead create `<style>` elements under the given `Document.head` or `ShadowRoot` element so that developers don't need to worry whether the browsers support constructable stylesheets or not. Note that in order to do that, Mimcss creates some internal resources. These resources can only be cleaned up if the first call to `pushAdoptionContext` is done NOT in the constructor. The proper place to call it is in the `connectedCallback` method.
 
 As an example, let's have a simple custom Web element:
 
 ```tsx
-class MyWebElementStyles extends css.StyleDefinition
+class MyCustomElementStyles extends css.StyleDefinition
 {
     red = this.$class({ backgroundColor: "red" })
 }
@@ -29,19 +27,21 @@ class MyCustomElement extends HTMLElement
     constructor()
     {
         super();
-
         this.attachShadow({mode: "open"});
+    }
 
+    connectedCallback()
+    {
         // establish adoption context
         css.pushAdoptionContext( this.shadowRoot);
-        this.styles = css.activate( MyWebElementStyles);
+        this.styles = css.activate( MyCustomElementStyles);
         // remove adoption context
         css.popAdoptionContext( this.shadowRoot);
 
+        // create some content
         let div = document.createElement( "div");
-        this.shadow.appendChild( div);
+        this.shadowRoot.appendChild( div);
         div.className = this.styles.red.name;
-
         let text = document.createTextNode("Hello!");
         div.appendChild(text);
     }
@@ -53,12 +53,9 @@ class MyCustomElement extends HTMLElement
         css.deactivate( this.styles);
         // remove adoption context
         css.popAdoptionContext( this.shadowRoot);
-
-        // cleanup resources used by Mimcss for this shadow root
-        css.releaseShadow( this.shadowRoot);
     }
 
-    private styles: WebElementStyles;
+    private styles: MyCustomElementStyles;
 }
 
 customElements.define( "my-custom-element", MyCustomElement);

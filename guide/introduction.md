@@ -25,6 +25,7 @@ The goal of the Mimcss library is to support all CSS features in a type-safe and
 - Names of CSS classes, IDs, animations, custom CSS properties, counters and grid lines and areas are auto-generated, while developers use properties that return these names. Auto-generation mechanism can be overridden if there is a need to use pre-defined names.
 - Support for theming via style definition class inheritance.
 - Support for server-side rendering.
+- Support for constructable style sheets.
 - All CSS rule types are supported including style rules and at-rules.
 - Automatic support for vendor prefixes.
 - Custom CSS properties are supported in a type safe manner.

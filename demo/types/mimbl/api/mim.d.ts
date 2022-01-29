@@ -1,4 +1,6 @@
 import { Styleset, IIDRule, ClassPropType } from "mimcss";
+import { IHtmlIntrinsicElements } from "./HtmlTypes";
+import { ISvgIntrinsicElements } from "./SvgTypes";
 /**
  * Type used to define properties that can be passed to a manged component.
  *
@@ -322,8 +324,12 @@ export interface IElementProps<TRef extends Element = Element, TChildren = any> 
     cut?: EventPropType<ClipboardEvent>;
     paste?: EventPropType<ClipboardEvent>;
 }
-import * as html from "./HtmlTypes";
-import * as svg from "./SvgTypes";
+/**
+ * This interface is intended to be augmented in order to add to it names of custom Web elements
+ * mapped to their corresponding property types.
+ */
+export interface ICustomWebElements {
+}
 /**
  * Namespace defining interfaces used by TypeScript to type-check JSX expressions.
  */
@@ -337,205 +343,7 @@ export declare namespace JSX {
     interface ElementChildrenAttribute {
         children: any;
     }
-    interface IntrinsicElements {
-        a: html.IHtmlAElementProps;
-        abbr: html.IHtmlElementProps;
-        acronym: html.IHtmlElementProps;
-        address: html.IHtmlElementProps;
-        applet: html.IHtmlAppletElementProps;
-        area: html.IHtmlAreaElementProps;
-        article: html.IHtmlElementProps;
-        aside: html.IHtmlElementProps;
-        audio: html.IHtmlAudioElementProps;
-        b: html.IHtmlElementProps;
-        base: html.IHtmlBaseElementProps;
-        bdi: html.IHtmlElementProps;
-        bdo: html.IHtmlElementProps;
-        big: html.IHtmlElementProps;
-        blockquote: html.IHtmlBlockquoteElementProps;
-        body: html.IHtmlElementProps;
-        br: html.IHtmlBrElementProps;
-        button: html.IHtmlButtonElementProps;
-        canvas: html.IHtmlCanvasElementProps;
-        caption: html.IHtmlCaptionElementProps;
-        center: html.IHtmlElementProps;
-        cite: html.IHtmlElementProps;
-        code: html.IHtmlElementProps;
-        col: html.IHtmlColElementProps;
-        colgroup: html.IHtmlColgroupElementProps;
-        data: html.IHtmlDataElementProps;
-        datalist: html.IHtmlDataListElementProps;
-        dd: html.IHtmlDdElementProps;
-        del: html.IHtmlDelElementProps;
-        details: html.IHtmlDetailsElementProps;
-        dfn: html.IHtmlElementProps;
-        dialog: html.IHtmlDialogElementProps;
-        dir: html.IHtmlDirElementProps;
-        div: html.IHtmlDivElementProps;
-        dl: html.IHtmlDlElementProps;
-        dt: html.IHtmlElementProps;
-        em: html.IHtmlElementProps;
-        embed: html.IHtmlEmbedElementProps;
-        fieldset: html.IHtmlFieldsetElementProps;
-        figcaption: html.IHtmlElementProps;
-        figure: html.IHtmlElementProps;
-        font: html.IHtmlFontElementProps;
-        footer: html.IHtmlElementProps;
-        form: html.IHtmlFormElementProps;
-        frame: html.IHtmlFrameElementProps;
-        frameset: html.IHtmlFramesetElementProps;
-        h1: html.IHtmlH1ElementProps;
-        h2: html.IHtmlH2ElementProps;
-        h3: html.IHtmlH3ElementProps;
-        h4: html.IHtmlH4ElementProps;
-        h5: html.IHtmlH5ElementProps;
-        h6: html.IHtmlH6ElementProps;
-        head: html.IHtmlHeadElementProps;
-        header: html.IHtmlElementProps;
-        hgroup: html.IHtmlElementProps;
-        hr: html.IHtmlHrElementProps;
-        html: html.IHtmlHtmlElementProps;
-        i: html.IHtmlElementProps;
-        iframe: html.IHtmlIframeElementProps;
-        img: html.IHtmlImgElementProps;
-        input: html.IHtmlInputElementProps;
-        ins: html.IHtmlInsElementProps;
-        kbd: html.IHtmlElementProps;
-        keygen: html.IHtmlElementProps;
-        label: html.IHtmlLabelElementProps;
-        legend: html.IHtmlLegendElementProps;
-        li: html.IHtmlLiElementProps;
-        link: html.IHtmlLinkElementProps;
-        listing: html.IHtmlListingElementProps;
-        main: html.IHtmlElementProps;
-        map: html.IHtmlMapElementProps;
-        mark: html.IHtmlElementProps;
-        menu: html.IHtmlMenuElementProps;
-        menuitem: html.IHtmlElementProps;
-        meta: html.IHtmlMetaElementProps;
-        meter: html.IHtmlMeterElementProps;
-        nav: html.IHtmlElementProps;
-        nobr: html.IHtmlElementProps;
-        noframes: html.IHtmlElementProps;
-        noscript: html.IHtmlElementProps;
-        object: html.IHtmlObjectElementProps;
-        ol: html.IHtmlOlElementProps;
-        optgroup: html.IHtmlOptgroupElementProps;
-        option: html.IHtmlOptionElementProps;
-        output: html.IHtmlOutputElementProps;
-        p: html.IHtmlPElementProps;
-        param: html.IHtmlParamElementProps;
-        picture: html.IHtmlPictureElementProps;
-        pre: html.IHtmlPreElementProps;
-        progress: html.IHtmlProgressElementProps;
-        q: html.IHtmlQElementProps;
-        rb: html.IHtmlElementProps;
-        rp: html.IHtmlElementProps;
-        rt: html.IHtmlElementProps;
-        rtc: html.IHtmlElementProps;
-        ruby: html.IHtmlElementProps;
-        s: html.IHtmlElementProps;
-        samp: html.IHtmlElementProps;
-        script: html.IHtmlScriptElementProps;
-        section: html.IHtmlElementProps;
-        select: html.IHtmlSelectElementProps;
-        slot: html.IHtmlSlotElementProps;
-        small: html.IHtmlElementProps;
-        source: html.IHtmlSourceElementProps;
-        span: html.IHtmlSpanElementProps;
-        strike: html.IHtmlElementProps;
-        strong: html.IHtmlElementProps;
-        style: html.IHtmlStyleElementProps;
-        sub: html.IHtmlElementProps;
-        summary: html.IHtmlElementProps;
-        sup: html.IHtmlElementProps;
-        table: html.IHtmlTableElementProps;
-        tbody: html.IHtmlTbodyElementProps;
-        td: html.IHtmlTdElementProps;
-        template: html.IHtmlTemplateElementProps;
-        textarea: html.IHtmlTextareaElementProps;
-        tfoot: html.IHtmlTfootElementProps;
-        th: html.IHtmlThElementProps;
-        thead: html.IHtmlTHeadElementProps;
-        time: html.IHtmlTimeElementProps;
-        title: html.IHtmlTitleElementProps;
-        tr: html.IHtmlTrElementProps;
-        track: html.IHtmlTrackElementProps;
-        tt: html.IHtmlElementProps;
-        u: html.IHtmlElementProps;
-        ul: html.IHtmlUlElementProps;
-        var: html.IHtmlElementProps;
-        video: html.IHtmlVideoElementProps;
-        wbr: html.IHtmlElementProps;
-        xmp: html.IHtmlXmpElementProps;
-        svg: svg.ISvgSvgElementProps;
-        svgA: svg.ISvgAElementProps;
-        animate: svg.ISvgConditionalProcessingProps | svg.ISvgAnimationProps;
-        animateMotion: svg.ISvgAnimateMotionElementProps;
-        animateTarnsform: svg.ISvgConditionalProcessingProps | svg.ISvgAnimationProps;
-        circle: svg.ISvgCircleElementProps;
-        clipPath: svg.ISvgClipPathElementProps;
-        colorProfile: svg.ISvgColorProfilePathElementProps;
-        defs: svg.ISvgElementProps;
-        desc: svg.ISvgElementProps;
-        discard: svg.ISvgDiscardElementProps;
-        ellipse: svg.ISvgEllipseElementProps;
-        feBlend: svg.ISvgFeBlendElementProps;
-        feColorMatrix: svg.ISvgFeColorMatrixElementProps;
-        feComponentTransfer: svg.ISvgFeComponentTransferElementProps;
-        feComposite: svg.ISvgFeCompositeElementProps;
-        feConvolveMatrix: svg.ISvgFeConvolveMatrixElementProps;
-        feDiffuseLighting: svg.ISvgFeDiffuseLightingElementProps;
-        feDisplacementMap: svg.ISvgFeDisplacementMapElementProps;
-        feDistantLight: svg.ISvgFeDistantLightElementProps;
-        feDropShadow: svg.ISvgFeDropShadowElementProps;
-        feFlood: svg.ISvgFeFloodElementProps;
-        feFuncA: svg.ISvgTransferFunctionsProps;
-        feFuncB: svg.ISvgTransferFunctionsProps;
-        feFuncG: svg.ISvgTransferFunctionsProps;
-        feFuncR: svg.ISvgTransferFunctionsProps;
-        feGaussianBlur: svg.ISvgFeGaussianBlurElementProps;
-        feImage: svg.ISvgFeImageElementProps;
-        feMerge: svg.ISvgPresentationProps | svg.ISvgFilterPrimitiveProps;
-        feMergeNode: svg.ISvgFeMergeNodeElementProps;
-        feMorphology: svg.ISvgFeMorphologyElementProps;
-        feOffset: svg.ISvgFeOffsetElementProps;
-        fePointLight: svg.ISvgFePointLightElementProps;
-        feSpecularLighting: svg.ISvgFeSpecularLightingElementProps;
-        feSpotLight: svg.ISvgFeSpotLightElementProps;
-        feTile: svg.ISvgFeTileElementProps;
-        feTurbulence: svg.ISvgFeTurbulenceElementProps;
-        filter: svg.ISvgFilterElementProps;
-        foreignObject: svg.ISvgForeignObjectElementProps;
-        g: svg.ISvgConditionalProcessingProps | svg.ISvgPresentationProps;
-        hatch: svg.ISvgHatchElementProps;
-        hatchpath: svg.ISvgHatchpathElementProps;
-        image: svg.ISvgImageElementProps;
-        line: svg.ISvgLineElementProps;
-        linearGradient: svg.ISvgLinearGradientElementProps;
-        marker: svg.ISvgMarkerElementProps;
-        mask: svg.ISvgMaskElementProps;
-        metadata: svg.ISvgElementProps;
-        mpath: svg.ISvgMPathElementProps;
-        path: svg.ISvgPathElementProps;
-        pattern: svg.ISvgPatternElementProps;
-        polygon: svg.ISvgPolygonElementProps;
-        polyline: svg.ISvgPolylineElementProps;
-        radialGradient: svg.ISvgRadialGradientElementProps;
-        rect: svg.ISvgRectElementProps;
-        svgScript: svg.ISvgScriptElementProps;
-        set: svg.ISvgSetElementProps;
-        solidcolor: svg.ISvgElementProps;
-        stop: svg.ISvgStopElementProps;
-        svgStyle: svg.ISvgStyleElementProps;
-        switch: svg.ISvgConditionalProcessingProps | svg.ISvgPresentationProps;
-        symbol: svg.ISvgSymbolElementProps;
-        text: svg.ISvgTextElementProps;
-        textPath: svg.ISvgTextPathElementProps;
-        svgTitle: svg.ISvgElementProps;
-        textSpan: svg.ISvgTextSpanElementProps;
-        use: svg.ISvgUseElementProps;
-        view: svg.ISvgViewElementProps;
+    interface IntrinsicElements extends IHtmlIntrinsicElements, ISvgIntrinsicElements, ICustomWebElements {
     }
     interface IntrinsicAttributes extends ICommonProps {
     }
@@ -739,7 +547,57 @@ export interface IClassCompVN extends IVNode {
     /** Gets the component instance. */
     readonly comp: IComponent;
     /** This method is called by the component when it needs to be updated. */
-    requestUpdate(): void;
+    updateMe(func?: RenderMethodType, funcThisArg?: any, key?: any): void;
+    /**
+     * Schedules the given function to be called before any components scheduled to be updated in
+     * the Mimbl tick are updated.
+     * @param func Function to be called
+     * @param funcThisArg Object that will be used as "this" value when the function is called. If this
+     *   parameter is undefined, the component instance will be used (which allows scheduling
+     *   regular unbound components' methods). This parameter will be ignored if the function
+     *   is already bound or is an arrow function.
+     */
+    callMe(func: ScheduledFuncType, beforeUpdate: boolean, funcThisArg?: any): void;
+    /**
+     * Creates a wrapper function with the same signature as the given callback so that if the original
+     * callback throws an exception, it is processed by the Mimbl error handling mechanism so that the
+     * exception bubbles from this component up the hierarchy until a component that knows to
+     * handle errors is found.
+     *
+     * Use this method before passing callbacks to document and window event handlers as well as
+     * non-DOM objects that use callbacks, e.g. fetch, Promise, setTimeout, etc. For example:
+     *
+     * ```typescript
+     *	class ResizeMonitor extends mim.Component
+     *	{
+     *		private onWindowResize(e: Event): void {};
+     *
+     * 		wrapper: (e: Event): void;
+     *
+     * 		public startResizeMonitoring()
+     *		{
+     *			this.wrapper = this.wrapCallback( this.onWindowResize);
+     *			window.addEventListener( "resize", this.wrapper);
+     *		}
+     *
+     * 		public stopResizeMonitoring()
+     *		{
+     *			window.removeEventListener( "resize", this.wrapper);
+     *			this.wrapper = undefined;
+     *		}
+     *	}
+     * ```
+     *
+     * @param func Method/function to be wrapped
+     * @param funcThisArg Optional value of "this" to bind the callback to. If this parameter is
+     * undefined, the component instance will be used. This parameter will be ignored if the the
+     * function is already bound or is an arrow function.
+     * @param schedulingType Type determining whether and how a Mimbl tick should be scheduled
+     * after callback invocation.
+     * @returns Function that has the same signature as the given callback and that should be used
+     *     instead of the original callback
+     */
+    wrapCallback<T extends Function>(func: T, funcThisArg?: any, schedulingType?: TickSchedulingType): T;
 }
 /**
  * The IManagedCompVN interface represents a virtual node for a JSX-based component.
@@ -945,7 +803,7 @@ export declare const enum TickSchedulingType {
  * Base class for components. Components that derive from this class must implement the render
  * method.
  */
-export declare abstract class Component<TProps = {}, TChildren = any> {
+export declare abstract class Component<TProps = {}, TChildren = any> implements IComponent<TProps, TChildren> {
     /**
      * Component properties passed to the constructor. This is normally used only by managed
      * components and is usually undefined for independent coponents.
